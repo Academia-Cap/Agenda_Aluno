@@ -1,0 +1,58 @@
+.div-geral{
+    display: flex;
+}
+
+.div-login{
+    background-color: #7C7F9B7A;
+    width: 50%;
+    height: 100vh;
+    text-align: center;
+}
+
+.div-enfeite{
+    background-color: #7C7F9B7A;
+    margin-left: 2%;
+    width: 0.5%;
+    height: 100vh;
+}
+
+.div-cadastrar{
+    width: 30%;
+    margin-left: 10%;
+    text-align: center;
+}
+
+.h1-color{
+    font-size: 50px;
+    margin-top: 30%;
+    color: #444458;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+button:hover{
+    background-color: #000000;
+}
+
+.btn-entrar{
+    background-color: #444458;
+    color: white;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 2% 10%;
+    border-radius: 20px;
+    font-size: 30px;
+}
+
+input{
+    width: 90%;
+    margin: 3%;
+    border-radius: 15px;
+    border-color: #888995;
+    padding: 1%;
+}
+
+.h1-color-cadastro{
+    font-size: 50px;
+    margin-top: 20%;
+    color: #444458;
+    font-family: 'Times New Roman', Times, serif;
+}

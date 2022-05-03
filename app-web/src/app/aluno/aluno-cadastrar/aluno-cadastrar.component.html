@@ -1,0 +1,21 @@
+<div class="div-geral">
+    <div class="div-login">
+        <h1 class="h1-color">Bem-vindo</h1>
+        <button class="btn btn-entrar">Entrar</button>
+    </div>
+    <div class="div-enfeite">
+    </div>
+    <div class="div-cadastrar">
+        <h1 class="h1-color-cadastro">Cadastre-se</h1>
+        <form #f="ngForm" (ngSubmit)="cadastrar(f.value)">
+            <input type="text" #fnome="ngModel" ngModel name="nome" placeholder="Digite Nome" required>
+            <input type="text" #ftelefone="ngModel" ngModel name="telefone" placeholder="Digite Telefone" required>
+            <input type="text" #femail="ngModel" ngModel name="email" placeholder="Digite Email" required>
+            <input type="text" #fusuario="ngModel" ngModel name="usuario" placeholder="Digite Usuário" required>
+            <input type="text" #fsenha="ngModel" ngModel name="senha" placeholder="Digite Senha" required>
+            <div>
+                <button type="button" class="btn btn-entrar">Cadastrar</button>
+            </div>
+        </form>
+    </div>
+</div>

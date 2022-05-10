@@ -1,0 +1,12 @@
+{
+  "name": "instituicao",
+  "version": "1.0.0",
+  "description": "Projeto Agenda Aluno",
+  "main": "instituicao.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node institucao.js"
+  },
+  "author": "Caroline Oliveira, Alice Feldhaus e Tânia Rocha",
+  "license": "ISC"
+}

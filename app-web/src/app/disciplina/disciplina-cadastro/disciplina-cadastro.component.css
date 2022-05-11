@@ -1,0 +1,47 @@
+.div-geral{
+    display: flex;
+}
+
+input{
+    margin-left: 3%;
+    margin-bottom: 3%;
+    width: 94%;
+    border-radius: 10px;
+}
+h1{
+    margin-left: 3%;
+    text-align: center;
+}
+.btn{
+    background-color: #565761;
+    color: white;
+    margin: 8%;
+}
+.btn:hover{
+    background-color: white;
+    color: #565761;
+}
+.div-cadastro{
+    background-color: #888995;
+    width: 25%;
+    height: 100vh;
+}
+
+.div-janela{
+    width: 50%;
+    margin-top: 3%;
+    margin-left: 10%;
+}
+.botoes{
+    position: absolute;
+    width: 25%;
+    bottom: 2%;
+}
+.modal-title{
+    margin: auto;
+}
+.btn-modal{
+    background-color: #565761;
+    color: white;
+    margin: 2%;
+}

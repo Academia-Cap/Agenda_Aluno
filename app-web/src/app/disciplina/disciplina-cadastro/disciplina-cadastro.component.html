@@ -1,0 +1,88 @@
+<div class="div-geral">
+
+    <div class="div-cadastro">
+
+        <h1>Disciplina</h1>
+
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)">
+
+            <input required class="input-group-text" type="text" #fdisciplina="ngModel" ngModel name="disciplina" placeholder="Informe a disciplina" />
+
+            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao" placeholder="Informe a abreviação" />
+
+            <input required class="input-group-text" type="text" #fdocente="ngModel" ngModel name="docente" placeholder="Informe o docente" />
+
+            <input required class="input-group-text" type="text" #fanotacao="ngModel" ngModel name="anotacoes" placeholder="Anotações" />
+
+            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal" data-bs-target="#myModal">Notas</button>
+
+        </form>
+
+        <!-- MODAL -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+        
+                    <div class="modal-header">
+                        <h4 class="modal-title">Notas</h4>
+                    </div>
+        
+                    <div class="modal-body">
+                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
+                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
+                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
+                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
+
+                    </div>
+        
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">add</i></button>
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">done</i></button>
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">close</i></button>
+                    </div>
+        
+                </div>
+            </div>
+        </div>
+
+        <div class="botoes">
+            <button type="button" class="btn btn-secondary col-md-10" (click)="gravar(f.value)">Salvar</button>
+        </div>
+
+    </div>
+
+    <div class="div-janela">
+
+        <h1>Disciplina</h1>
+
+        <div class="row">
+
+            <div class="card m-2" style="width: 30%">
+                <div class="card-body">
+                    <h3 class="card-title">Mat</h3>
+                    <h5 class="card-title">Matemática</h5>
+                    <p class="card-text">Exemplode anotações que o card pode ter</p>
+                </div>
+            </div>
+
+            <div class="card m-2" style="width: 30%">
+                <div class="card-body">
+                    <h3 class="card-title">HIS</h3>
+                    <h5 class="card-title">História</h5>
+                    <p class="card-text">Exemplode anotações que o card pode ter</p>
+                </div>
+            </div>
+
+            <div class="card m-2" style="width: 30%">
+                <div class="card-body">
+                    <h3 class="card-title">LPL</h3>
+                    <h5 class="card-title">Lingua Portuguesa e Literatura</h5>
+                    <p class="card-text">Exemplode anotações que o card pode ter</p>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

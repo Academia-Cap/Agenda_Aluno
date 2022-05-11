@@ -1,28 +1,24 @@
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
+import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlunoComponent } from './aluno/aluno.component';
-import { AulaComponent } from './aula/aula.component';
-import { EscolaComponent } from './escola/escola.component';
-import { DiciplinaComponent } from './diciplina/cadastro/diciplina/diciplina.component';
-import { CadastroDiciplinaComponent } from './diciplina/cadastro-diciplina/cadastro-diciplina.component';
-import { JanelaDiciplinaComponent } from './diciplina/janela-diciplina/janela-diciplina.component';
+import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlunoComponent,
-    AulaComponent,
-    EscolaComponent,
-    DiciplinaComponent,
-    CadastroDiciplinaComponent,
-    JanelaDiciplinaComponent
+    DisciplinaCadastroComponent,
+  
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

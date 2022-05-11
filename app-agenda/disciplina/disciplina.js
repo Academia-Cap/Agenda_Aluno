@@ -51,7 +51,7 @@ app.post('/disciplina', (req, res) => {
     })
 })
 
-// Consultar disciplina
+// Consultar disciplina por diciplina
 
 app.get('/disciplina/:disciplina', (req, res) => {
     pool.connect((err, client) => {
@@ -113,5 +113,6 @@ app.delete('/disciplina/:disciplina', (req, res) => {
     })
 })
 
+//Usar a porta 8081
 
 app.listen(8081, () => console.log('Aplicação em execução na url http://localhost:8081'))

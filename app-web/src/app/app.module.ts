@@ -1,22 +1,25 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { AlunoComponent } from './aluno/aluno.component';
-import { AulaComponent } from './aula/aula.component';
-import { EscolaComponent } from './escola/escola.component';
+import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
+import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    AlunoComponent,
-    AulaComponent,
-    EscolaComponent
+    InstituicaoCadastroComponent,
+    InstituicaoEditaComponent,
   ],
   imports: [
-    BrowserModule,
-    AppRoutingModule
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      HttpClientModule
+      
   ],
   providers: [],
   bootstrap: [AppComponent]

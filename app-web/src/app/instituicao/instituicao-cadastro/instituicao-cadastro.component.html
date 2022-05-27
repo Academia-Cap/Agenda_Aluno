@@ -4,38 +4,20 @@
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
             <input required class="form-control" type="text" #fnome="ngModel" ngModel name="nome"
                 placeholder="Nome" />
-            <div *ngIf="fnome.invalid" class="ng-invalid">
-                Informe o nome da Instituicao
-            </div>
 
             <input required class="form-control" type="text" #fsigla="ngModel" ngModel name="sigla"
                 placeholder="Sigla" />
-            <div *ngIf="fsigla.invalid" class="ng-invalid">
-                Informe a sigla
-            </div>
-
+            
             <input required class="form-control" type="text" #fcep="ngModel" ngModel name="cep" placeholder="CEP" />
-            <div *ngIf="fcep.invalid" class="ng-invalid">
-                Informe o CEP
-            </div>
-
+            
             <input required class="form-control" type="text" #frua="ngModel" ngModel name="rua" placeholder="Rua" />
-            <div *ngIf="frua.invalid" class="ng-invalid">
-                Informe a rua
-            </div>
-
+            
             <input required class="form-control" type="text" #fcidade="ngModel" ngModel name="cidade"
                 placeholder="Cidade" />
-            <div *ngIf="fcidade.invalid" class="ng-invalid">
-                Informe a cidade
-            </div>
-
+            
             <input required class="form-control" type="text" #festado="ngModel" ngModel name="estado"
                 placeholder="Estado" />
-            <div *ngIf="festado.invalid" class="ng-invalid">
-                Informe o estado
-            </div>
-
+           
             <div class="mt-2">
                 <button [disabled]="f.invalid" class="btn btn-dark me-2"
                     onClick="window.location.reload()">Salvar</button>
@@ -52,7 +34,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{ inst.sigla }}</h6>
                 <p class="card-text">{{ inst.rua }} {{ inst.cidade }} {{ inst.estado }} {{ inst.cep}}</p>
             </div>
-            <a [routerLink]="['/instituicao',inst.id]"><i class="material-icons">mode_edit</i></a>
-            <i role="button" onClick="window.location.reload()" class="material-icons text-primary" (click)="excluir(inst.id)">delete</i>
+            <a [routerLink]="['/instituicao',inst.id]"><i class="material-icons text-light">mode_edit</i></a>
+            <i role="button" onClick="window.location.reload()" class="material-icons text-light" (click)="excluir(inst.id)">delete</i>
         </div>
     </div>

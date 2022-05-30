@@ -8,20 +8,23 @@ import { CadastroService } from './disciplina-services/cadastro.service';
 })
 export class DisciplinaCadastroComponent implements OnInit {
 
+  msg: string = ""
   disciplina: any;
 
   constructor(private serviceCadastro: CadastroService ) { 
-    this.serviceCadastro.getAll().subscribe(x => this.disciplina = x)
+    this.serviceCadastro.getTodos().subscribe(x => this.disciplina = x)
   }
 
   gravar(dados: any){
     this.serviceCadastro.gravar(dados).subscribe(x => window.location.reload())
   }
 
+  excluir(id: any) {
+    this.serviceCadastro.excluir(id).subscribe(x => this.msg = "Disciplina excluida com sucesso")
+  }
+
   ngOnInit(): void {
   }
 
-  // excluir(disciplina: any){
-  //   this.serviceCadastro.excluir(disciplina).subscribe(x => window.location.reload())
-  // }
+  
 }

@@ -5,6 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
+import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
 
 
 
@@ -12,6 +13,7 @@ import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/di
   declarations: [
     AppComponent,
     DisciplinaCadastroComponent,
+    DisciplinaEditaComponent,
   
   ],
   imports: [

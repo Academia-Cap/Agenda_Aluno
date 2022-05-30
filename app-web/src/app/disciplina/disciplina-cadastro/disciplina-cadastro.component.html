@@ -6,15 +6,28 @@
 
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
 
-            <input required class="input-group-text" type="text" #fdisciplina="ngModel" ngModel name="disciplina" placeholder="Informe a disciplina" />
+            <input required class="input-group-text" type="text" #fnome="ngModel" ngModel name="nome"
+                placeholder="Informe a disciplina" />
+            <div *ngIf="fnome.invalid" class="ng-invalid">
+                *Campo disciplina é obrigatório
+            </div>
 
-            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao" placeholder="Informe a abreviação" />
+            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao"
+                placeholder="Informe a abreviação" />
+            <div *ngIf="fabreviacao.invalid" class="ng-invalid">
+                *Campo abreviação é obrigatório
+            </div>
 
-            <input required class="input-group-text" type="text" #fdocente="ngModel" ngModel name="docente" placeholder="Informe o docente" />
+            <input required class="input-group-text" type="text" #fdocente="ngModel" ngModel name="docente"
+                placeholder="Informe o docente" />
+            <div *ngIf="fdocente.invalid" class="ng-invalid">
+                *Campo docente é obrigatório
+            </div>
 
-            <input required class="input-group-text" type="text" #fanotacao="ngModel" ngModel name="anotacoes" placeholder="Anotações" />
+            <input class="input-group-text" type="text" ngModel name="anotacao" placeholder="Anotações" />
 
-            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal" data-bs-target="#myModal">Notas</button>
+            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
+                data-bs-target="#myModal">Notas</button>
 
         </form>
 
@@ -22,31 +35,36 @@
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-        
+
                     <div class="modal-header">
                         <h4 class="modal-title">Notas</h4>
                     </div>
-        
+
                     <div class="modal-body">
-                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
-                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
-                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
-                        <input class="input-group-text" type="number" placeholder="Informe a nota"/>
+                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
+                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
+                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
+                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
 
                     </div>
-        
+
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">add</i></button>
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">done</i></button>
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons">close</i></button>
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
+                                class="material-icons">add</i></button>
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
+                                class="material-icons">done</i></button>
+                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
+                                class="material-icons">close</i></button>
                     </div>
-        
+
                 </div>
             </div>
         </div>
 
+        <!-- FIM MODAL -->
+
         <div class="botoes">
-            <button type="button" class="btn btn-secondary col-md-10" (click)="gravar(f.value)">Salvar</button>
+            <button [disabled]="f.invalid" class="btn btn-secondary col-md-10" (click)="gravar(f.value)">Salvar</button>
         </div>
 
     </div>
@@ -55,31 +73,16 @@
 
         <h1>Disciplina</h1>
 
-        <div class="row">
-
-            <div class="card m-2" style="width: 30%">
-                <div class="card-body">
-                    <h3 class="card-title">Mat</h3>
-                    <h5 class="card-title">Matemática</h5>
-                    <p class="card-text">Exemplode anotações que o card pode ter</p>
-                </div>
+        <div *ngFor="let disc of disciplina" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ disc.nome }}</h5>
+                <h6 class="card-subitle mb-2 text-muted">{{ disc.abreviacao }} {{ '-' }} {{disc.docente}}</h6>
+                <p class="card-text">{{ disc.anotacao }}</p>
             </div>
+    
+                <button class="btn btn-secondary botao-card"> <a [routerLink]="['/disciplina',disc.id]"><i class="material-icons text-ligth">mode_edit</i></a> </button>
 
-            <div class="card m-2" style="width: 30%">
-                <div class="card-body">
-                    <h3 class="card-title">HIS</h3>
-                    <h5 class="card-title">História</h5>
-                    <p class="card-text">Exemplode anotações que o card pode ter</p>
-                </div>
-            </div>
-
-            <div class="card m-2" style="width: 30%">
-                <div class="card-body">
-                    <h3 class="card-title">LPL</h3>
-                    <h5 class="card-title">Lingua Portuguesa e Literatura</h5>
-                    <p class="card-text">Exemplode anotações que o card pode ter</p>
-                </div>
-            </div>
+                <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.reload()" class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
 
         </div>
 

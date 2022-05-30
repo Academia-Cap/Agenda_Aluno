@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { InstituicaoService } from 'src/app/instituicao-servico/instituicao.service';
+import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
 
 @Component({
   selector: 'app-instituicao-edita',

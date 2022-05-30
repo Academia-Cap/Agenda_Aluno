@@ -8,15 +8,18 @@
             <input required class="form-control" type="text" #fsigla="ngModel" ngModel name="sigla"
                 placeholder="Sigla" />
             
-            <input required class="form-control" type="text" #fcep="ngModel" ngModel name="cep" placeholder="CEP" />
+            <input required class="form-control" type="text" id = "cep" #fcep="ngModel" ngModel name="cep" (blur)="consultarCep($event)" placeholder="CEP"/>
+            <!-- <input required class="form-control" type="text" id = "rua" #frua="ngModel" ngModel name="rua" placeholder="Rua" />
             
-            <input required class="form-control" type="text" #frua="ngModel" ngModel name="rua" placeholder="Rua" />
-            
-            <input required class="form-control" type="text" #fcidade="ngModel" ngModel name="cidade"
+            <input required class="form-control" type="text" id = "cidade" #fcidade="ngModel" ngModel name="cidade"
                 placeholder="Cidade" />
             
-            <input required class="form-control" type="text" #festado="ngModel" ngModel name="estado"
-                placeholder="Estado" />
+            <input required class="form-control" type="text" id="estado" #festado="ngModel" ngModel name="estado"
+                placeholder="Estado" />-->
+           
+            <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua" placeholder="Digite rua" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.localidade" #fcidade="ngModel" ngModel name="cidade" placeholder="Digite cidade" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado" placeholder="Digite estado" required>    
            
             <div class="mt-2">
                 <button [disabled]="f.invalid" class="btn btn-dark me-2"

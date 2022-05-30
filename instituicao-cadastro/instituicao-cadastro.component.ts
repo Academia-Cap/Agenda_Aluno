@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { InstituicaoService } from 'src/app/instituicao-servico/instituicao.service';
+import { Form, FormsModule } from '@angular/forms';
+import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
+import { CepServicoService } from '../instituicao-servico-cep/cep-servico.service';
+
 
 @Component({
   selector: 'instituicao-cadastro',
@@ -11,7 +14,7 @@ export class InstituicaoCadastroComponent implements OnInit {
   msg: string = ""
   instituicao: any;
 
-  constructor(private instituicaoService: InstituicaoService) {
+  constructor(private instituicaoService: InstituicaoService, private cepService: CepServicoService) {
     this.instituicaoService.getTodos().subscribe(x => this.instituicao = x)
   }
 
@@ -26,6 +29,14 @@ export class InstituicaoCadastroComponent implements OnInit {
 
   ngOnInit(): void {
 
+  }
+
+  cep:string="";
+  endereco: any = {};
+
+  consultarCep(event: any) {
+    this.cep=event.target.value;
+    this.cepService.buscar(this.cep).subscribe((dados)=> this.endereco = dados);
   }
 
 }

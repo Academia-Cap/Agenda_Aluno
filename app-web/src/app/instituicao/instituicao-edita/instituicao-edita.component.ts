@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { InstituicaoService } from 'src/app/instituicao-servico/instituicao.service';
+import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
+import { CepServicoService } from '../instituicao-servico-cep/cep-servico.service';
 
 @Component({
   selector: 'app-instituicao-edita',
@@ -9,7 +10,7 @@ import { InstituicaoService } from 'src/app/instituicao-servico/instituicao.serv
 })
 export class InstituicaoEditaComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute, private instituicaoService: InstituicaoService, ) { 
+  constructor(private route: ActivatedRoute, private instituicaoService: InstituicaoService) { 
     this.instituicaoService.getTodos().subscribe(x => this.instituicao = x)
   }
   instituicao: any;

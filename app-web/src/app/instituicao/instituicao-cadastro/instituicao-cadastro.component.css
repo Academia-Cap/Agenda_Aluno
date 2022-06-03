@@ -50,3 +50,7 @@ h2{
 .text-ligth:hover{
     color:#565761;
 }
+
+.text-danger{
+    text-align: center;
+}

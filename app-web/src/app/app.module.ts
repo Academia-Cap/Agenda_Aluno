@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/insti
       BrowserModule,
       AppRoutingModule,
       FormsModule,
-      HttpClientModule
+      HttpClientModule,
+      NgxMaskModule.forRoot()
       
   ],
   providers: [],

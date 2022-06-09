@@ -1,6 +1,6 @@
 const express = require('express')
 const rota = express.Router();
-var jwt = require('jsonwebtoken')
+
 const bcrypt = require('bcrypt')
 
 var pg = require('pg')
@@ -21,14 +21,34 @@ rota.post('/', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        var sql = 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5) RETURNING id'
-        var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.senha]
-        client.query(sql, values, (error, result) => {
-            if (error) {
-                return res.status(401).send('Operação não permitida')
+
+        client.query('select * from aluno where usuario = $1', [req.body.usuario], (erro, result) => {
+            if (erro) {
+                return res.status(401).send('Operação não autorizada')
             }
-            res.status(201).send(result.rows[0])
+
+            if (result.rowCount > 0) {
+                return res.status(200).send('Resgistro já existe')
+            }
+            bcrypt.hash(req.body.senha, 10, (error, hash) => {
+                if (error) {
+                    return res.status(500).send({
+                        message: 'erro de autenticação',
+                        erro: error.message
+                    })
+                }
+
+                var sql = 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)'
+                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, hash]
+                client.query(sql, values, (error, result) => {
+                    if (error) {
+                        return res.status(401).send('Operação não permitida')
+                    }
+                    res.status(201).send(result.rows[0])
+                })
+            })
         })
+
     })
 });
 
@@ -53,12 +73,12 @@ rota.put('/:idAluno', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query('SELECT * FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE aluno SET nome= $1, telefone = $2, email = $3, usuario = $4, senha = $5 WHERE id = $6'
+                var sql = 'UPDATE aluno SET nome = $1, telefone = $2, email = $3, usuario = $4, senha = $5 WHERE aluno_id = $6'
                 var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.senha, req.params.idAluno]
                 client.query(sql, values, (error, result) => {
                     if (error) {
@@ -66,7 +86,7 @@ rota.put('/:idAluno', (req, res) => {
                     }
                     res.status(201).send(result.rows[0])
                 })
-            } else{
+            } else {
                 res.status(401).send('Operação não permitida')
             }
         })
@@ -79,60 +99,23 @@ rota.delete('/:idAluno', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query('SELECT * FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                client.query('DELETE FROM aluno WHERE id_ = $1', [req.params.idAluno], (error, result) => {
+                client.query('DELETE FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (error, result) => {
                     if (error) {
                         return res.status(401).send('Operação não permitida')
                     }
                     res.status(201).send('Operação realizada com sucesso')
                 })
-            } else{
+            } else {
                 res.status(401).send('Operação não permitida')
             }
         })
 
     })
 });
-
-rota.post('/login', (req, res) => {
-    pool.connect((err, client) => {
-        if (err) {
-            return res.status(401).send("Conexão não autorizada")
-        }
-        client.query('select * from aluno where email = $1', [req.body.email], (error, result) => {
-            if (error) {
-                return res.status(401).send('operação não permitida')
-            }
-            if (result.rowCount > 0) {
-                bcrypt.compare(req.body.senha, result.rows[0].senha, (error, results) => {
-                    if (error) {
-                        return res.status(401).send({
-                            message: "Falha na autenticação"
-                        })
-                    }
-                    if (results) { //geração do token
-                        let token = jwt.sign({
-                                email: result.rows[0].email,
-                                usuario: result.rows[0].usuario
-                            },
-                            process.env.JWTKEY, { expiresIn: '1h' })
-                        return res.status(200).send({
-                            message: 'Conectado com sucesso',
-                            token: token
-                        })
-                    }
-                })
-            } else {
-                return res.status(200).send({
-                    message: 'Aluno não encontrado'
-                })
-            }
-        })
-    })
-})
 
 module.exports = rota;

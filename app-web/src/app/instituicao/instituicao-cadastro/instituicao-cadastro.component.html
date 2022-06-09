@@ -1,0 +1,36 @@
+<div class="div-tela">
+    <div class="div-perfil">
+        <h2>Cadastro de Instituição</h2>
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)">
+            <input required class="form-control" type="text" #fnome="ngModel" (blur)="validaNome($event)" ngModel name="nome"
+                placeholder="Nome" />
+            <p class="text-danger">{{msgNome}}</p>
+            <input required class="form-control" type="text" #fsigla="ngModel" (blur)="validaSigla($event)" ngModel name="sigla"
+                placeholder="Sigla" />
+            <p class="text-danger">{{msgSigla}}</p>
+            <input required  class="form-control" mask="00.000-000" type="text" id = "cep" #fcep="ngModel" ngModel name="cep" (blur)="consultarCep($event)" placeholder="CEP"/>
+            <p class="text-danger">{{msgCep}}</p>
+            <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua" placeholder="Digite rua" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.localidade" #fcidade="ngModel" ngModel name="cidade" placeholder="Digite cidade" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado" placeholder="Digite estado" required>    
+           
+            <div class="mt-2">
+                <button [disabled]="f.invalid" class="btn btn-dark me-2"
+                    onClick="window.location.reload()">Salvar</button>
+                <button type="reset" class="btn btn-dark">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="div-cadastro">
+        <h2>Instituições Cadastradas</h2>
+        <div *ngFor="let inst of instituicao" class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title">{{ inst.nome }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ inst.sigla }}</h6>
+                <p class="card-text">{{ inst.rua }} {{ inst.cidade }} {{ inst.estado }} {{ inst.cep}}</p>
+            </div>
+            <a [routerLink]="['/instituicao',inst.id]"><i class="material-icons text-light">mode_edit</i></a>
+            <i role="button" onClick="window.location.reload()" class="material-icons text-light" (click)="excluir(inst.id)">delete</i>
+        </div>
+    </div>

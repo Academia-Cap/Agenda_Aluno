@@ -1,4 +1,6 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
+import { FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 
@@ -9,12 +11,20 @@ import { FormsModule, NgModel } from '@angular/forms';
 import { AlunoCadastrarComponent } from './aluno/aluno-cadastrar/aluno-cadastrar.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
+import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
+
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LoginComponent } from './instituicao/login/login.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     AlunoPerfilComponent,
     AlunoCadastrarComponent
+    InstituicaoCadastroComponent,
+    InstituicaoEditaComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

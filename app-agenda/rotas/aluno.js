@@ -1,6 +1,8 @@
 const express = require('express')
 const rota = express.Router();
 
+const bcrypt = require('bcrypt')
+
 var pg = require('pg')
 var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
@@ -19,14 +21,34 @@ rota.post('/', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        var sql = 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)'
-        var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.senha]
-        client.query(sql, values, (error, result) => {
-            if (error) {
-                return res.status(401).send('Operação não permitida')
+
+        client.query('select * from aluno where usuario = $1', [req.body.usuario], (erro, result) => {
+            if (erro) {
+                return res.status(401).send('Operação não autorizada')
             }
-            res.status(201).send(result.rows[0])
+
+            if (result.rowCount > 0) {
+                return res.status(200).send('Resgistro já existe')
+            }
+            bcrypt.hash(req.body.senha, 10, (error, hash) => {
+                if (error) {
+                    return res.status(500).send({
+                        message: 'erro de autenticação',
+                        erro: error.message
+                    })
+                }
+
+                var sql = 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)'
+                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, hash]
+                client.query(sql, values, (error, result) => {
+                    if (error) {
+                        return res.status(401).send('Operação não permitida')
+                    }
+                    res.status(201).send(result.rows[0])
+                })
+            })
         })
+
     })
 });
 
@@ -64,7 +86,7 @@ rota.put('/:idAluno', (req, res) => {
                     }
                     res.status(201).send(result.rows[0])
                 })
-            } else{
+            } else {
                 res.status(401).send('Operação não permitida')
             }
         })
@@ -88,7 +110,7 @@ rota.delete('/:idAluno', (req, res) => {
                     }
                     res.status(201).send('Operação realizada com sucesso')
                 })
-            } else{
+            } else {
                 res.status(401).send('Operação não permitida')
             }
         })

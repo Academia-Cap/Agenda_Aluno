@@ -1,7 +1,7 @@
 const express = require('express')
 const app = express()
 const cors = require('cors')
-//const bcrypt = require('bcrypt')
+
 
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
@@ -22,6 +22,10 @@ app.use("/instituicao", rotaInstituicao)
 //chama a rota de disciplina
 const rotaDisciplina = require('./rotas/disciplina')
 app.use("/disciplina", rotaDisciplina)
+
+//chama a rota de aluno Login
+const rotaAlunoLogin = require('./rotas/alunoLogin')
+app.use("/alunoLogin", rotaAlunoLogin)
 
 app.get('/', (req, res) =>{
     res.status(201).send('Conectou!')

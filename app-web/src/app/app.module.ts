@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 
-import { NgxMaskModule, IConfig } from 'ngx-mask'
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { LoginComponent } from './instituicao/login/login.component'
 
 @NgModule({
   declarations: [
     AppComponent,
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
+    LoginComponent,
   ],
   imports: [
       BrowserModule,

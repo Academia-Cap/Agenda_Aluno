@@ -6,21 +6,23 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlunoPerfilComponent } from './aluno/aluno-perfil/aluno-perfil.component';
 import { FormsModule, NgModel } from '@angular/forms';
-import { AlunoEditarComponent } from './aluno/aluno-editar/aluno-editar.component';
 import { AlunoCadastrarComponent } from './aluno/aluno-cadastrar/aluno-cadastrar.component';
+import { CurrencyMaskModule } from "ng2-currency-mask";
+import { NgxMaskModule, IConfig } from 'ngx-mask'
 
 @NgModule({
   declarations: [
     AppComponent,
     AlunoPerfilComponent,
-    AlunoEditarComponent,
     AlunoCadastrarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    CurrencyMaskModule,
+    NgxMaskModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]

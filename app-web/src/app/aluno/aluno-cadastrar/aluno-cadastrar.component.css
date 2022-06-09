@@ -1,48 +1,65 @@
-.div-geral{
+.div-geral {
     display: flex;
 }
 
-.div-login{
-    background-color: #7C7F9B7A;
+.div-login {
+    background-color: #BF608380;
     width: 50%;
     height: 100vh;
     text-align: center;
 }
 
-.div-enfeite{
-    background-color: #7C7F9B7A;
+.div-enfeite {
+    background-color: #BF608380;
     margin-left: 2%;
     width: 0.5%;
     height: 100vh;
 }
 
-.div-cadastrar{
+.div-cadastrar {
     width: 30%;
     margin-left: 10%;
     text-align: center;
 }
 
-.h1-color{
+.h1-color {
     font-size: 50px;
-    margin-top: 30%;
-    color: #444458;
+    margin-top: 19%;
+    color: #CFEAF2;
     font-family: 'Times New Roman', Times, serif;
 }
 
-button:hover{
-    background-color: #000000;
+button:hover {
+    background-color: #1A1859;
 }
 
-.btn-entrar{
-    background-color: #444458;
+.btn-login {
+    background-color: #1A1859;
+    color: white;
+    margin-top: 3%;
+    font-family: 'Times New Roman', Times, serif;
+    padding: 1% 3%;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.btn-entrar {
+    background-color: #1A1859;
     color: white;
     font-family: 'Times New Roman', Times, serif;
-    padding: 2% 10%;
+    padding: 1% 3%;
     border-radius: 20px;
-    font-size: 30px;
+    font-size: 20px;
 }
 
-input{
+.input-login {
+    width: 90%;
+    border-radius: 15px;
+    border-color: #888995;
+    padding: 1%;
+}
+
+.input-cadastro {
     width: 90%;
     margin: 3%;
     border-radius: 15px;
@@ -50,9 +67,26 @@ input{
     padding: 1%;
 }
 
-.h1-color-cadastro{
+.h1-color-cadastro {
     font-size: 50px;
     margin-top: 20%;
-    color: #444458;
+    color: #1A1859;
     font-family: 'Times New Roman', Times, serif;
+}
+
+span {
+    color: red;
+    font-size: 15px;
+}
+
+.div-login-left {
+    width: 70%;
+    margin-left: 20%;
+    text-align: left;
+}
+
+.label-login {
+    margin-left: 2%;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: larger;
 }

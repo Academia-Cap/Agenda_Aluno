@@ -1,20 +1,41 @@
 <div class="div-geral">
     <div class="div-login">
         <h1 class="h1-color">Bem-vindo</h1>
-        <button class="btn btn-entrar">Entrar</button>
+        <div class="div-login-left">
+            <form #g="ngForm" (ngSubmit)="login(g.value)">
+                <Label class="label-login">Email</Label>
+                <input required class="form-control input-login" type="text" #gemail="ngModel" ngModel name="email">
+                <Label class="label-login">Senha</Label>
+                <input required class="form-control input-login" type="password" #gsenha="ngModel" ngModel name="senha">
+
+                <button class="btn btn-login" type="submit" routerLink="['/perfilAluno', 108]">Entrar</button>
+            </form>
+        </div>
     </div>
     <div class="div-enfeite">
     </div>
     <div class="div-cadastrar">
         <h1 class="h1-color-cadastro">Cadastre-se</h1>
         <form #f="ngForm" (ngSubmit)="cadastrar(f.value)">
-            <input type="text" #fnome="ngModel" ngModel name="nome" placeholder="Digite Nome" required>
-            <input type="text" #ftelefone="ngModel" ngModel name="telefone" placeholder="Digite Telefone" required>
-            <input type="text" #femail="ngModel" ngModel name="email" placeholder="Digite Email" required>
-            <input type="text" #fusuario="ngModel" ngModel name="usuario" placeholder="Digite Usuário" required>
-            <input type="text" #fsenha="ngModel" ngModel name="senha" placeholder="Digite Senha" required>
-            <div>
-                <button type="button" class="btn btn-entrar">Cadastrar</button>
+            <input required class="form-control input-cadastro" type="text" #fnome="ngModel" ngModel name="nome"
+                placeholder="Nome">
+            <span *ngIf="fnome.invalid && fnome.touched">*Nome inválido</span>
+            <input required class="form-control input-cadastro" type="text" #ftelefone="ngModel" ngModel name="telefone"
+                placeholder="Telefone" [dropSpecialCharacters]="false" mask="(00) 00000-0000">
+            <input required class="form-control input-cadastro" type="text" #femail="ngModel" ngModel name="email"
+                placeholder="Email">
+            <span *ngIf="femail.invalid && femail.touched">*Email inválido</span>
+            <input required class="form-control input-cadastro" type="text" #fusuario="ngModel" ngModel name="usuario"
+                placeholder="Usuário">
+            <input required class="form-control input-cadastro" type="text" #fsenha="ngModel" ngModel name="senha"
+                placeholder="Senha">
+
+            <div
+                *ngIf="!fnome.invalid && !ftelefone.invalid && !femail.invalid && !fusuario.invalid && !fsenha.invalid">
+                <button #fbuttonSub="ngModel" ngModel type="submit" class="btn btn-entrar">Cadastrar</button>
+            </div>
+            <div *ngIf="fnome.invalid || femail.invalid || fusuario.invalid || fsenha.invalid">
+                <button class="btn btn-entrar" type="button">Cadastrar</button>
             </div>
         </form>
     </div>

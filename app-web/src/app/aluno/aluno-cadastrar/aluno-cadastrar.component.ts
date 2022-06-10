@@ -12,7 +12,8 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
   styleUrls: ['./aluno-cadastrar.component.css']
 })
 export class AlunoCadastrarComponent implements OnInit {
-  aluno: any;
+  aluno = { id: 0 };
+  alunoToken: any;
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
@@ -43,7 +44,7 @@ export class AlunoCadastrarComponent implements OnInit {
   }
 
   Gravar(dados: any) {
-    this.servicoAluno.gravar(dados)
+    this.servicoAluno.gravar(dados).subscribe(() => "Cadastrado")
     alert('Cadastro criado com sucesso')
   }
 
@@ -53,9 +54,9 @@ export class AlunoCadastrarComponent implements OnInit {
         token => {
           if (token != "Aluno não encontrado") {
             localStorage.setItem('token', JSON.stringify(token))
-            this.aluno = token
-            console.log(token)
-          } else{
+            this.alunoToken = this.decodeToken.decodeTokenJWT()
+            this.aluno.id = this.alunoToken.id
+          } else {
             alert("Login inválido")
           }
         }
@@ -65,10 +66,10 @@ export class AlunoCadastrarComponent implements OnInit {
     }
   }
 
-  verToken() {
-    let usuario = this.decodeToken.decodeTokenJWT()
-    console.log(usuario)
-  }
+  //verToken() {
+  //  let usuario = this.decodeToken.decodeTokenJWT()
+  //  console.log(usuario)
+  //}
 
   ngOnInit(): void {
   }

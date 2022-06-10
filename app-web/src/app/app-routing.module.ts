@@ -8,7 +8,7 @@ import { AuthLoginService } from './aluno/autenticacao/auth-login.service';
 
 
 const routes: Routes = [
-  { path: '', component: AlunoCadastrarComponent, canActivate: [AuthLoginService]},
+  { path: '', component: AlunoCadastrarComponent},
   { path: 'home', component: AlunoCadastrarComponent, canActivate: [AuthLoginService] },
   { path: 'perfilAluno/:id', component: AlunoPerfilComponent, canActivate: [AuthLoginService] },
   { path: 'instituicao/:id', component: InstituicaoEditaComponent, canActivate: [AuthLoginService] },

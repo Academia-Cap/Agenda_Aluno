@@ -35,9 +35,9 @@ rota.post('/login', (req, res) => {
                             message: "Falha na autenticação"
                         })
                     }
-                    console.log(results)
                     if (results) {
                         let token = jwt.sign({
+                                id: result.rows[0].id,
                                 email: result.rows[0].email,
                             },
                             process.env.JWTKEY, { expiresIn: '1h' })

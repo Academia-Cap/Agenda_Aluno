@@ -8,7 +8,7 @@
                 <Label class="label-login">Senha</Label>
                 <input required class="form-control input-login" type="password" #gsenha="ngModel" ngModel name="senha">
 
-                <button class="btn btn-login" type="submit" routerLink="['/perfilAluno', 108]">Entrar</button>
+                <button class="btn btn-login" type="submit" routerLink="['/perfilAluno', this.aluno.id]">Entrar</button>
             </form>
         </div>
     </div>

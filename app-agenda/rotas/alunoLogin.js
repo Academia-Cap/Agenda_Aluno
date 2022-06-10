@@ -24,11 +24,10 @@ rota.post('/login', (req, res) => {
         if (err) {
             return res.status(401).send("Conexão não autorizada")
         }
-        client.query('select * from aluno where usuario = $1', [req.body.usuario], (error, result) => {
+        client.query('select * from aluno where email = $1', [req.body.email], (error, result) => {
             if (error) {
                 return res.status(401).send('operação não permitida')
             }
-            console.log(result)
             if (result.rowCount > 0) {
                 bcrypt.compare(req.body.senha, result.rows[0].senha, (error, results) => {
                     if (error) {
@@ -36,18 +35,18 @@ rota.post('/login', (req, res) => {
                             message: "Falha na autenticação"
                         })
                     }
-                    
-                    if (results) { 
+                    console.log(results)
+                    if (results) {
                         let token = jwt.sign({
-                                usuario: result.rows[0].usuario,
-                            },
+                            email: result.rows[0].email,
+                        },
                             process.env.JWTKEY, { expiresIn: '1h' })
                         return res.status(200).send({
                             message: 'Conectado com sucesso',
                             token: token
                         })
                     }
-                    
+
                 })
             } else {
                 return res.status(200).send({

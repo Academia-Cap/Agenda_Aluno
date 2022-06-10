@@ -12,7 +12,6 @@ import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { LoginComponent } from './instituicao/login/login.component'
 
 @NgModule({
   declarations: [
@@ -21,7 +20,6 @@ import { LoginComponent } from './instituicao/login/login.component'
     AlunoCadastrarComponent,
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
-    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +27,7 @@ import { LoginComponent } from './instituicao/login/login.component'
     FormsModule,
     HttpClientModule,
     CurrencyMaskModule,
-    NgxMaskModule.forRoot()
+    NgxMaskModule.forRoot(),
   ],
   providers: [],
   bootstrap: [AppComponent]

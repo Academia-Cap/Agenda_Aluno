@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/aluno/autenticacao/authentication.service';
+import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
 import { AlunoService } from '../aluno-servico/aluno.service';
 import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 
@@ -10,9 +12,11 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
   styleUrls: ['./aluno-cadastrar.component.css']
 })
 export class AlunoCadastrarComponent implements OnInit {
-
-  constructor(private servicoAluno: AlunoService, private router: Router, private serviceValidar: ValidarCamposService) { }
   aluno: any;
+
+  constructor(private servicoAluno: AlunoService, private router: Router,
+    private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
+    private decodeToken: DecodeTokenService) { }
 
   cadastrar(dados: any) {
     dados.telefone = this.serviceValidar.validarTelefone(dados.telefone)
@@ -23,7 +27,7 @@ export class AlunoCadastrarComponent implements OnInit {
     if (this.serviceValidar.validarEmail(dados.email) == "INVALID") {
       alert('Email Inválido')
     }
-    console.log(dados.telefone)
+
     if (dados.telefone == "INVALID") {
       alert('Telefone Inválido')
     }
@@ -33,23 +37,37 @@ export class AlunoCadastrarComponent implements OnInit {
     }
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
-      dados.telefone != "INVALID" && dados.senha != "") {
+      dados.telefone != "INVALID" && dados.senha.length >= 6) {
       this.Gravar(dados)
     }
   }
 
   Gravar(dados: any) {
-    this.servicoAluno.gravar(dados).subscribe(x => this.aluno = x)
-    this.router.navigate(['/perfilAluno', this.aluno.id]);
+    this.servicoAluno.gravar(dados)
     alert('Cadastro criado com sucesso')
   }
 
   login(dados: any) {
     if (this.serviceValidar.validarEmail(dados.email) == "VALID" && dados.senha.length >= 6) {
-      this.servicoAluno.login(dados).subscribe(x => this.aluno = x)
-    } else{
+      this.auth.logar(dados.email, dados.senha).subscribe(
+        token => {
+          if (token != "Aluno não encontrado") {
+            localStorage.setItem('token', JSON.stringify(token))
+            this.aluno = token
+            console.log(token)
+          } else{
+            alert("Login inválido")
+          }
+        }
+      )
+    } else {
       alert('Email e senha incorretos')
     }
+  }
+
+  verToken() {
+    let usuario = this.decodeToken.decodeTokenJWT()
+    console.log(usuario)
   }
 
   ngOnInit(): void {

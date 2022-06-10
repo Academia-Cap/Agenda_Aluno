@@ -27,9 +27,4 @@ export class AlunoService {
     let url = `http://localhost:8000/aluno/${idAluno}`
     return this.http.get(url)
   }
-
-  login(dados: any){
-    let url = `http://localhost:8000/login`
-    return this.http.post(url,dados)
-  }
 }

@@ -2,15 +2,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule} from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AlunoPerfilComponent } from './aluno/aluno-perfil/aluno-perfil.component';
-import { FormsModule, NgModel } from '@angular/forms';
 import { AlunoCadastrarComponent } from './aluno/aluno-cadastrar/aluno-cadastrar.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
-import { NgxMaskModule, IConfig } from 'ngx-mask'
 import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 
@@ -21,7 +18,7 @@ import { LoginComponent } from './instituicao/login/login.component'
   declarations: [
     AppComponent,
     AlunoPerfilComponent,
-    AlunoCadastrarComponent
+    AlunoCadastrarComponent,
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
     LoginComponent,

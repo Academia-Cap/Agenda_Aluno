@@ -7,28 +7,14 @@ import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/insti
 import { LoginComponent } from './instituicao/login/login.component';
 import { AuthLoginService } from './instituicao/autenticacao/auth-login.service';
 
- 
+
 const routes: Routes = [
   { path: '', component: AlunoCadastrarComponent },
   { path: 'home', component: AlunoCadastrarComponent },
   { path: 'perfilAluno/:id', component: AlunoPerfilComponent },
- {
-    path:'instituicao/:id',
-    component: InstituicaoEditaComponent
-  },
-  {
-    path:'cadastrainstituicao',
-    component: InstituicaoCadastroComponent,
-    canActivate: [AuthLoginService]
-  },
-  {
-    path:'',
-    component: InstituicaoCadastroComponent
-  },
-  {
-    path: 'login',
-    component: LoginComponent
-  }
+  { path: 'instituicao/:id', component: InstituicaoEditaComponent },
+  { path: 'cadastrainstituicao', component: InstituicaoCadastroComponent, canActivate: [AuthLoginService] },
+  { path: 'login', component: LoginComponent }
 ];
 
 @NgModule({

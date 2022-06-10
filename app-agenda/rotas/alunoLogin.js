@@ -38,8 +38,8 @@ rota.post('/login', (req, res) => {
                     console.log(results)
                     if (results) {
                         let token = jwt.sign({
-                            email: result.rows[0].email,
-                        },
+                                email: result.rows[0].email,
+                            },
                             process.env.JWTKEY, { expiresIn: '1h' })
                         return res.status(200).send({
                             message: 'Conectado com sucesso',

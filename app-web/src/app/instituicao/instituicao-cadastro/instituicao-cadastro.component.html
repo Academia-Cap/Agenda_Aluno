@@ -4,26 +4,26 @@
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
             <input required class="form-control" type="text" #fnome="ngModel" (blur)="validaNome($event)" ngModel name="nome"
                 placeholder="Nome" />
-            <p class="text-danger">{{msgNome}}</p>
+            <p class="msg">{{msgNome}}</p>
             <input required class="form-control" type="text" #fsigla="ngModel" (blur)="validaSigla($event)" ngModel name="sigla"
                 placeholder="Sigla" />
-            <p class="text-danger">{{msgSigla}}</p>
+            <p class="msg">{{msgSigla}}</p>
             <input required  class="form-control" mask="00.000-000" type="text" id = "cep" #fcep="ngModel" ngModel name="cep" (blur)="consultarCep($event)" placeholder="CEP"/>
-            <p class="text-danger">{{msgCep}}</p>
+            <p class="msg">{{msgCep}}</p>
             <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua" placeholder="Digite rua" required>
             <input class="form-control" type="text" [(ngModel)]="endereco.localidade" #fcidade="ngModel" ngModel name="cidade" placeholder="Digite cidade" required>
             <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado" placeholder="Digite estado" required>    
            
             <div class="mt-2">
-                <button [disabled]="f.invalid" class="btn btn-dark me-2"
+                <button [disabled]="f.invalid" class="btn me-2"
                     onClick="window.location.reload()">Salvar</button>
-                <button type="reset" class="btn btn-dark">Cancelar</button>
+                <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>
     </div>
 
     <div class="div-cadastro">
-        <h2>Instituições Cadastradas</h2>
+        <h2 class="instcad">Instituições Cadastradas</h2>
         <div *ngFor="let inst of instituicao" class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ inst.nome }}</h5>

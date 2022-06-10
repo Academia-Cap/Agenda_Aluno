@@ -2,7 +2,7 @@
 
     <div class="div-cadastro">
 
-        <h1>Cadastro de Disciplinas</h1>
+        <h1>Edição de Disciplinas</h1>
 
         <form #f="ngForm" (ngSubmit)="efetivarAlteracao(f.value)">
 
@@ -21,47 +21,17 @@
             <input class="form-control" type="text" [(ngModel)]="disciplina.anotacao" #fanotacao="ngModel" ngModel
                 name="anotacao" placeholder="Informe anotacao">
 
-            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
-                data-bs-target="#myModal">Notas</button>
+            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal" data-bs-target="#myModal" >Notas</button>
 
             <!-- MODAL -->
-            <div class="modal fade" id="myModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-
-                        <div class="modal-header">
-                            <h4 class="modal-title">Notas</h4>
-                        </div>
-
-                        <div class="modal-body">
-                            <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                            <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                            <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                            <input class="input-group-text" type="number" placeholder="Informe a nota" />
-
-                        </div>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                    class="material-icons">add</i></button>
-                            <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                    class="material-icons">done</i></button>
-                            <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                    class="material-icons">close</i></button>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-
+               <app-notas></app-notas> 
             <!-- FIM MODAL -->
 
             <div class="botoes">
-                <button [disabled]="f.invalid" class="btn btn-secondary col-md-4"
+                <button class="btn btn-secondary col-md-4"
                     onClick="window.location.replace('/')">Salvar</button>
 
-                <button class="btn btn-secondary col-md-4"
-                    onClick="window.location.replace('/')">Cancelar</button>
+                <button class="btn btn-secondary col-md-4" onClick="window.location.replace('/')">Cancelar</button>
             </div>
 
         </form>

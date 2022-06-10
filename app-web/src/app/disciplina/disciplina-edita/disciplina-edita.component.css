@@ -57,14 +57,3 @@ h1{
     margin: 10px;
     background-color: #C5C8CF;
 }
-
-/* MODAL */
-
-.modal-title{
-    margin: auto;
-}
-.btn-modal{
-    background-color: #565761;
-    color: white;
-    margin: 2%;
-}

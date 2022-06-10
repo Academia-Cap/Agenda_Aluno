@@ -6,14 +6,16 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
 import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
-
-
+import { NotasComponent } from './disciplina/notas/notas.component';
+import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DisciplinaCadastroComponent,
     DisciplinaEditaComponent,
+    NotasComponent,
+    MenuLateralComponent,
   
   ],
   imports: [

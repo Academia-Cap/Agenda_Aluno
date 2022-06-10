@@ -26,42 +26,7 @@
 
             <input class="input-group-text" type="text" ngModel name="anotacao" placeholder="Anotações" />
 
-            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
-                data-bs-target="#myModal">Notas</button>
-
         </form>
-
-        <!-- MODAL -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
-
-                    <div class="modal-header">
-                        <h4 class="modal-title">Notas</h4>
-                    </div>
-
-                    <div class="modal-body">
-                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
-                        <input class="input-group-text" type="number" placeholder="Informe a nota" />
-
-                    </div>
-
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                class="material-icons">add</i></button>
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                class="material-icons">done</i></button>
-                        <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i
-                                class="material-icons">close</i></button>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-
-        <!-- FIM MODAL -->
 
         <div class="botoes">
             <button [disabled]="f.invalid" class="btn btn-secondary col-md-10" (click)="gravar(f.value)">Salvar</button>
@@ -79,10 +44,12 @@
                 <h6 class="card-subitle mb-2 text-muted">{{ disc.abreviacao }} {{ '-' }} {{disc.docente}}</h6>
                 <p class="card-text">{{ disc.anotacao }}</p>
             </div>
-    
-                <button class="btn btn-secondary botao-card"> <a [routerLink]="['/disciplina',disc.id]"><i class="material-icons text-ligth">mode_edit</i></a> </button>
 
-                <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.reload()" class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
+            <button class="btn btn-secondary botao-card"> <a [routerLink]="['/disciplina',disc.id]"><i
+                        class="material-icons text-ligth">mode_edit</i></a> </button>
+
+            <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.reload()"
+                    class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
 
         </div>
 

@@ -8,11 +8,13 @@ import { CadastroService } from '../disciplina-cadastro/disciplina-services/cada
   styleUrls: ['./disciplina-edita.component.css']
 })
 export class DisciplinaEditaComponent implements OnInit {
+  serviceCadastro: any;
 
   constructor(private route: ActivatedRoute, private cadastroService: CadastroService, ) {
     this.cadastroService.getTodos().subscribe(x => this.disciplina = x)
   }
 
+  nota: any;
   disciplina: any;
   msg: String = "";
 
@@ -22,12 +24,12 @@ export class DisciplinaEditaComponent implements OnInit {
     this.cadastroService.getId(iddisc).subscribe(x => this.disciplina = x)
   }
 
-  efetivarAlteracao(dados:any){
-    this.cadastroService.alterar(this.disciplina).subscribe(x => this.msg = "Disciplina alterada com sucesso")
+  efetivarAlteracao(_dados:any){
+    this.cadastroService.alterar(this.disciplina).subscribe(x_ => window.location.reload())
   }
 
   excluir(id: any){
-    this.cadastroService.excluir(id).subscribe(x => this.msg = "Disciplina excluida com sucesso")
+    this.cadastroService.excluir(id).subscribe(_x => this.msg = "Disciplina excluida com sucesso")
   }
 
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlunoService } from 'src/app/aluno-servico/aluno.service';
-import { ValidarCamposService } from 'src/app/aluno-servico/validar-campos.service';
+import { AlunoService } from '../aluno-servico/aluno.service';
+import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
+
 
 @Component({
   selector: 'app-aluno-cadastrar',

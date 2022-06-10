@@ -8,9 +8,9 @@ export class AuthenticationService {
 
   constructor(private http: HttpClient) { }
 
-  logar(usuario: string, senha: string){
+  logar(email: string, senha: string){
     return this.http.post('http://localhost:8000/alunoLogin/login',{
-      usuario: usuario,
+      email: email,
       senha: senha
     })
   }

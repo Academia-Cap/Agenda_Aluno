@@ -3,7 +3,7 @@
 }
 
 .div-perfil{
-    background-color: #BEBFCC;
+    background-color: #E2BECC;
     width: 25%;
     height: 100vh;
 }
@@ -19,12 +19,15 @@ input{
     margin-bottom: 3%;
     width: 95%;
     border-radius: 10px;
+    background-color: transparent;
+    border-color: #BEBFCC;
+    font-family: Kameron;
 }
 
 .label-perfil{
     width: 70%;
     margin-left: 20%;
-    margin-top: 3%;
+    margin-top: 3%;  
 }
 
 .ng-invalid{
@@ -34,13 +37,16 @@ input{
 
 h2{
     text-align: center;
+    color: #FFFFFF;
+    font-family: Kameron;
 }
 
 .card{
     flex-wrap: wrap;
     display: inline-block;
     margin: 10px;
-    background-color: #C5C8CF;
+    background-color: #89A4C8;
+    font-family: Kameron;
 }
 
 .text-ligth{
@@ -53,4 +59,19 @@ h2{
 
 .text-danger{
     text-align: center;
+}
+
+.instcad{
+    text-align: center;
+    color: black;
+    font-family: Kameron;
+}
+
+.btn{
+    background-color: #1A1859;
+    color: #FEFEFE;
+}
+
+.msg{
+    color: #1A1859;
 }

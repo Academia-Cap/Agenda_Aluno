@@ -17,12 +17,12 @@ export class LoginComponent {
   
 
   logar(form: any){
-    this.auth.logar(form.usuario, form.senha).subscribe(
+    this.auth.logar(form.email, form.senha).subscribe(
       token => {
         localStorage.setItem('token', JSON.stringify(token))
       } 
     )
-    console.log(form.usuario, form.senha)
+    console.log(form.email, form.senha)
   }
 
   verToken(){

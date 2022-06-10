@@ -24,7 +24,7 @@ rota.post('/login', (req, res) => {
         if (err) {
             return res.status(401).send("Conexão não autorizada")
         }
-        client.query('select * from aluno where usuario = $1', [req.body.usuario], (error, result) => {
+        client.query('select * from aluno where email = $1', [req.body.email], (error, result) => {
             if (error) {
                 return res.status(401).send('operação não permitida')
             }
@@ -39,7 +39,7 @@ rota.post('/login', (req, res) => {
                     
                     if (results) { 
                         let token = jwt.sign({
-                                usuario: result.rows[0].usuario,
+                                email: result.rows[0].email,
                             },
                             process.env.JWTKEY, { expiresIn: '1h' })
                         return res.status(200).send({

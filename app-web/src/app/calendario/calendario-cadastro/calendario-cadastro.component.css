@@ -1,0 +1,65 @@
+.div-tela{
+    display: flex;
+}
+
+.div-perfil{
+    background-color: #E2BECC;
+    width: 25%;
+    height: 100vh;
+}
+
+.div-cadastro{
+    width: 60%;
+    margin-top: 3%;
+    margin-left: 10%;
+}
+
+input{
+    margin-left: 8%;
+    margin-top: 3%;
+    width: 85%;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: white;
+    font-family: Kameron;
+}
+
+input::placeholder{
+    color: white;
+}
+
+.label-perfil{
+    width: 70%;
+    margin-left: 20%;
+    margin-top: 3%;  
+}
+
+.ng-invalid{
+    text-align: left;
+    margin-left: 8px;
+}
+
+h1{
+    text-align: center;
+    color: #FFFFFF;
+
+}
+
+.btn{
+    background-color: #1A1859;
+    color: #FEFEFE;
+    margin-top: 90%;    
+}
+
+.msg{
+    color: #1A1859;
+}
+
+.btn-calendar{
+    padding: 4%;
+    margin-top: 3%;
+}
+
+.div-botoes{
+    margin-left: 24%;
+}

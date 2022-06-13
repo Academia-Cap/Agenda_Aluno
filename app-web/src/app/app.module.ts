@@ -10,7 +10,6 @@ import { CurrencyMaskModule } from "ng2-currency-mask";
 import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
-import { TesteComponent } from './Teste/teste/teste.component';
 import { CalendarioCadastroComponent } from './calendario/calendario-cadastro/calendario-cadastro.component';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
@@ -24,7 +23,6 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
     CalendarioCadastroComponent
-    TesteComponent,
   ],
   imports: [
     BrowserModule,

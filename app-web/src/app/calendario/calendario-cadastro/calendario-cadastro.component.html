@@ -1,49 +1,67 @@
 <div class="div-tela">
-  <div class="div-perfil">
-      <h1>Adicionar Tarefa</h1>
-      <form #f="ngForm" (ngSubmit)="gravar()" class="row row-cols-sm-auto">
-          <input required class="form-control" type="text" #ftitulo="ngModel" ngModel name="titulo" placeholder="Titulo" />
+    <div class="div-perfil">
+        <h1 class="h1-adicionar">Adicionar Tarefa</h1>
+        <form #f="ngForm" (ngSubmit)="gravar()" class="row row-cols-sm-auto">
+            <input required class="form-control" type="text" #ftitulo="ngModel" ngModel name="titulo"
+                placeholder="Titulo" />
             <div class="col-12">
-              <div class="input-group">
-                <input class="form-control" placeholder="yyyy-mm-dd"name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
-                <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
-                </button>
-              </div>
+                <div class="input-group">
+                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                        #d="ngbDatepicker">
+                    <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
+                    </button>
+                </div>
             </div>
-          <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" ngModel name="horainicial" />
-          <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" ngModel name="horafinal" />
-          <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel" ngModel name="disciplina" placeholder="Disciplina" >
-          <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel" ngModel name="descricao" placeholder="Descrição">    
-         
-          <div class="mt-2 div-botoes">
-              <button [disabled]="f.invalid" class="btn me-2"
-                  onClick="window.location.reload()">Salvar</button>
-              <button type="reset" class="btn">Cancelar</button>
-          </div>
-      </form>
-  </div>
+            <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horainicial"
+                #fhorainicial="ngModel" ngModel name="horainicial" />
+            <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horafinal"
+                #fhorafinal="ngModel" ngModel name="horafinal" />
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
+                ngModel name="disciplina" placeholder="Disciplina">
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
+                ngModel name="descricao" placeholder="Descrição">
 
-  <div class="div-cadastro">
-      <h2 class="instcad">Calendario</h2>
-      
-  </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+            <div class="mt-2 div-botoes">
+                <button [disabled]="f.invalid" class="btn me-2" onClick="window.location.reload()">Salvar</button>
+                <button type="reset" class="btn">Cancelar</button>
+            </div>
+        </form>
+    </div>
+    <div class="div-cadastro">
+        <h1 class="h1-calendario">Calendario</h1>
+        <div class="div-calendario">
+            <div id="div-segunda" class="div-formato">
+                <h5>Segunda</h5>
+                <hr>
+            </div>
+            <div id="div-terça" class="div-formato">
+                <h5>Terça</h5>
+                <hr>
+            </div>
+            <div id="div-quarta" class="div-formato">
+                <h5>Quarta</h5>
+                <hr>
+            </div>
+            <div id="div-quinta" class="div-formato">
+                <h5>Quinta</h5>
+                <hr>
+            </div>
+            <div id="div-sexta" class="div-formato">
+                <h5>Sexta</h5>
+                <hr>
+            </div>
+            <div id="div-sábado" class="div-formato">
+                <h5>Sábado</h5>
+                <hr>
+            </div>
+            <div id="div-domingo" class="div-formato">
+                <h5>Domingo</h5>
+                <hr>
+            </div>  
+        </div>
+        <div>
+            <button type="button" class="btn-voltar"><</button>
+            <button type="button" class="btn-avancar">></button>
+        </div>
+    </div>
+</div>

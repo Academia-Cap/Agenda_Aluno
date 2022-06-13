@@ -9,9 +9,9 @@
 }
 
 .div-cadastro{
-    width: 60%;
-    margin-top: 3%;
-    margin-left: 10%;
+    width: 85%;
+    margin-top: 2%;
+    margin-left: 0%;
 }
 
 input{
@@ -22,6 +22,13 @@ input{
     background-color: transparent;
     border-color: white;
     font-family: Kameron;
+}
+
+.h1-calendario{
+    text-align: center;
+    margin-left: 3%;
+    color: #1A1859;
+    margin-bottom: 2%;
 }
 
 input::placeholder{
@@ -39,16 +46,16 @@ input::placeholder{
     margin-left: 8px;
 }
 
-h1{
+.h1-adicionar{
     text-align: center;
     color: #FFFFFF;
-
+    margin-top: 10%;
 }
 
 .btn{
     background-color: #1A1859;
     color: #FEFEFE;
-    margin-top: 90%;    
+    margin-top: 80%;    
 }
 
 .msg{
@@ -61,5 +68,37 @@ h1{
 }
 
 .div-botoes{
-    margin-left: 24%;
+    margin-left: 22%;
+}
+
+
+.div-formato{
+    width: 30%;
+    height: 70vh;
+    border-style: groove;
+    text-align: center;
+}
+
+.div-calendario{
+    width: 100%;
+    flex-direction: row;
+    display: flex;
+}
+
+.btn-voltar{
+    background-color: #1A1859;
+    color: white;
+    margin-left: 5%;
+    margin-top: 2%;
+    border-radius: 20%;
+    padding: 0.5% 1%;  
+}
+
+.btn-avancar{
+    background-color: #1A1859;
+    color: white;
+    margin-left: 85%;
+    margin-top: 2%;
+    border-radius: 20%;
+    padding: 0.5% 1%;  
 }

@@ -15,13 +15,17 @@
 }
 
 input{
-    margin-left: 6%;
-    margin-bottom: 3%;
+    margin-left: 8%;
+    margin-top: 3%;
     width: 85%;
     border-radius: 10px;
     background-color: transparent;
-    border-color: #BEBFCC;
+    border-color: white;
     font-family: Kameron;
+}
+
+input::placeholder{
+    color: white;
 }
 
 .label-perfil{
@@ -35,44 +39,27 @@ input{
     margin-left: 8px;
 }
 
-h2{
+h1{
     text-align: center;
     color: #FFFFFF;
-    font-family: Kameron;
-}
 
-.card{
-    flex-wrap: wrap;
-    display: inline-block;
-    margin: 10px;
-    background-color: #89A4C8;
-    font-family: Kameron;
-}
-
-.text-ligth{
-    color:white;
-}
-
-.text-ligth:hover{
-    color:#565761;
-}
-
-.text-danger{
-    text-align: center;
-}
-
-.instcad{
-    text-align: center;
-    color: black;
-    font-family: Kameron;
 }
 
 .btn{
     background-color: #1A1859;
     color: #FEFEFE;
-    margin-left: 6%;    
+    margin-top: 90%;    
 }
 
 .msg{
     color: #1A1859;
+}
+
+.btn-calendar{
+    padding: 4%;
+    margin-top: 3%;
+}
+
+.div-botoes{
+    margin-left: 24%;
 }

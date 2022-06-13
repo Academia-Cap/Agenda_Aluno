@@ -3,13 +3,14 @@
 }
 
 .div-perfil{
-    background-color: #BEBFCC;
+    background-color: #BF608380;
     width: 25%;
     height: 100vh;
 }
 
 .div-cadastro{
     width: 50%;
+    text-align: center;
     margin-top: 3%;
     margin-left: 10%;
 }
@@ -23,12 +24,15 @@ input{
 
 h1{
     margin-left: 3%;
+    color: #1A1859;
 }
 
 .btn-salvar{
-    background-color: #BEBFCC;
-    margin-left: 88%;
-    margin-top: 2%;
+    background-color: #1A1859;
+    color: white;
+    margin-top: 15%;
+    text-align: center;
+    padding: 5px 20px;
 }
 
 .img-usuario{
@@ -43,14 +47,15 @@ h1{
     margin-top: 3%;
 }
 
-.btn-sair{
+.div-btn-sair{
     text-align: center;
     margin-top: 15%;
 }
 
 .btn-dark{
-    background-color: #000000;
-    padding: 5px 20px;
+    margin-top: 35%;
+    background-color: #1A1859;
+    padding: 5px 25px;
 }
 
 .ng-invalid{
@@ -60,4 +65,8 @@ h1{
 .label-cadastro{
     margin-left: 2%;
     width: 95%;
+}
+
+.form-editar{
+    margin-top: 15%;
 }

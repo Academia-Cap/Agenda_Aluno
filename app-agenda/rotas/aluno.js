@@ -73,13 +73,13 @@ rota.put('/:idAluno', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE aluno SET nome = $1, telefone = $2, email = $3, usuario = $4, senha = $5 WHERE aluno_id = $6'
-                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.senha, req.params.idAluno]
+                var sql = 'UPDATE aluno SET nome = $1, telefone = $2, usuario = $3 WHERE id = $4'
+                var values = [req.body.nome, req.body.telefone, req.body.usuario, req.params.idAluno]
                 client.query(sql, values, (error, result) => {
                     if (error) {
                         return res.status(401).send('Operação não permitida')
@@ -90,7 +90,7 @@ rota.put('/:idAluno', (req, res) => {
                 res.status(401).send('Operação não permitida')
             }
         })
-
+        
     })
 });
 
@@ -99,12 +99,12 @@ rota.delete('/:idAluno', (req, res) => {
         if (err) {
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                client.query('DELETE FROM aluno WHERE aluno_id = $1', [req.params.idAluno], (error, result) => {
+                client.query('DELETE FROM aluno WHERE id = $1', [req.params.idAluno], (error, result) => {
                     if (error) {
                         return res.status(401).send('Operação não permitida')
                     }

@@ -28,16 +28,14 @@ export class AlunoPerfilComponent implements OnInit {
     if (this.serviceValidar.validarNome(dados.nome) == "INVALID") {
       alert('Nome Inválido')
     }
-    if (this.serviceValidar.validarEmail(dados.email) == "INVALID") {
-      alert('Email Inválido')
+    if (this.serviceValidar.validarNome(dados.usuario) == "INVALID") {
+      alert('Usuário Inválido')
     }
-    console.log(dados.telefone)
     if (dados.telefone == "INVALID") {
       alert('Telefone Inválido')
     }
-    if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
-      this.serviceValidar.validarEmail(dados.email) == "VALID" &&
-      dados.telefone != "INVALID") {
+    if (this.serviceValidar.validarNome(dados.nome) == "VALID" && dados.telefone != "INVALID" 
+      && this.serviceValidar.validarNome(dados.usuario)) {
       this.servicoAluno.alterarAluno(this.idAluno, dados).subscribe(x => this.aluno = x);
       window.location.reload();
       alert('Alterado com sucesso')

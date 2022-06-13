@@ -1,44 +1,39 @@
 <div class="div-tela">
     <div class="div-perfil">
         <i class="bi bi-person-circle img-usuario"></i>
-        <label class="label-perfil">Nome Usuário:</label>
         <label class="label-perfil">{{ aluno.nome }}</label>
-        <label class="label-perfil">Login:</label>
         <label class="label-perfil">{{ aluno.usuario }}</label>
-        <label class="label-perfil">Email:</label>
         <label class="label-perfil">{{ aluno.email }}</label>
-        <div class="btn-sair">
+        <div class="div-btn-sair">
             <button class="btn btn-dark" (click)="Deslogar()">Sair</button>
         </div>
     </div>
     <div class="div-cadastro">
         <h1>Informações cadastrais</h1>
-        <form #f="ngForm" (ngSubmit)="editar(f.value)">
+        <form class="form-editar" #f="ngForm" (ngSubmit)="editar(f.value)">
             <div *ngIf="fnome.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
-            <input type="text" [(ngModel)]="aluno.nome" #fnome="ngModel" ngModel name="nome" placeholder="Digite Nome" required>
+            <input type="text" [(ngModel)]="aluno.nome" #fnome="ngModel" ngModel name="nome" placeholder="Digite Nome"
+                required>
             <div *ngIf="ftelefone.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
-            <input type="text" [(ngModel)]="aluno.telefone" #ftelefone="ngModel" ngModel name="telefone" placeholder="Digite Telefone" required>
+            <input type="text" [(ngModel)]="aluno.telefone" #ftelefone="ngModel" ngModel name="telefone"
+                placeholder="Digite Telefone" mask="(00) 00000-0000" required>
             <div *ngIf="femail.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
-            <input type="text" [(ngModel)]="aluno.email" #femail="ngModel" ngModel name="email" placeholder="Digite Email" required>
+            <input type="text" [(ngModel)]="aluno.email" #femail="ngModel" ngModel name="email"
+                placeholder="Digite Email" required disabled>
             <div *ngIf="fusuario.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
-            <input type="text" [(ngModel)]="aluno.usuario" #fusuario="ngModel" ngModel name="usuario" placeholder="Digite Usuário" required>
-            <div *ngIf="fsenha.invalid" class="ng-invalid">
-                <label class="label-cadastro">Campo obrigatório</label>
-            </div>
-            <input type="text" [(ngModel)]="aluno.senha" #fsenha="ngModel" ngModel name="senha" placeholder="Digite Senha" required>
-            <div *ngIf="!fnome.invalid && !ftelefone.invalid && !femail.invalid && !fusuario.invalid && !fsenha.invalid">
+            <input type="text" [(ngModel)]="aluno.usuario" #fusuario="ngModel" ngModel name="usuario"
+                placeholder="Digite Usuário" required>
+            <div
+                *ngIf="!fnome.invalid && !ftelefone.invalid && !femail.invalid && !fusuario.invalid">
                 <button type="submit" class="btn btn-salvar">Salvar</button>
-            </div>
-            <div *ngIf="fnome.invalid || ftelefone.invalid || femail.invalid || fusuario.invalid || fsenha.invalid">
-                <button class="btn btn-entrar" disabled>Cadastrar</button>
             </div>
         </form>
     </div>

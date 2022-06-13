@@ -102,3 +102,7 @@ input::placeholder{
     border-radius: 20%;
     padding: 0.5% 1%;  
 }
+
+.hora{
+    color: white;
+}

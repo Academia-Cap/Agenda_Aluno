@@ -12,10 +12,10 @@
                     </button>
                 </div>
             </div>
-            <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horainicial"
-                #fhorainicial="ngModel" ngModel name="horainicial" />
-            <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horafinal"
-                #fhorafinal="ngModel" ngModel name="horafinal" />
+            <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59" [(ngModel)]="tarefa.horainicial"
+                 #fhorainicial="ngModel" required>
+            <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59" [(ngModel)]="tarefa.horafinal"
+                #fhorafinal="ngModel" required>
             <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
                 ngModel name="disciplina" placeholder="Disciplina">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"

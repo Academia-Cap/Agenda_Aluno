@@ -15,13 +15,17 @@
 }
 
 input{
-    margin-left: 3%;
+    margin-left: 1%;
     margin-bottom: 3%;
-    width: 95%;
+    width: 90%;
     border-radius: 10px;
     background-color: transparent;
-    border-color: #BEBFCC;
-    font-family: Kameron;
+    border-color: white;
+    color: white;
+}
+
+input::placeholder{
+    color: white;
 }
 
 .label-perfil{
@@ -35,10 +39,11 @@ input{
     margin-left: 8px;
 }
 
-h2{
+h1{
     text-align: center;
     color: #FFFFFF;
-    font-family: Kameron;
+    margin-top: 15%;
+    margin-bottom: 15%;
 }
 
 .card{
@@ -46,7 +51,7 @@ h2{
     display: inline-block;
     margin: 10px;
     background-color: #89A4C8;
-    font-family: Kameron;
+  
 }
 
 .text-ligth{
@@ -64,14 +69,18 @@ h2{
 .instcad{
     text-align: center;
     color: black;
-    font-family: Kameron;
 }
 
 .btn{
     background-color: #1A1859;
     color: #FEFEFE;
+    margin-top: 8%;
 }
 
 .msg{
     color: #1A1859;
+}
+
+.btn-botoes{
+    text-align: center;
 }

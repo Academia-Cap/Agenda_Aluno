@@ -38,7 +38,7 @@ input{
 h2{
     text-align: center;
     color: #FFFFFF;
-    font-family: Kameron;
+
 }
 
 .card{
@@ -46,7 +46,7 @@ h2{
     display: inline-block;
     margin: 10px;
     background-color: #89A4C8;
-    font-family: Kameron;
+
 }
 
 .text-ligth{

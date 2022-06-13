@@ -1,0 +1,78 @@
+.div-tela{
+    display: flex;
+}
+
+.div-perfil{
+    background-color: #E2BECC;
+    width: 25%;
+    height: 100vh;
+}
+
+.div-cadastro{
+    width: 60%;
+    margin-top: 3%;
+    margin-left: 10%;
+}
+
+input{
+    margin-left: 6%;
+    margin-bottom: 3%;
+    width: 85%;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: #BEBFCC;
+    font-family: Kameron;
+}
+
+.label-perfil{
+    width: 70%;
+    margin-left: 20%;
+    margin-top: 3%;  
+}
+
+.ng-invalid{
+    text-align: left;
+    margin-left: 8px;
+}
+
+h2{
+    text-align: center;
+    color: #FFFFFF;
+    font-family: Kameron;
+}
+
+.card{
+    flex-wrap: wrap;
+    display: inline-block;
+    margin: 10px;
+    background-color: #89A4C8;
+    font-family: Kameron;
+}
+
+.text-ligth{
+    color:white;
+}
+
+.text-ligth:hover{
+    color:#565761;
+}
+
+.text-danger{
+    text-align: center;
+}
+
+.instcad{
+    text-align: center;
+    color: black;
+    font-family: Kameron;
+}
+
+.btn{
+    background-color: #1A1859;
+    color: #FEFEFE;
+    margin-left: 6%;    
+}
+
+.msg{
+    color: #1A1859;
+}

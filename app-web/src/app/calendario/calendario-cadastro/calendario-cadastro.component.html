@@ -1,0 +1,49 @@
+<div class="div-tela">
+  <div class="div-perfil">
+      <h2>Adicionar Tarefa</h2>
+      <form #f="ngForm" (ngSubmit)="gravar()" class="row row-cols-sm-auto">
+          <input required class="form-control" type="text" #ftitulo="ngModel" ngModel name="titulo" placeholder="Titulo" />
+            <div class="col-12">
+              <div class="input-group">
+                <input class="form-control" placeholder="yyyy-mm-dd"name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button">
+                </button>
+              </div>
+            </div>
+          <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" ngModel name="horainicial" />
+          <input required class="form-control" type="text" mask="00:00" [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" ngModel name="horafinal" />
+          <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel" ngModel name="disciplina" placeholder="Disciplina" >
+          <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel" ngModel name="descricao" placeholder="Descrição">    
+         
+          <div class="mt-2">
+              <button [disabled]="f.invalid" class="btn me-2"
+                  onClick="window.location.reload()">Salvar</button>
+              <button type="reset" class="btn">Cancelar</button>
+          </div>
+      </form>
+  </div>
+
+  <div class="div-cadastro">
+      <h2 class="instcad">Calendario</h2>
+      
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

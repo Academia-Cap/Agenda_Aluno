@@ -12,6 +12,7 @@ import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 
 import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { TesteComponent } from './Teste/teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -20,6 +21,7 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
     AlunoCadastrarComponent,
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
+    TesteComponent,
   ],
   imports: [
     BrowserModule,

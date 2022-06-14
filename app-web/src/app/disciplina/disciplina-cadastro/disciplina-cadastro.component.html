@@ -2,7 +2,7 @@
 
     <div class="div-cadastro">
 
-        <h1>Disciplina</h1>
+        <h2>Adicionar disciplina</h2>
 
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
 
@@ -24,7 +24,8 @@
                 *Campo docente é obrigatório
             </div>
 
-            <input class="input-group-text" type="text" ngModel name="anotacao" placeholder="Anotações" />
+            <input class="input-group-text" rows="1" cols="35" type="text" ngModel name="anotacao"
+                placeholder="Anotações" />
 
         </form>
 
@@ -41,18 +42,20 @@
         <div *ngFor="let disc of disciplina" class="card" style="width: 18rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ disc.nome }}</h5>
-                <h6 class="card-subitle mb-2 text-muted">{{ disc.abreviacao }} {{ '-' }} {{disc.docente}}</h6>
+                <h6 class="card-subitle mb-2">{{ disc.abreviacao }} {{ '-' }} {{disc.docente}}</h6>
                 <p class="card-text">{{ disc.anotacao }}</p>
             </div>
 
-            <button class="btn btn-secondary botao-card"> <a [routerLink]="['/disciplina',disc.id]"><i
-                        class="material-icons text-ligth">mode_edit</i></a> </button>
+            <a [routerLink]="['/disciplina',disc.id]"><i [routerLink]="['/disciplina',disc.id]"
+                    class="material-icons text-ligth">mode_edit</i></a>
 
-            <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.reload()"
-                    class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
+            <i role="button" onClick="window.location.reload()" class="material-icons text-ligth"
+                (click)="excluir(disc.id)">delete</i>
 
         </div>
 
     </div>
+
+    <app-drop style="max-height: 2em;"></app-drop>
 
 </div>

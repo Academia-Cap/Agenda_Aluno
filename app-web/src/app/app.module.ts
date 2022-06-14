@@ -7,7 +7,7 @@ import { AppComponent } from './app.component';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
 import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
 import { NotasComponent } from './disciplina/notas/notas.component';
-import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
+import { DropComponent } from './drop/drop.component';
 
 @NgModule({
   declarations: [
@@ -15,7 +15,7 @@ import { MenuLateralComponent } from './menu-lateral/menu-lateral.component';
     DisciplinaCadastroComponent,
     DisciplinaEditaComponent,
     NotasComponent,
-    MenuLateralComponent,
+    DropComponent,
   
   ],
   imports: [

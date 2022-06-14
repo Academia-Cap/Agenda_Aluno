@@ -21,15 +21,15 @@
             <input class="form-control" type="text" [(ngModel)]="disciplina.anotacao" #fanotacao="ngModel" ngModel
                 name="anotacao" placeholder="Informe anotacao">
 
-            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal" data-bs-target="#myModal" >Notas</button>
+            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
+                data-bs-target="#myModal">Notas</button>
 
             <!-- MODAL -->
-               <app-notas></app-notas> 
+            <app-notas></app-notas>
             <!-- FIM MODAL -->
 
             <div class="botoes">
-                <button class="btn btn-secondary col-md-4"
-                    onClick="window.location.replace('/')">Salvar</button>
+                <button class="btn btn-secondary col-md-4" onClick="window.location.replace('/')">Salvar</button>
 
                 <button class="btn btn-secondary col-md-4" onClick="window.location.replace('/')">Cancelar</button>
             </div>
@@ -51,8 +51,11 @@
                 <p class="card-text">{{ disc.anotacao }}</p>
             </div>
 
-            <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.replace('/')" class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
+            <button class="btn btn-secondary botao-card"> <i role="button" onClick="window.location.replace('/')"
+                    class="material-icons text-ligth" (click)="excluir(disc.id)">delete</i> </button>
 
         </div>
 
     </div>
+
+    <app-drop style="max-height: 2em;"></app-drop>

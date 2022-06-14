@@ -1,0 +1,191 @@
+#img {
+   width: 5em;
+}
+
+@media screen and (max-width: 700px) {
+   body {
+      padding: 170px 0 0 0;
+      width: 100%
+   }
+}
+
+.menu-item,
+.menu-open-button {
+   background: #CD85A0;
+   border-radius: 100%;
+   width: 80px;
+   height: 80px;
+   position: absolute;
+   -webkit-transform: translate3d(0, 0, 0);
+   transform: translate3d(0, 0, 0);
+   -webkit-transition: -webkit-transform ease-out 200ms;
+   transition: -webkit-transform ease-out 200ms;
+   transition: transform ease-out 200ms;
+   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+}
+
+.menu-open {
+   display: none;
+}
+
+.menu {
+   margin-top: 2em;
+   text-align: right;
+   width: 80px;
+   height: 80px;
+}
+
+.menu-item:nth-child(3) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-item:nth-child(4) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-item:nth-child(5) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-item:nth-child(6) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-open-button {
+   z-index: 2;
+   -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+   -webkit-transition-duration: 400ms;
+   transition-duration: 400ms;
+   -webkit-transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+   transform: scale(1.1, 1.1) translate3d(0, 0, 0);
+   cursor: pointer;
+   box-shadow: 3px 3px 0 0 rgba(0, 0, 0, 0.14);
+}
+
+.menu-open-button:hover {
+   -webkit-transform: scale(1, 1) translate3d(0, 0, 0);
+   transform: scale(1, 1) translate3d(0, 0, 0);
+}
+
+.menu-open:checked+.menu-open-button {
+   -webkit-transition-timing-function: linear;
+   transition-timing-function: linear;
+}
+
+.menu-open:checked~.menu-item {
+   -webkit-transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+   transition-timing-function: cubic-bezier(0.935, 0, 0.34, 1.33);
+}
+
+.menu-open:checked~.menu-item:nth-child(3) {
+   transition-duration: 180ms;
+   -webkit-transition-duration: 180ms;
+   -webkit-transform: translate3d(0px, 100px, 0);
+   transform: translate3d(0px, 100px, 0);
+}
+
+.menu-open:checked~.menu-item:nth-child(4) {
+   transition-duration: 280ms;
+   -webkit-transition-duration: 280ms;
+   -webkit-transform: translate3d(0px, 200px, 0);
+   transform: translate3d(0px, 200px, 0);
+}
+
+.menu-open:checked~.menu-item:nth-child(5) {
+   transition-duration: 380ms;
+   -webkit-transition-duration: 380ms;
+   -webkit-transform: translate3d(0px, 300px, 0);
+   transform: translate3d(0px, 300px, 0);
+}
+
+.menu-open:checked~.menu-item:nth-child(6) {
+   transition-duration: 480ms;
+   -webkit-transition-duration: 480ms;
+   -webkit-transform: translate3d(0px, 400px, 0);
+   transform: translate3d(0px, 400px, 0);
+}
+
+/* ITENS DO DROP */
+
+.agenda {
+   background-color: #CFEAF2;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.agenda:hover {
+   background-color: #f3d7e1c7;
+}
+
+.perfil {
+   background-color: #89A4C8;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.perfil:hover {
+   background-color: #f3d7e1c7;
+}
+
+.instituicao {
+   background-color: #6595C4;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.instituicao:hover {
+   background-color: #f3d7e1c7;
+}
+
+.disciplina {
+   background-color: #1A1859;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.disciplina:hover {
+   background-color: #f3d7e1c7;
+}
+
+/* ICONES */
+
+#agenda {
+   color: white;
+   font-size: 3em;
+   padding: 0.3em;
+}
+#agenda:hover{
+   color: #CFEAF2;
+}
+
+#perfil {
+   color: white;
+   font-size: 3em;
+   padding: 0.3em;
+}
+#perfil:hover{
+   color: #89A4C8;
+}
+
+#instituicao {
+   color: white;
+   font-size: 3em;
+   padding: 0.3em;
+}
+#instituicao:hover{
+   color: #6595C4;
+}
+
+#disciplina {
+   color: white;
+   font-size: 3em;
+   padding: 0.3em;
+}
+#disciplina:hover{
+   color: #1A1859;
+}

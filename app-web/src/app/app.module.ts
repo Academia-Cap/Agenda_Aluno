@@ -26,7 +26,7 @@ import { DropComponent } from './drop/drop.component';
     AlunoCadastrarComponent,
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
-    CalendarioCadastroComponent
+    CalendarioCadastroComponent,
     DisciplinaCadastroComponent,
     DisciplinaEditaComponent,
     NotasComponent,

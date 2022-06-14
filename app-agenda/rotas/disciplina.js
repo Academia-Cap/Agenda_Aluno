@@ -19,26 +19,14 @@ const pool = new pg.Pool({ connectionString: consString, ssl: { rejectUnauthoriz
 rota.post('/', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
-            return res.status(401).send('Disciplina não pode ser criada')
+            return res.status(401).send('Conexao não autorizada')
         }
-        client.query('select * from disciplinas where disciplina = $1', [req.body.disciplina], (error, result) => {
-            if (error){
-                return res.status(401).send('Operação não autorizada')
+        var sql = 'insert into disciplina (nome, abreviacao, docente, anotacao) VALUES($1,$2,$3,$4)'
+        client.query(sql, [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao], (error, result) => {
+            if (error) {
+                return res.status(401).send('Operação não permitida')
             }
-            if (result.rowCount > 0){
-                return res.status(200).send('Registro ja existe')
-            }
-
-            var sql = 'insert into disciplinas (disciplina, abreviacao, docente, anotacoes) values ($1,$2,$3,$4)'
-            client.query(sql, [req.body.disciplina, req.body.abreviacao, req.body.docente, req.body.anotacoes], (error, result) => {
-                if (error) {
-                    return res.status(403).send('Operação não permitida')
-                }
-                res.status(201).send({
-                    mensagem: 'criado com sucesso',
-                    status: 201
-                })
-            })
+            res.status(201).send("Disciplina cadastrada")
         })
     })
 })
@@ -64,43 +52,41 @@ rota.get('/:disciplina', (req, res) => {
 rota.put('/:disciplina', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
-            return res.status(401).send("Conexão não autorizada")
+            return res.status(401).send('Conexão não autorizada')
         }
-        client.query('select * from disciplinas where disciplina = $1', [req.params.disciplina], (error, result) => {
-            if (error) {
-                return res.status(401).send("Operação não permitida")
+        client.query('select * from disciplina where id = $1', [req.params.disciplina], (erro, resul) => {
+            if (erro) {
+                return res.status(401).send('Operação não permitida')
             }
-            /**update usuarios set docente=$1, anotacoes=$2 where disciplina=$3 */
-            if (result.rowCount > 0) {
-                var sql = 'update disciplinas set docente=$1, anotacoes=$2 where disciplina=$3'
-                let valores = [req.body.docente, req.body.anotacoes, req.params.disciplina]
-                client.query(sql, valores, (error2, result2) => {
-                    if (error2) {
-                        return res.status(401).send("Operação não permitida")
+            if (resul.rowCount > 0) {
+                var sql = 'update disciplina set nome = $1, abreviacao = $2, docente = $3, anotacao = $4 where id = $5'
+                var values = [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao, req.params.id]
+                client.query(sql, values, (error, result) => {
+                    if (error) {
+                        return res.status(401).send('Operação não permitida')
                     }
-
-                    if (result2.rowCount > 0) {
-                        return res.status(200).send('Registro alterado com sucesso')
-                    }
+                    res.status(201).send(result.rows[0])
                 })
-            } else
-                res.status(200).send('Disciplina não encontrado')
+            } else{
+                res.status(401).send('Operação não permitida')
+            }
         })
+        
     })
-})
+});
 
 //Deletar disciplina
 
 rota.delete('/:disciplina', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
-            return res.status(401).send('Conexão não autorizada')
+            return res.status(401).send('Não foi')
         }
-        client.query('delete from disciplinas where disciplina = $1', [req.params.disciplina], (error, result) => {
+        client.query('delete from disciplina where id = $1', [req.params.id], (error, result) => {
             if (error) {
-                return res.status(401).send('Materia não localizada')
+                return res.status(401).send('Não funcionou')
             }
-            res.status(200).send({ message: 'Registro excluido com sucesso' })
+            res.status(200).send('Disciplina deletado com sucesso!')
         })
     })
 })

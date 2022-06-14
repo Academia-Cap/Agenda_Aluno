@@ -1,20 +1,19 @@
-.div-tela{
+.div-tela {
     display: flex;
 }
 
-.div-perfil{
+.div-perfil {
     background-color: #E2BECC;
     width: 25%;
     height: 100vh;
 }
 
-.div-cadastro{
-    width: 85%;
-    margin-top: 2%;
+.div-cadastro {
+    width: 100%;
     margin-left: 0%;
 }
 
-input{
+input {
     margin-left: 8%;
     margin-top: 3%;
     width: 85%;
@@ -24,85 +23,99 @@ input{
     font-family: Kameron;
 }
 
-.h1-calendario{
+.h1-calendario {
     text-align: center;
+    margin-top: 2%;
     margin-left: 3%;
     color: #1A1859;
     margin-bottom: 2%;
 }
 
-input::placeholder{
+input::placeholder {
     color: white;
 }
 
-.label-perfil{
+.label-perfil {
     width: 70%;
     margin-left: 20%;
-    margin-top: 3%;  
+    margin-top: 3%;
 }
 
-.ng-invalid{
+.ng-invalid {
     text-align: left;
     margin-left: 8px;
 }
 
-.h1-adicionar{
+.h1-adicionar {
     text-align: center;
     color: #FFFFFF;
     margin-top: 10%;
 }
 
-.btn{
+.btn {
     background-color: #1A1859;
     color: #FEFEFE;
-    margin-top: 45%;    
+    margin-top: 45%;
 }
 
-.msg{
+.msg {
     color: #1A1859;
 }
 
-.btn-calendar{
+.btn-calendar {
     padding: 4%;
     margin-top: 3%;
 }
 
-.div-botoes{
+.div-botoes {
     width: 100%;
     text-align: center;
 }
 
-.div-formato{
+.div-formato {
     width: 30%;
     height: 70vh;
     border-style: groove;
     text-align: center;
 }
 
-.div-calendario{
+.div-calendario {
     width: 100%;
     flex-direction: row;
     display: flex;
 }
 
-.btn-voltar{
+.btn-voltar {
     background-color: #1A1859;
     color: white;
     margin-left: 5%;
     margin-top: 2%;
     border-radius: 20%;
-    padding: 0.5% 1%;  
+    padding: 0.5% 1%;
 }
 
-.btn-avancar{
+.btn-avancar {
     background-color: #1A1859;
     color: white;
     margin-left: 85%;
     margin-top: 2%;
     border-radius: 20%;
-    padding: 0.5% 1%;  
+    padding: 0.5% 1%;
 }
 
-.hora{
+.hora {
     color: white;
+}
+
+.div-drop {
+    display: flex;
+}
+
+.div-drop-h1 {
+    margin-top: 2%;
+    width: 83%;
+}
+
+.div-drop-drop {
+    width: 17%;
 }

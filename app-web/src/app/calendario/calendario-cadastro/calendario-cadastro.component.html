@@ -12,10 +12,10 @@
                     </button>
                 </div>
             </div>
-            <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59" [(ngModel)]="tarefa.horainicial"
-                 #fhorainicial="ngModel" required>
-            <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59" [(ngModel)]="tarefa.horafinal"
-                #fhorafinal="ngModel" required>
+            <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59"
+                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" required>
+            <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
+                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" required>
             <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
                 ngModel name="disciplina" placeholder="Disciplina">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
@@ -28,12 +28,20 @@
         </form>
     </div>
     <div class="div-cadastro">
-        <h1 class="h1-calendario">Calendario</h1>
+       
+        <div class="div-drop">
+            <div class="div-drop-h1">
+                <h1 class="h1-calendario">Calendario</h1>
+            </div>
+            <div class="div-drop-drop">
+               <app-drop style="max-height: 2em;"></app-drop> 
+            </div>
+        </div>
         <div class="div-calendario">
             <div id="div-domingo" class="div-formato">
                 <h5>Domingo</h5>
                 <hr>
-            </div>      
+            </div>
             <div id="div-segunda" class="div-formato">
                 <h5>Segunda</h5>
                 <hr>
@@ -64,4 +72,5 @@
             <button type="button" class="btn-avancar">></button>
         </div>
     </div>
+
 </div>

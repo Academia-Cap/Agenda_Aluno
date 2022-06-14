@@ -10,11 +10,26 @@ export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
   tarefa: any;
-  constructor() { }
+  todosDiasSemana : any;
+  tarefaSegunda: any;
+  tarefaTerca: any;
+  tarefaQuarta: any;
+  tarefaQuinta: any;
+  tarefaSexta: any;
+  tarefaSabado: any;
+  tarefaDomingo: any;
+
+  constructor() {}
 
   ngOnInit(): void {
+    this.gerar7Dias(new Date());
   }
 
   gravar(){}
+
+  gerar7Dias(data: Date){
+    let todosDiasSemana;
+    console.log(todosDiasSemana)
+  }
 
 }

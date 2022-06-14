@@ -55,7 +55,7 @@ input::placeholder{
 .btn{
     background-color: #1A1859;
     color: #FEFEFE;
-    margin-top: 80%;    
+    margin-top: 45%;    
 }
 
 .msg{
@@ -68,9 +68,9 @@ input::placeholder{
 }
 
 .div-botoes{
-    margin-left: 22%;
+    width: 100%;
+    text-align: center;
 }
-
 
 .div-formato{
     width: 30%;

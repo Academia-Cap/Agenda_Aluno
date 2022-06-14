@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { CalendarioServiceService } from '../calendario-servico/calendario-service.service';
 
 @Component({
   selector: 'app-calendario-cadastro',
@@ -19,17 +20,16 @@ export class CalendarioCadastroComponent implements OnInit {
   tarefaSabado: any;
   tarefaDomingo: any;
 
-  constructor() {}
+  constructor(private servicoCalendario: CalendarioServiceService) {}
 
   ngOnInit(): void {
-    this.gerar7Dias(new Date());
+    this.gerarDIas(new Date());
+    console.log(this.todosDiasSemana);
   }
 
   gravar(){}
 
-  gerar7Dias(data: Date){
-    let todosDiasSemana;
-    console.log(todosDiasSemana)
+  gerarDIas(date: Date){
+    this.servicoCalendario.getDias(date).subscribe(x => console.log(x))
   }
-
 }

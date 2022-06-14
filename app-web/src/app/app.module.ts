@@ -13,6 +13,10 @@ import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CalendarioCadastroComponent } from './calendario/calendario-cadastro/calendario-cadastro.component';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
+import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
+import { NotasComponent } from './disciplina/notas/notas.component';
+import { DropComponent } from './drop/drop.component';
 
 
 @NgModule({
@@ -23,6 +27,11 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     InstituicaoCadastroComponent,
     InstituicaoEditaComponent,
     CalendarioCadastroComponent
+    DisciplinaCadastroComponent,
+    DisciplinaEditaComponent,
+    NotasComponent,
+    DropComponent,
+  
   ],
   imports: [
     BrowserModule,

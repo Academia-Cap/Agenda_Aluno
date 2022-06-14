@@ -6,7 +6,28 @@ import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro
 import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 import { AuthLoginService } from './aluno/autenticacao/auth-login.service';
 import { CalendarioCadastroComponent } from './calendario/calendario-cadastro/calendario-cadastro.component';
+import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
+import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
+import { NotasComponent } from './disciplina/notas/notas.component';
 
+const routes: Routes = [
+{
+  path: 'cadastroDisciplina',
+  component: DisciplinaCadastroComponent
+},
+{
+  path: 'disciplina/:id',
+  component: DisciplinaEditaComponent
+},
+{
+  path:'',
+  component: DisciplinaCadastroComponent
+},
+{
+  path: 'Nota',
+  component: NotasComponent
+}
+];
 
 const routes: Routes = [
   { path: '', component: AlunoCadastrarComponent},

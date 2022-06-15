@@ -9,7 +9,7 @@ import { DecodeTokenService } from '../aluno/autenticacao/decode-token.service';
 })
 export class DropComponent implements OnInit {
   alunoToken: any;
-  constructor(private router: Router, private decodeToken: DecodeTokenService) { }
+  constructor(private decodeToken: DecodeTokenService) { }
 
   ngOnInit(): void {
     this.alunoToken = this.decodeToken.decodeTokenJWT()

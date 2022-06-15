@@ -53,7 +53,7 @@ export class AlunoCadastrarComponent implements OnInit {
       this.auth.logar(dados.email, dados.senha).subscribe(
         token => {
           if (token != "Aluno não encontrado") {
-            localStorage.setItem('token', JSON.stringify(token))
+            sessionStorage.setItem('token', JSON.stringify(token))
             this.alunoToken = this.decodeToken.decodeTokenJWT()
             this.router.navigate(['/perfilAluno', this.alunoToken.id])
           } else {

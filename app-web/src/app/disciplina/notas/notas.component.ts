@@ -23,7 +23,6 @@ export class NotasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    
   }
 
   salvarNota(nota: any) {

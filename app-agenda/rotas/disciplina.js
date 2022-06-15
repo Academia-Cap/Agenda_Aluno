@@ -15,7 +15,7 @@ const pool = new pg.Pool({ connectionString: consString, ssl: { rejectUnauthoriz
 // })
 
 rota.get('/', (req, res) => {
-    pool.connect((err, client,release) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('operação não permitida')
@@ -23,7 +23,7 @@ rota.get('/', (req, res) => {
         client.query('SELECT * FROM disciplina', (erro, result) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não autorizada') 
+                return res.status(401).send('Operação não autorizada')
             }
             res.status(200).send(result.rows)
             release()
@@ -34,7 +34,7 @@ rota.get('/', (req, res) => {
 // Criar disciplina
 
 rota.post('/', (req, res) => {
-    pool.connect((err, client,release) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Conexao não autorizada')
@@ -53,8 +53,8 @@ rota.post('/', (req, res) => {
 
 // Consultar disciplina por diciplina
 
-rota.get('/:disciplina', (req, res) => {
-    pool.connect((err, client,release) => {
+rota.get('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send("Conexão não autorizada")
@@ -72,8 +72,8 @@ rota.get('/:disciplina', (req, res) => {
 
 //Editar disciplina
 
-rota.put('/:disciplina', (req, res) => {
-    pool.connect((err, client,release) => {
+rota.put('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Conexão não autorizada')
@@ -81,7 +81,7 @@ rota.put('/:disciplina', (req, res) => {
         client.query('SELECT * FROM disciplina WHERE id = $1', [req.params.id], (erro, resul) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não permitida')
+                return res.status(401).send('Disciplina não localizada')
             }
             if (resul.rowCount > 0) {
                 var sql = 'UPDATE disciplina SET nome = $1, abreviacao = $2, docente = $3, anotacao = $4 WHERE id = $5'
@@ -94,19 +94,18 @@ rota.put('/:disciplina', (req, res) => {
                     res.status(201).send(result.rows[0])
                     release()
                 })
-            } else{
-                res.status(401).send('Operação não permitida')
+            } else {
+                res.status(401).send('Não foi possivel realizar a alteração')
                 release()
             }
         })
-
     })
 });
 
 //Deletar disciplina
 
-rota.delete('/:disciplina', (req, res) => {
-    pool.connect((err, client,release) => {
+rota.delete('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Não foi')
@@ -116,7 +115,7 @@ rota.delete('/:disciplina', (req, res) => {
                 release()
                 return res.status(401).send('Não funcionou')
             }
-            res.status(200).send('Disciplina deletado com sucesso!')
+            res.status(200).send('Disciplina deletada com sucesso!')
             release()
         })
     })

@@ -13,6 +13,8 @@ import { CalendarioService } from '../calendario-servico/calendario.service';
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
+  constructor(private calendarioService: CalendarioService) { }
+
   msg: string = "";
   tarefa: any = { 'titulo': '', 'periodo': null, 'horainicio': null, 'horafinal': null, 'descricao': '', 'iddisc': null, 'idaluno': null };
   todosDiasSemana: any;
@@ -44,10 +46,14 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarDIas(date: Date) {
-    this.servicoCalendario.getDias(date).subscribe(x => console.log(x))
+    this.calendarioService.getDias(date).subscribe(x => console.log(x))
   }
 
   selectDisciplina(){
     this.disciplinaService.getTodos().subscribe(x => this.disciplina = x)
+  }
+
+  excluir(idtarefa: any){
+
   }
 }

@@ -8,17 +8,20 @@ const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorize
 
 //Substitui o app.get pelo rota.get
 rota.get('/', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send('operação não permitida')
         }
         client.query('SELECT * FROM tarefa', (erro, result) => {
             if (erro) {
+                release()
                 return res.status(401).send('Operação não autorizada')
             }
             res.status(200).send(result.rows)
-            
+            release()
         })
+        release()
     })
 })
 
@@ -38,27 +41,33 @@ rota.get('/', (req, res) => {
 
 
 rota.post('/', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
-            return res.status(401).send('Conexao não autorizada')
+            release()
+            return res.status(401).send('Conexao não autorizada', err.rows)
         }
         var sql = 'INSERT INTO tarefa(titulo,periodo,horainicio,horafinal,descricao,iddisc,idaluno) VALUES($1,$2,$3,$4,$5,$6,$7)'
         client.query(sql, [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.body.idaluno], (error, result) => {
             if (error) {
+                release()
                 return res.status(401).send('Operação não permitida')
             }
             res.status(201).send("Tarefa Cadastrada")
+            release()
         })
+        release()
     })
 })
 
 rota.put('/:id', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         client.query('SELECT * FROM tarefa WHERE id = $1', [req.params.id], (erro, resul) => {
             if (erro) {
+                release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
@@ -66,11 +75,14 @@ rota.put('/:id', (req, res) => {
                 var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
                 client.query(sql, values, (error, result) => {
                     if (error) {
+                        release()
                         return res.status(401).send('Operação não permitida')
                     }
                     res.status(201).send(result.rows[0])
+                    release()
                 })
             } else{
+                release()
                 res.status(401).send('Operação não permitida')
             }
         })
@@ -79,16 +91,20 @@ rota.put('/:id', (req, res) => {
 });
 
 rota.delete('/:id', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send('Deu erro! Operação não liberada!')
         }
         client.query('DELETE FROM tarefa WHERE id = $1', [req.params.id], (error, result) => {
             if (error) {
+                release()
                 return res.status(401).send('Não funcionou')
             }
             res.status(200).send('Tarefa deletada com sucesso!')
+            release()
         })
+        release()
     })
 })
 

@@ -39,7 +39,7 @@ rota.post('/', (req, res) => {
             release()
             return res.status(401).send('Conexao não autorizada')
         }
-        var sql = 'insert into disciplina (nome, abreviacao, docente, anotacao) VALUES($1,$2,$3,$4)'
+        var sql = 'insert into disciplina (nome, abreviacao, docente, anotacao) VALUES($1, $2, $3, $4)'
         client.query(sql, [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao], (error, result) => {
             if (error) {
                 release()
@@ -59,7 +59,7 @@ rota.get('/:disciplina', (req, res) => {
             release()
             return res.status(401).send("Conexão não autorizada")
         }
-        client.query('select * from disciplinas where disciplina = $1', [req.params.disciplina], (error, result) => {
+        client.query('select * from disciplina where id = $1', [req.params.id], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Disciplina não localizada')
@@ -78,13 +78,13 @@ rota.put('/:disciplina', (req, res) => {
             release()
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('select * from disciplina where id = $1', [req.params.disciplina], (erro, resul) => {
+        client.query('SELECT * FROM disciplina WHERE id = $1', [req.params.id], (erro, resul) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                var sql = 'update disciplina set nome = $1, abreviacao = $2, docente = $3, anotacao = $4 where id = $5'
+                var sql = 'UPDATE disciplina SET nome = $1, abreviacao = $2, docente = $3, anotacao = $4 WHERE id = $5'
                 var values = [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao, req.params.id]
                 client.query(sql, values, (error, result) => {
                     if (error) {
@@ -99,7 +99,7 @@ rota.put('/:disciplina', (req, res) => {
                 release()
             }
         })
-        
+
     })
 });
 

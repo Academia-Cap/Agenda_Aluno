@@ -119,3 +119,16 @@ input::placeholder {
 .div-drop-drop {
     width: 17%;
 }
+
+.card{
+    flex-wrap: wrap;
+    display: inline-block;
+    margin: 10px;
+    background-color: #89A4C8;
+  
+}
+
+.instcad{
+    text-align: center;
+    color: black;
+}

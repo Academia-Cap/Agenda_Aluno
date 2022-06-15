@@ -13,14 +13,14 @@
                     </button>
                 </div>
             </div>
-            <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel">
+            <input required class="form-control hora" type="time" name="horainicio" min="00:00" max="23:59"
+                [(ngModel)]="tarefa.horainicio" #fhorainicial="ngModel">
             <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
                 [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
             
-            <select [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel" ngModel name="disciplina">
+            <select class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel name="iddisc">
                 <option selected disabled>Selecione</option>
                 <option *ngFor="let disc of disciplina" value="{{disc.id}}">
                     {{disc.nome}}
@@ -28,7 +28,7 @@
             </select>
 
             <div class="mt-2 div-botoes">
-                <button type="submit" [disabled]="f.invalid" class="btn me-2">Salvar</button>
+                <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>

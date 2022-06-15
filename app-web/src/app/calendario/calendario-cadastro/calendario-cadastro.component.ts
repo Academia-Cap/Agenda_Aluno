@@ -37,6 +37,8 @@ export class CalendarioCadastroComponent implements OnInit {
   gravar(dados: any) {
     this.alunoToken = this.decodeToken.decodeTokenJWT()
     dados.idaluno = this.alunoToken.id
+    dados.iddisc = Number(dados.iddisc)
+    console.log(dados.iddisc)
     dados.periodo = dados.periodo.year + '/' + dados.periodo.month + '/' + dados.periodo.day
     this.calendarioService.gravar(dados).subscribe(x => console.log("certo aqui" + x))
     console.log(dados)

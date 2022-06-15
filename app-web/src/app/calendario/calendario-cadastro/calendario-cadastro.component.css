@@ -132,3 +132,13 @@ input::placeholder {
     text-align: center;
     color: black;
 }
+
+.form-select{
+    margin-left: 8%;
+    margin-top: 3%;
+    width: 85%;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: white;
+    font-family: Kameron;
+}

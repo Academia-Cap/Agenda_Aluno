@@ -24,19 +24,19 @@ rota.get('/', (req, res) => {
     })
 })
 
-/*rota.get('/:id', (req, res) => {
+rota.post('/periodo', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
             return res.status(401).send('operação não permitida')
         }
-        client.query('SELECT * FROM tarefa WHERE id=$1',[req.params.id],(erro, result) => {
+        client.query('SELECT * FROM tarefa WHERE periodo=$1',[req.body.periodo],(erro, result) => {
             if (erro) {
-                return res.status(401).send({erro: err.message})
+                return res.status(401).send(erro)
             }
-            res.status(200).send(result.rows[0])
+            res.status(200).send(result.rows)
         })
     })
-})*/
+})
 
 
 rota.post('/', (req, res) => {
@@ -104,6 +104,7 @@ rota.delete('/:id', (req, res) => {
         })
     })
 })
+
 
 //cria o modulo que sera exportado e vai ser chamado no index.js
 rota.get('/gerarDias', (req, res) => {

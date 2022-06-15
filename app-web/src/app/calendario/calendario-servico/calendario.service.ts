@@ -20,8 +20,8 @@ export class CalendarioService {
     return this.http.delete(`http://localhost:8000/calendario/${id}`)
   }
 
-  getId(id: number){
-    return this.http.get(`http://localhost:8000/calendario/${id}`)
+  getTarefa(data: any){
+    return this.http.post(`http://localhost:8000/calendario/periodo`, data)
   }
 
   alterar(dados:any){

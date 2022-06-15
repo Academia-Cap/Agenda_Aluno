@@ -23,11 +23,12 @@ export class CalendarioCadastroComponent implements OnInit {
   tarefaSabado: any;
   tarefaDomingo: any;
   alunoToken: any;
-  disciplina : any;
-  disc: any ={'id':null, 'nome':''};
-  
+  disciplina: any;
+  disc: any = { 'id': null, 'nome': '' };
 
-  constructor(private calendarioService: CalendarioService, private decodeToken: DecodeTokenService, private disciplinaService: CadastroService) {  }
+  constructor(private calendarioService: CalendarioService,
+    private decodeToken: DecodeTokenService, private disciplinaService: CadastroService) {
+  }
 
   ngOnInit(): void {
     this.gerarDIas(new Date());
@@ -45,14 +46,48 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarDIas(date: Date) {
-    this.calendarioService.getDias(date).subscribe(x => console.log(x))
+    this.calendarioService.getDias(date).subscribe(x => {
+      this.todosDiasSemana = x 
+      this.gerarTarefasDoDia(this.todosDiasSemana)
+    })
   }
 
-  selectDisciplina(){
+  selectDisciplina() {
     this.disciplinaService.getTodos().subscribe(x => this.disciplina = x)
   }
 
-  excluir(idtarefa: any){
+  gerarTarefasDoDia(listaDias: any) {
+    if (listaDias != undefined ) {
+      for (let i = 0; i < 7; i++) {
+        let dia: String = listaDias[i]
+        console.log(dia)
+        const data = { "periodo": dia}
+        if (i == 0) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaDomingo = x)
+        }
+        if (i == 1) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSegunda = x)
+        }
+        if (i == 2) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaTerca = x)
+        }
+        if (i == 3) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuarta = x)
+        }
+        if (i == 4) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuinta = x)
+        }
+        if (i == 5) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSexta = x)
+        }
+        if (i == 6) {
+          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSabado = x)
+        }
+      }
+    }
+  }
+
+  excluir(idtarefa: any) {
 
   }
 }

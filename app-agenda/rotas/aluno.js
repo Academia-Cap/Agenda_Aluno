@@ -7,31 +7,37 @@ var pg = require('pg')
 var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
-rota.get('/', (req, res) => {
+rota.get('/', (req, res, release) => {
     pool.connect((err, client) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         res.status(200).send('Conectado com sucesso')
+        release()
     })
 });
 
-rota.post('/', (req, res) => {
+rota.post('/', (req, res, release) => {
     pool.connect((err, client) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
 
         client.query('select * from aluno where usuario = $1', [req.body.usuario], (erro, result) => {
             if (erro) {
+                release()
                 return res.status(401).send('Operação não autorizada')
             }
 
             if (result.rowCount > 0) {
+                release()
                 return res.status(200).send('Resgistro já existe')
             }
             bcrypt.hash(req.body.senha, 10, (error, hash) => {
                 if (error) {
+                    release()
                     return res.status(500).send({
                         message: 'erro de autenticação',
                         erro: error.message
@@ -45,36 +51,42 @@ rota.post('/', (req, res) => {
                         return res.status(401).send('Operação não permitida')
                     }
                     res.status(201).send(result.rows[0])
+                    release()
                 })
             })
         })
-
+        release()
     })
 });
 
-rota.get('/:idAluno', (req, res) => {
+rota.get('/:idAluno', (req, res, release) => {
     pool.connect((err, client) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         var sql = 'SELECT * FROM aluno WHERE id = $1'
         var values = [req.params.idAluno]
         client.query(sql, values, (error, result) => {
             if (error) {
+                release()
                 return res.status(401).send('Operação não permitida')
             }
             res.status(201).send(result.rows[0])
+            release()
         })
     })
 });
 
-rota.put('/:idAluno', (req, res) => {
+rota.put('/:idAluno', (req, res, release) => {
     pool.connect((err, client) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
+                release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
@@ -82,36 +94,44 @@ rota.put('/:idAluno', (req, res) => {
                 var values = [req.body.nome, req.body.telefone, req.body.usuario, req.params.idAluno]
                 client.query(sql, values, (error, result) => {
                     if (error) {
+                        release()
                         return res.status(401).send('Operação não permitida')
                     }
                     res.status(201).send(result.rows[0])
+                    release()
                 })
             } else {
+                release()
                 res.status(401).send('Operação não permitida')
             }
         })
-        
+        release()
     })
 });
 
-rota.delete('/:idAluno', (req, res) => {
+rota.delete('/:idAluno', (req, res, release) => {
     pool.connect((err, client) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
+                release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
                 client.query('DELETE FROM aluno WHERE id = $1', [req.params.idAluno], (error, result) => {
                     if (error) {
+                        release()
                         return res.status(401).send('Operação não permitida')
                     }
                     res.status(201).send('Operação realizada com sucesso')
+                    release()
                 })
             } else {
                 res.status(401).send('Operação não permitida')
+                release()
             }
         })
 

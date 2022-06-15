@@ -22,7 +22,7 @@ rota.get('/', (req, res) => {
     })
 })
 
-rota.get('/:id', (req, res) => {
+/*rota.get('/:id', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
             return res.status(401).send('operação não permitida')
@@ -34,12 +34,13 @@ rota.get('/:id', (req, res) => {
             res.status(200).send(result.rows[0])
         })
     })
-})
+})*/
+
 
 rota.post('/', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
-            return res.status(401).send('Conexao não autorizada', err.rows)
+            return res.status(401).send('Conexao não autorizada')
         }
         var sql = 'INSERT INTO tarefa(titulo,periodo,horainicio,horafinal,descricao,iddisc,idaluno) VALUES($1,$2,$3,$4,$5,$6,$7)'
         client.query(sql, [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.body.idaluno], (error, result) => {

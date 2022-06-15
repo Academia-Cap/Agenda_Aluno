@@ -16,6 +16,7 @@ export class CadastroService {
 
   getTodos() {
     return this.http.get('http://localhost:8000/disciplina')
+    
   }
 
   excluir(id: number) {

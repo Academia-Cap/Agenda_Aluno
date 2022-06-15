@@ -10,12 +10,12 @@ export class CadastroService {
   constructor(private http: HttpClient) { }
 
   gravar(dados: any) {
-    let url = 'http://localhost:8000/disciplina'
+    let url = `http://localhost:8000/disciplina`
     return this.http.post(url, dados)
   }
 
   getTodos() {
-    return this.http.get('http://localhost:8000/disciplina')
+    return this.http.get(`http://localhost:8000/disciplina`)
   }
 
   excluir(id: number) {

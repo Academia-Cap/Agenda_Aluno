@@ -20,11 +20,10 @@ export class DisciplinaCadastroComponent implements OnInit {
   }
 
   excluir(id: any) {
-    this.serviceCadastro.excluir(id).subscribe(x => this.msg = "Disciplina excluida com sucesso")
+    this.serviceCadastro.excluir(id).subscribe(x => window.location.reload())
   }
 
   ngOnInit(): void {
   }
 
-  
 }

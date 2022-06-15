@@ -119,7 +119,6 @@ rota.get('/gerarDias', (req, res) => {
             for (let i = 0; i < 7; i++) {
                 lista_datas[i] = new Date(ano, mes, dia + i).toLocaleDateString()
             }
-            release()
             return res.status(201).send(lista_datas)
         }
 
@@ -127,7 +126,6 @@ rota.get('/gerarDias', (req, res) => {
             for (let i = 0; i < 7; i++) {
                 lista_datas[diaDaSemana - i] = new Date(ano, mes, dia - i).toLocaleDateString()
             }
-            release()
             return res.status(201).send(lista_datas)
         }
 
@@ -142,13 +140,10 @@ rota.get('/gerarDias', (req, res) => {
                     lista_datas[i] = new Date(ano, mes, dia + (i - diaDaSemana)).toLocaleDateString()
                 }
             }
-            release()
             return res.status(201).send(lista_datas)
         }
-        release()
         return res.status(401).send("Erro")
     } else {
-        release()
         return res.status(401).send("Erro")
     }
 })

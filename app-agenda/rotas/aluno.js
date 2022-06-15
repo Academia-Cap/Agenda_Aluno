@@ -55,7 +55,6 @@ rota.post('/', (req, res) => {
                 })
             })
         })
-        release()
     })
 });
 
@@ -101,11 +100,10 @@ rota.put('/:idAluno', (req, res) => {
                     release()
                 })
             } else {
-                release()
                 res.status(401).send('Operação não permitida')
+                release()
             }
         })
-        release()
     })
 });
 

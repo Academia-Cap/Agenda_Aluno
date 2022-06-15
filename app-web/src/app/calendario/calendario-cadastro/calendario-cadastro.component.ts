@@ -47,7 +47,7 @@ export class CalendarioCadastroComponent implements OnInit {
 
   gerarDIas(date: Date) {
     this.calendarioService.getDias(date).subscribe(x => {
-      this.todosDiasSemana = x 
+      this.todosDiasSemana = x
       this.gerarTarefasDoDia(this.todosDiasSemana)
     })
   }
@@ -57,31 +57,32 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarTarefasDoDia(listaDias: any) {
-    if (listaDias != undefined ) {
+    if (listaDias != undefined) {
       for (let i = 0; i < 7; i++) {
         let dia: String = listaDias[i]
-        console.log(dia)
-        const data = { "periodo": dia}
-        if (i == 0) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaDomingo = x)
-        }
-        if (i == 1) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSegunda = x)
-        }
-        if (i == 2) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaTerca = x)
-        }
-        if (i == 3) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuarta = x)
-        }
-        if (i == 4) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuinta = x)
-        }
-        if (i == 5) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSexta = x)
-        }
-        if (i == 6) {
-          this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSabado = x)
+        const data = { "periodo":  listaDias[i]}
+        switch (i) {
+          case 0:
+            this.calendarioService.getTarefa(data).subscribe(x => this.tarefaDomingo = x)
+            break;
+          case 1:
+            this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSegunda = x)
+            break;
+            case 2:
+              this.calendarioService.getTarefa(data).subscribe(x => this.tarefaTerca = x)
+            break;
+            case 3:
+              this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuarta = x)
+            break;
+            case 4:
+              this.calendarioService.getTarefa(data).subscribe(x => this.tarefaQuinta = x)
+            break;
+            case 5:
+              this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSexta = x)
+            break;
+            case 6:
+              this.calendarioService.getTarefa(data).subscribe(x => this.tarefaSabado = x)
+            break;
         }
       }
     }

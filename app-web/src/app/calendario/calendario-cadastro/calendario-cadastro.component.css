@@ -120,20 +120,21 @@ input::placeholder {
     width: 17%;
 }
 
-.card{
-    flex-wrap: wrap;
+.card {
+    width: 5em;
+    flex-direction: column;
     display: inline-block;
-    margin: 10px;
+    margin: 5px;
     background-color: #89A4C8;
-  
+
 }
 
-.instcad{
+.instcad {
     text-align: center;
     color: black;
 }
 
-.form-select{
+.form-select {
     margin-left: 8%;
     margin-top: 3%;
     width: 85%;

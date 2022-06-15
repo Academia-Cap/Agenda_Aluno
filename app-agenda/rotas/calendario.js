@@ -25,15 +25,18 @@ rota.get('/', (req, res) => {
 })
 
 rota.post('/periodo', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send('operação não permitida')
         }
         client.query('SELECT * FROM tarefa WHERE periodo=$1',[req.body.periodo],(erro, result) => {
             if (erro) {
+                release()
                 return res.status(401).send(erro)
             }
             res.status(200).send(result.rows)
+            release()
         })
     })
 })
@@ -118,27 +121,27 @@ rota.get('/gerarDias', (req, res) => {
 
         if (diaDaSemana == 0) {
             for (let i = 0; i < 7; i++) {
-                lista_datas[i] = new Date(ano, mes, dia + i).toLocaleDateString()
+                lista_datas[i] = new Date(ano, mes, dia + i).toLocaleDateString('en-US')
             }
             return res.status(201).send(lista_datas)
         }
 
         if (diaDaSemana == 6) {
             for (let i = 0; i < 7; i++) {
-                lista_datas[diaDaSemana - i] = new Date(ano, mes, dia - i).toLocaleDateString()
+                lista_datas[diaDaSemana - i] = new Date(ano, mes, dia - i).toLocaleDateString('en-US')
             }
             return res.status(201).send(lista_datas)
         }
 
         if (diaDaSemana > 0 && diaDaSemana < 6) {
             for (let i = 0; i < diaDaSemana; i++) {
-                lista_datas[i] = new Date(ano, mes, dia - (diaDaSemana - i)).toLocaleDateString()
+                lista_datas[i] = new Date(ano, mes, dia - (diaDaSemana - i)).toLocaleDateString('en-US')
             }
             for (let i = diaDaSemana; i < 7; i++) {
                 if (diaDaSemana == i) {
-                    lista_datas[i] = new Date(ano, mes, dia).toLocaleDateString()
+                    lista_datas[i] = new Date(ano, mes, dia).toLocaleDateString('en-US')
                 } else {
-                    lista_datas[i] = new Date(ano, mes, dia + (i - diaDaSemana)).toLocaleDateString()
+                    lista_datas[i] = new Date(ano, mes, dia + (i - diaDaSemana)).toLocaleDateString('en-US')
                 }
             }
             return res.status(201).send(lista_datas)

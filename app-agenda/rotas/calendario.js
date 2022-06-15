@@ -21,7 +21,6 @@ rota.get('/', (req, res) => {
             res.status(200).send(result.rows)
             release()
         })
-        release()
     })
 })
 
@@ -55,7 +54,6 @@ rota.post('/', (req, res) => {
             res.status(201).send("Tarefa Cadastrada")
             release()
         })
-        release()
     })
 })
 
@@ -104,7 +102,6 @@ rota.delete('/:id', (req, res) => {
             res.status(200).send('Tarefa deletada com sucesso!')
             release()
         })
-        release()
     })
 })
 
@@ -122,6 +119,7 @@ rota.get('/gerarDias', (req, res) => {
             for (let i = 0; i < 7; i++) {
                 lista_datas[i] = new Date(ano, mes, dia + i).toLocaleDateString()
             }
+            release()
             return res.status(201).send(lista_datas)
         }
 
@@ -129,6 +127,7 @@ rota.get('/gerarDias', (req, res) => {
             for (let i = 0; i < 7; i++) {
                 lista_datas[diaDaSemana - i] = new Date(ano, mes, dia - i).toLocaleDateString()
             }
+            release()
             return res.status(201).send(lista_datas)
         }
 
@@ -143,10 +142,13 @@ rota.get('/gerarDias', (req, res) => {
                     lista_datas[i] = new Date(ano, mes, dia + (i - diaDaSemana)).toLocaleDateString()
                 }
             }
+            release()
             return res.status(201).send(lista_datas)
         }
+        release()
         return res.status(401).send("Erro")
     } else {
+        release()
         return res.status(401).send("Erro")
     }
 })

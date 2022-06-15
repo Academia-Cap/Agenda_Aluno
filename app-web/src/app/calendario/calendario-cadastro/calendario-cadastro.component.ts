@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
 import { CadastroService } from 'src/app/disciplina/disciplina-cadastro/disciplina-services/cadastro.service';
-import { CalendarioServiceService } from '../calendario-servico/calendario-service.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 
 @Component({
@@ -12,8 +11,6 @@ import { CalendarioService } from '../calendario-servico/calendario.service';
 })
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
-
-  constructor(private calendarioService: CalendarioService) { }
 
   msg: string = "";
   tarefa: any = { 'titulo': '', 'periodo': null, 'horainicio': null, 'horafinal': null, 'descricao': '', 'iddisc': null, 'idaluno': null };
@@ -30,7 +27,7 @@ export class CalendarioCadastroComponent implements OnInit {
   disc: any ={'id':null, 'nome':''};
   
 
-  constructor(private calendarioService: CalendarioService, private servicoCalendario: CalendarioServiceService, private decodeToken: DecodeTokenService, private disciplinaService: CadastroService) {  }
+  constructor(private calendarioService: CalendarioService, private decodeToken: DecodeTokenService, private disciplinaService: CadastroService) {  }
 
   ngOnInit(): void {
     this.gerarDIas(new Date());

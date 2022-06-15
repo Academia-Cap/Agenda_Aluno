@@ -19,19 +19,13 @@
                 [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
-            <!-- <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
-                ngModel name="disciplina" placeholder="Disciplina">-->
-            <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
-                ngModel name="disciplina" placeholder="Disciplina">
-
-                <select [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel" ngModel name="disciplina">
-                    <option selected disabled>Selecione</option>
-                    <option *ngFor="let disc of disciplina" value="{{disc.id}}">
-                        {{disc.nome}}
-                    </option>
-                </select>
-
-
+            
+            <select [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel" ngModel name="disciplina">
+                <option selected disabled>Selecione</option>
+                <option *ngFor="let disc of disciplina" value="{{disc.id}}">
+                    {{disc.nome}}
+                </option>
+            </select>
 
             <div class="mt-2 div-botoes">
                 <button type="submit" [disabled]="f.invalid" class="btn me-2">Salvar</button>

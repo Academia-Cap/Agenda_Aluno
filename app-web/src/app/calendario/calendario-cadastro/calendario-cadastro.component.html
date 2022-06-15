@@ -1,28 +1,30 @@
 <div class="div-tela">
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
-        <form #f="ngForm" (ngSubmit)="gravar()" class="row row-cols-sm-auto">
-            <input required class="form-control" type="text" #ftitulo="ngModel" ngModel name="titulo"
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto">
+            <input required class="form-control" type="text"  [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel name="titulo"
                 placeholder="Titulo" />
+           
             <div class="col-12">
                 <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
+                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo" [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker
                         #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
                 </div>
             </div>
             <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" required>
+                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" >
             <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" required>
-            <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
-                ngModel name="disciplina" placeholder="Disciplina">
+                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" >
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
+                ngModel name="disciplina" placeholder="Disciplina">
+           
 
             <div class="mt-2 div-botoes">
-                <button [disabled]="f.invalid" class="btn me-2" onClick="window.location.reload()">Salvar</button>
+                <button type="submit" [disabled]="f.invalid" class="btn me-2" >Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>

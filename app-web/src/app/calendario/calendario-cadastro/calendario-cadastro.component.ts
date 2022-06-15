@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { CalendarioService } from '../calendario-servico/calendario.service';
 
 @Component({
   selector: 'app-calendario-cadastro',
@@ -9,27 +10,17 @@ import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
-  tarefa: any;
-  todosDiasSemana : any;
-  tarefaSegunda: any;
-  tarefaTerca: any;
-  tarefaQuarta: any;
-  tarefaQuinta: any;
-  tarefaSexta: any;
-  tarefaSabado: any;
-  tarefaDomingo: any;
+  constructor(private calendarioService: CalendarioService) {}
 
-  constructor() {}
+  msg: string ="";
+  tarefa: any = {'titulo' : '', 'periodo': '', 'horainicial':'','horafinal':'', 'descricao':'','disciplina':''};
 
   ngOnInit(): void {
-    this.gerar7Dias(new Date());
   }
 
-  gravar(){}
+  gravar(dados: any) {
+    this.calendarioService.gravar(dados).subscribe(x => console.log("certo aqui"+ x))
 
-  gerar7Dias(data: Date){
-    let todosDiasSemana;
-    console.log(todosDiasSemana)
   }
 
 }

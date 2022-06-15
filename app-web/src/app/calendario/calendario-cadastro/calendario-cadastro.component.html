@@ -2,71 +2,134 @@
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
         <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto">
-            <input required class="form-control" type="text"  [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel name="titulo"
-                placeholder="Titulo" />
-           
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
+                name="titulo" placeholder="Titulo" />
+
             <div class="col-12">
                 <div class="input-group">
-                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo" [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker
-                        #d="ngbDatepicker">
+                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo"
+                        [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
                 </div>
             </div>
             <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" >
+                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel">
             <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" >
+                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
                 ngModel name="disciplina" placeholder="Disciplina">
-           
+
 
             <div class="mt-2 div-botoes">
-                <button type="submit" [disabled]="f.invalid" class="btn me-2" >Salvar</button>
+                <button type="submit" [disabled]="f.invalid" class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>
     </div>
     <div class="div-cadastro">
-       
+
         <div class="div-drop">
             <div class="div-drop-h1">
                 <h1 class="h1-calendario">Calendario</h1>
             </div>
             <div class="div-drop-drop">
-               <app-drop style="max-height: 2em;"></app-drop> 
+                <app-drop style="max-height: 2em;"></app-drop>
             </div>
         </div>
         <div class="div-calendario">
             <div id="div-domingo" class="div-formato">
                 <h5>Domingo</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSegunda" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-segunda" class="div-formato">
                 <h5>Segunda</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSegunda" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-terça" class="div-formato">
                 <h5>Terça</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaTerca" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-quarta" class="div-formato">
                 <h5>Quarta</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaQuarta" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-quinta" class="div-formato">
                 <h5>Quinta</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaQuinta" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-sexta" class="div-formato">
                 <h5>Sexta</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSexta" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-sábado" class="div-formato">
                 <h5>Sábado</h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSabado" class="card" style="width: 10rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ tr.titulo }}</h5>
+                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                    </div>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
         </div>
         <div>

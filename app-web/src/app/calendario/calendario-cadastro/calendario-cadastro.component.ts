@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { CalendarioServiceService } from '../calendario-servico/calendario-service.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 
 @Component({
@@ -11,7 +10,7 @@ import { CalendarioService } from '../calendario-servico/calendario.service';
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
-  constructor(private calendarioService: CalendarioService, private servicoCalendario: CalendarioServiceService) { }
+  constructor(private calendarioService: CalendarioService) { }
 
   msg: string = "";
   tarefa: any = { 'titulo': '', 'periodo': '', 'horainicial': '', 'horafinal': '', 'descricao': '', 'disciplina': '' };
@@ -34,6 +33,10 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarDIas(date: Date) {
-    this.servicoCalendario.getDias(date).subscribe(x => console.log(x))
+    this.calendarioService.getDias(date).subscribe(x => console.log(x))
+  }
+
+  excluir(idtarefa: any){
+
   }
 }

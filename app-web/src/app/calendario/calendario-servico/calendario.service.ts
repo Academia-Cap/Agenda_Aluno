@@ -27,4 +27,9 @@ export class CalendarioService {
   alterar(dados:any){
     return this.http.put(`http://localhost:8000/calendario/${dados.id}`, dados)
   }
+
+  getDias(data: any){
+    let url = `http://localhost:8000/calendario/gerarDias`
+    return this.http.get(url, data)
+  }
 }

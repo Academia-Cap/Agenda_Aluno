@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {NgbDateStruct} from '@ng-bootstrap/ng-bootstrap';
+import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { CalendarioServiceService } from '../calendario-servico/calendario-service.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 
@@ -11,11 +11,18 @@ import { CalendarioService } from '../calendario-servico/calendario.service';
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
-  constructor(private calendarioService: CalendarioService) {}
+  constructor(private calendarioService: CalendarioService, private servicoCalendario: CalendarioServiceService) { }
 
-  constructor(private servicoCalendario: CalendarioServiceService) {}
-  msg: string ="";
-  tarefa: any = {'titulo' : '', 'periodo': '', 'horainicial':'','horafinal':'', 'descricao':'','disciplina':''};
+  msg: string = "";
+  tarefa: any = { 'titulo': '', 'periodo': '', 'horainicial': '', 'horafinal': '', 'descricao': '', 'disciplina': '' };
+  todosDiasSemana: any;
+  tarefaSegunda: any;
+  tarefaTerca: any;
+  tarefaQuarta: any;
+  tarefaQuinta: any;
+  tarefaSexta: any;
+  tarefaSabado: any;
+  tarefaDomingo: any;
 
   ngOnInit(): void {
     this.gerarDIas(new Date());
@@ -23,9 +30,10 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gravar(dados: any) {
-    this.calendarioService.gravar(dados).subscribe(x => console.log("certo aqui"+ x))
+    this.calendarioService.gravar(dados).subscribe(x => console.log("certo aqui" + x))
+  }
 
-  gerarDIas(date: Date){
+  gerarDIas(date: Date) {
     this.servicoCalendario.getDias(date).subscribe(x => console.log(x))
   }
 }

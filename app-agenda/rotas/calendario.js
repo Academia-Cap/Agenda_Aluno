@@ -21,7 +21,7 @@ rota.get('/', (req, res) => {
         })
     })
 })
-
+/*
 rota.get('/:id', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
@@ -34,7 +34,7 @@ rota.get('/:id', (req, res) => {
             res.status(200).send(result.rows[0])
         })
     })
-})
+})*/
 
 rota.post('/', (req, res) => {
     pool.connect((err, client) => {

@@ -22,8 +22,8 @@ export class NotaService {
     return this.http.get(`http://localhost:8000/nota/${iddisc}`)
   }
 
-  getId(iddisc: any) {
-    return this.http.get(`http://localhost:8000/disciplina/${iddisc}`)
-  }
+  // getId(iddisc: any) {
+  //   return this.http.get(`http://localhost:8000/disciplina/${iddisc}`)
+  // }
 
 }

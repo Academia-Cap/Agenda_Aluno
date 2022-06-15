@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
-import { CadastroService } from 'src/app/disciplina/disciplina-cadastro/disciplina-services/cadastro.service';
+import { CadastroService } from 'src/app/disciplina/disciplina-services/cadastro.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 
 @Component({

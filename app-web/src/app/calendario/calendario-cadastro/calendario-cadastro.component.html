@@ -1,13 +1,13 @@
 <div class="div-tela">
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
-        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto">
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto form-cadastro">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
                 name="titulo" placeholder="Titulo" />
 
             <div class="col-12">
                 <div class="input-group">
-                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo"
+                    <input required class="form-control input-data" placeholder="yyyy-mm-dd" name="periodo"
                         [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
@@ -20,7 +20,7 @@
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
             
-            <select class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel name="iddisc">
+            <select class="form-select select-cadastro" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel name="iddisc">
                 <option selected disabled>Selecione</option>
                 <option *ngFor="let disc of disciplina" value="{{disc.id}}">
                     {{disc.nome}}
@@ -49,8 +49,12 @@
                 <hr>
                 <div *ngFor="let tr of tarefaSegunda" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -60,10 +64,15 @@
             <div id="div-segunda" class="div-formato">
                 <h5>Segunda</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaSegunda" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaSegunda" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}</h5>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -73,10 +82,14 @@
             <div id="div-terça" class="div-formato">
                 <h5>Terça</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaTerca" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaTerca" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -86,10 +99,14 @@
             <div id="div-quarta" class="div-formato">
                 <h5>Quarta</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaQuarta" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaQuarta" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                        {{ tr.horainicio }}
+                        {{ tr.horafinal }}
+                        {{ tr.descricao }}
+                        {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -99,10 +116,14 @@
             <div id="div-quinta" class="div-formato">
                 <h5>Quinta</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaQuinta" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaQuinta" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -112,10 +133,14 @@
             <div id="div-sexta" class="div-formato">
                 <h5>Sexta</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaSexta" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaSexta" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -125,10 +150,14 @@
             <div id="div-sábado" class="div-formato">
                 <h5>Sábado</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaSabado" class="card" style="width: 10rem;">
+                <div *ngFor="let tr of tarefaSabado" class="card">
                     <div class="card-body">
-                        <h5 class="card-title">{{ tr.titulo }}</h5>
-                        <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
+                        <h3>{{ tr.titulo }}</h3>
+                        <h5>{{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
                     <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -136,10 +165,9 @@
                 </div>
             </div>
         </div>
-        <div>
-            <button type="button" class="btn-voltar">
-                <</button>
-                    <button type="button" class="btn-avancar">></button>
+        <div class="div-botoes-calendario">
+            <button type="button" class="btn-voltar"><</button>
+            <button type="button" class="btn-avancar">></button>
         </div>
     </div>
 

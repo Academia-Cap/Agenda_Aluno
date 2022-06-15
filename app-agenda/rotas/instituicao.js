@@ -19,9 +19,7 @@ rota.get('/', (req, res) => {
                 return res.status(401).send('Operação não autorizada')
             }
             res.status(200).send(result.rows)
-            release()
         })
-        release()
     })
 })
 
@@ -39,7 +37,6 @@ rota.get('/:id', (req, res) => {
             res.status(200).send(result.rows[0])
             release()
         })
-        release()
     })
 })
 
@@ -58,7 +55,6 @@ rota.post('/', (req, res) => {
             res.status(201).send("Insituicao cadastrada")
             release()
         })
-        release()
     })
 })
 
@@ -89,7 +85,6 @@ rota.put('/:id', (req, res) => {
                 res.status(401).send('Operação não permitida')
             }
         })
-        release()
     })
 });
 
@@ -107,7 +102,6 @@ rota.delete('/:id', (req, res) => {
             res.status(200).send('Usuario deletado com sucesso!')
             release()
         })
-        release()
     })
 })
 

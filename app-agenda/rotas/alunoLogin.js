@@ -42,17 +42,16 @@ rota.post('/login', (req, res) => {
                     }
                     if (results) {
                         let token = jwt.sign({
-                                id: result.rows[0].id,
-                                email: result.rows[0].email,
+                            id: result.rows[0].id,
+                            email: result.rows[0].email,
                             },
                             process.env.JWTKEY, { expiresIn: '1h' })
+                        release()
                         return res.status(200).send({
                             message: 'Conectado com sucesso',
                             token: token
                         })
-                        release()
                     }
-                    release()
                 })
             } else {
                 release()

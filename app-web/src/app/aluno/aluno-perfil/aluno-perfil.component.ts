@@ -10,6 +10,7 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
   styleUrls: ['./aluno-perfil.component.css']
 })
 export class AlunoPerfilComponent implements OnInit {
+  //aluno = {'id': null, 'nome': '', 'telefone': '', 'email': '', 'usuario': '', 'senha': ''};
   aluno: any;
   idAluno: number = 0
 

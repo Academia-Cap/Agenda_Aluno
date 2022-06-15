@@ -7,8 +7,8 @@ var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
 //Substitui o app.get pelo rota.get
-rota.get('/', (req, res, release) => {
-    pool.connect((err, client) => {
+rota.get('/', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('operação não permitida')
@@ -25,8 +25,8 @@ rota.get('/', (req, res, release) => {
     })
 })
 
-rota.get('/:id', (req, res, release) => {
-    pool.connect((err, client) => {
+rota.get('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('operação não permitida')
@@ -43,8 +43,8 @@ rota.get('/:id', (req, res, release) => {
     })
 })
 
-rota.post('/', (req, res, release) => {
-    pool.connect((err, client) => {
+rota.post('/', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Conexao não autorizada', err.rows)
@@ -62,8 +62,8 @@ rota.post('/', (req, res, release) => {
     })
 })
 
-rota.put('/:id', (req, res, release) => {
-    pool.connect((err, client) => {
+rota.put('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Conexão não autorizada')
@@ -93,8 +93,8 @@ rota.put('/:id', (req, res, release) => {
     })
 });
 
-rota.delete('/:id', (req, res, release) => {
-    pool.connect((err, client) => {
+rota.delete('/:id', (req, res) => {
+    pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Deu erro! Operação não liberada!')

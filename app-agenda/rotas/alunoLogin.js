@@ -11,26 +11,31 @@ const jwt = require('jsonwebtoken');
 const login = require('../middleware/login')
 
 rota.get('/', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send('Conexão não autorizada')
         }
         res.status(200).send('Conectado com sucesso')
+        release()
     })
 });
 
 rota.post('/login', (req, res) => {
-    pool.connect((err, client) => {
+    pool.connect((err, client, release) => {
         if (err) {
+            release()
             return res.status(401).send("Conexão não autorizada")
         }
         client.query('select * from aluno where email = $1', [req.body.email], (error, result) => {
             if (error) {
+                release()
                 return res.status(401).send('operação não permitida')
             }
             if (result.rowCount > 0) {
                 bcrypt.compare(req.body.senha, result.rows[0].senha, (error, results) => {
                     if (error) {
+                        release()
                         return res.status(401).send({
                             message: "Falha na autenticação"
                         })
@@ -45,10 +50,12 @@ rota.post('/login', (req, res) => {
                             message: 'Conectado com sucesso',
                             token: token
                         })
+                        release()
                     }
-
+                    release()
                 })
             } else {
+                release()
                 return res.status(200).send({
                     message: 'usuário não encontrado'
                 })

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { CadastroService } from '../disciplina-cadastro/disciplina-services/cadastro.service';
+import { CadastroService } from '../disciplina-services/cadastro.service';
 
 @Component({
   selector: 'app-disciplina-edita',

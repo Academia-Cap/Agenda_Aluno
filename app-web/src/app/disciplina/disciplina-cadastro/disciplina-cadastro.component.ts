@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CadastroService } from './disciplina-services/cadastro.service';
+import { CadastroService } from '../disciplina-services/cadastro.service';
 
 @Component({
   selector: 'app-disciplina-cadastro',

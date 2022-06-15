@@ -10,9 +10,26 @@ const pool = new pg.Pool({ connectionString: consString, ssl: { rejectUnauthoriz
 
 // Testando a conexão
 
-// app.get('/disciplina', (req, res) => {
+// app.get('/nota', (req, res) => {
 //     return res.status(200).send('Conexão feita')
 // })
+
+// PEGA TODAS
+
+rota.get('/:iddisc', (req, res) => {
+    pool.connect((err, client) => {
+        if (err) {
+            return res.status(401).send('operação não permitida')
+        }
+        var sql = 'select * from nota where iddisc = $1'
+        client.query(sql, [req.params.iddisc], (erro, result) => {
+            if (erro) {
+                return res.status(401).send('Operação não autorizada')
+            }
+            res.status(200).send(result.rows)
+        })
+    })
+});
 
 // Criar nota
 
@@ -21,19 +38,19 @@ rota.post('/', (req, res) => {
         if (err) {
             return res.status(401).send('Conexao não autorizada')
         }
-        var sql = 'insert into nota (descricao, nota, iddisc) VALUES($1,$2,$3)'
+        var sql = 'insert into nota (descricao, nota, iddisc) VALUES($1, $2, $3)'
         client.query(sql, [req.body.descricao, req.body.nota, req.params.iddisc], (error, result) => {
             if (error) {
                 return res.status(401).send('Operação não permitida')
             }
-            res.status(201).send("Nota cadastrada")
+            res.status(201).send("Nota salva")
         })
     })
 })
 
 //Deletar nota
 
-rota.delete('/:nota', (req, res) => {
+rota.delete('/:id', (req, res) => {
     pool.connect((err, client) => {
         if (err) {
             return res.status(401).send('Não foi')
@@ -42,7 +59,7 @@ rota.delete('/:nota', (req, res) => {
             if (error) {
                 return res.status(401).send('Não funcionou')
             }
-            res.status(200).send('nota deletado com sucesso!')
+            res.status(200).send('Nota deletada com sucesso!')
         })
     })
 })

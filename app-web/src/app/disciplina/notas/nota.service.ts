@@ -17,13 +17,13 @@ export class NotaService {
   excluirNota(id: any){
     return this.http.delete(`http://localhost:8000/nota/${id}`)
   }
-  
+
   getTodos(iddisc: any) {
     return this.http.get(`http://localhost:8000/nota/${iddisc}`)
   }
 
-  // getId(iddisc: any) {
-  //   return this.http.get(`http://localhost:8000/disciplina/${iddisc}`)
-  // }
+  getId(iddisc: any) {
+    return this.http.get(`http://localhost:8000/disciplina/${iddisc}`)
+  }
 
 }

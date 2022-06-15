@@ -27,6 +27,10 @@ app.use("/disciplina", rotaDisciplina)
 const rotaAlunoLogin = require('./rotas/alunoLogin')
 app.use("/alunoLogin", rotaAlunoLogin)
 
+//chama a rota de nota
+const rotaNota = require('./rotas/nota')
+app.use("/nota", rotaNota)
+
 app.get('/', (req, res) =>{
     res.status(201).send('Conectou!')
 })

@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
-import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
+import { ActivatedRoute } from '@angular/router';
 import { CadastroService } from 'src/app/disciplina/disciplina-services/cadastro.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 
 @Component({
-  selector: 'app-calendario-cadastro',
-  templateUrl: './calendario-cadastro.component.html',
-  styleUrls: ['./calendario-cadastro.component.css']
+  selector: 'app-calendario-editar',
+  templateUrl: './calendario-editar.component.html',
+  styleUrls: ['./calendario-editar.component.css']
 })
-export class CalendarioCadastroComponent implements OnInit {
-  model: NgbDateStruct | undefined;
+export class CalendarioEditarComponent implements OnInit {
 
+  constructor(private route: ActivatedRoute, private calendarioService: CalendarioService, private disciplinaService: CadastroService) { 
+  }
+
+  disciplina: any;
   msg: string = "";
-  tarefa: any = { 'id': null,'titulo': '', 'periodo': null, 'horainicio': null, 'horafinal': null, 'descricao': '', 'iddisc': null, 'idaluno': null };
+  tarefa: any = { 'titulo': '', 'periodo': null, 'horainicio': null, 'horafinal': null, 'descricao': '', 'iddisc': null, 'idaluno': null };
   todosDiasSemana: any;
   tarefaSegunda: any;
   tarefaTerca: any;
@@ -23,29 +25,22 @@ export class CalendarioCadastroComponent implements OnInit {
   tarefaSabado: any;
   tarefaDomingo: any;
   alunoToken: any;
-  disciplina: any;
-  disc: any = { 'id': null, 'nome': '' };
 
-  constructor(private calendarioService: CalendarioService,
-    private decodeToken: DecodeTokenService, private disciplinaService: CadastroService) {
-  }
-
+  
   ngOnInit(): void {
     this.gerarDIas(new Date());
     this.selectDisciplina();
+    let rota = this.route.snapshot.paramMap;
+    let idTr: number = Number(rota.get("id"))
+    this.calendarioService.getId(idTr).subscribe(x => this.tarefa = x)
   }
 
-  gravar(dados: any) {
-    this.alunoToken = this.decodeToken.decodeTokenJWT()
-    dados.idaluno = this.alunoToken.id
-    dados.iddisc = Number(dados.iddisc)
-    dados.periodo = dados.periodo.year + '/' + dados.periodo.month + '/' + dados.periodo.day
-    if(this.tarefa.id == null){
-      this.calendarioService.gravar(dados).subscribe(x => this.tarefa = x)
-    }else{
-      dados.id = this.tarefa.id
-      this.calendarioService.alterar(dados).subscribe(x => this.tarefa = x)
-    }
+  efetivarAlteracao(dados:any){
+    this.calendarioService.alterar(this.tarefa).subscribe(x => this.msg = "Registro alterado com sucesso")
+  }
+
+  excluir(id: any) {
+    this.calendarioService.excluir(id).subscribe(x => this.msg = "instituicao excluida com sucesso")
   }
 
   gerarDIas(date: Date) {
@@ -53,10 +48,6 @@ export class CalendarioCadastroComponent implements OnInit {
       this.todosDiasSemana = x
       this.gerarTarefasDoDia(this.todosDiasSemana)
     })
-  }
-
-  selectDisciplina() {
-    this.disciplinaService.getTodos().subscribe(x => this.disciplina = x)
   }
 
   gerarTarefasDoDia(listaDias: any) {
@@ -91,17 +82,12 @@ export class CalendarioCadastroComponent implements OnInit {
     }
   }
 
-  excluir(id: any) {
-    this.calendarioService.excluir(id).subscribe(x => this.msg = "Tarefa excluida com sucesso")
+  selectDisciplina() {
+    this.disciplinaService.getTodos().subscribe(x => this.disciplina = x)
   }
-  
+
   editar(dados: any){
-    this.calendarioService.getId(dados).subscribe(x => {
-      this.tarefa = x
-      let aux: Date = new Date(this.tarefa.periodo)
-      this.tarefa.periodo = {year: aux.getFullYear(), month: aux.getMonth(), day: aux.getDate()} 
-    })
-    
+    this.calendarioService.getId(dados).subscribe(x => this.tarefa = x)
   }
 
 }

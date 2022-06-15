@@ -17,6 +17,7 @@ import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/di
 import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
 import { NotasComponent } from './disciplina/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
+import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { DropComponent } from './drop/drop.component';
     DisciplinaEditaComponent,
     NotasComponent,
     DropComponent,
+    CalendarioEditarComponent,
   
   ],
   imports: [

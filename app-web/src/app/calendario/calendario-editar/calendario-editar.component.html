@@ -1,7 +1,7 @@
 <div class="div-tela">
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
-        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto">
+        <form #f="ngForm" (ngSubmit)="efetivarAlteracao(f.value)" class="row row-cols-sm-auto">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
                 name="titulo" placeholder="Titulo" />
 
@@ -28,8 +28,9 @@
             </select>
 
             <div class="mt-2 div-botoes">
-                <button type="submit" [disabled]="f.invalid" class="btn me-2">Salvar</button>
-                <button type="reset" class="btn">Cancelar</button>
+                <button [disabled]="f.invalid" class="btn btn-dark me-2"
+                        onClick="window.location.replace('/')">Salvar</button>
+                <button  onClick="window.location.replace('/')" type="reset" class="btn btn-dark">Cancelar</button>
             </div>
         </form>
     </div>
@@ -52,7 +53,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -65,7 +66,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -78,7 +79,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -91,8 +92,9 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
-                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"(click)="excluir(tr.id)">delete</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
                 </div>
             </div>
             <div id="div-quinta" class="div-formato">
@@ -103,7 +105,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -116,7 +118,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -129,7 +131,7 @@
                         <h5 class="card-title">{{ tr.titulo }}</h5>
                         <p class="card-text">{{ tr.periodo }} {{ tr.horainicio }} {{ tr.horafinal }} {{ tr.descricao}} {{ tr.iddisc}}</p>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <a [routerLink]="['/calendario',tr.id]"><i class="material-icons text-light">mode_edit</i></a>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>

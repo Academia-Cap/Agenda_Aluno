@@ -8,6 +8,7 @@ import { AuthLoginService } from './aluno/autenticacao/auth-login.service';
 import { CalendarioCadastroComponent } from './calendario/calendario-cadastro/calendario-cadastro.component';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
 import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
+import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
 
 const routes: Routes = [
   { path: '', component: AlunoCadastrarComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   { path: 'cadastrainstituicao', component: InstituicaoCadastroComponent, canActivate: [AuthLoginService] },
   { path: 'calendario', component: CalendarioCadastroComponent, canActivate: [AuthLoginService] },
   { path: 'disciplina/:id', component: DisciplinaEditaComponent, canActivate: [AuthLoginService] },
-  { path: 'disciplina', component: DisciplinaCadastroComponent, canActivate: [AuthLoginService] }
+  { path: 'disciplina', component: DisciplinaCadastroComponent, canActivate: [AuthLoginService] },
+  { path: 'calendario/:id', component: CalendarioEditarComponent, canActivate: [AuthLoginService]}
 ];
 
 @NgModule({

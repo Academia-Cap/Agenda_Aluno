@@ -24,6 +24,24 @@ rota.get('/', (req, res) => {
     })
 })
 
+rota.get('/calendario/:id', (req, res) => {
+    pool.connect((err, client, release) => {
+        if (err) {
+            release()
+            return res.status(401).send('operação não permitida')
+        }
+        client.query('SELECT * FROM tarefa WHERE id=$1',[req.params.id],(erro, result) => {
+            if (erro) {
+                release()
+                return res.status(401).send("não autorizado")
+            }
+            res.status(200).send(result.rows[0])
+            release()
+        })
+    })
+})
+
+
 rota.post('/periodo', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
@@ -72,9 +90,10 @@ rota.put('/:id', (req, res) => {
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE instituicao SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
+                var sql = 'UPDATE tarefa SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
                 var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
                 client.query(sql, values, (error, result) => {
+                    console.log(result)
                     if (error) {
                         release()
                         return res.status(401).send('Operação não permitida')

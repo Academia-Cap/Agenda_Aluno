@@ -32,4 +32,8 @@ export class CalendarioService {
     let url = `http://localhost:8000/calendario/gerarDias`
     return this.http.get(url, data)
   }
+
+  getId(id: number){
+    return this.http.get(`http://localhost:8000/calendario/calendario/${id}`)
+  }  
 }

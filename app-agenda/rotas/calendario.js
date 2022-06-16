@@ -48,7 +48,7 @@ rota.post('/periodo', (req, res) => {
             release()
             return res.status(401).send('operação não permitida')
         }
-        client.query('SELECT * FROM tarefa WHERE periodo=$1',[req.body.periodo],(erro, result) => {
+        client.query('SELECT * FROM tarefa WHERE periodo=$1 AND idaluno = $2',[req.body.periodo,req.body.idaluno],(erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send(erro)

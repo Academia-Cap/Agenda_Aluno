@@ -66,9 +66,10 @@ export class CalendarioCadastroComponent implements OnInit {
     if (listaDias != undefined) {
       for (let i = 0; i < 7; i++) {
         let dia: String = listaDias[i]
-        const data = { "periodo": listaDias[i] }
+        const data = { "periodo": listaDias[i], "idaluno":this.alunoToken.id }
         switch (i) {
           case 0:
+            console.log(data)
             this.serviceCalendario.getTarefa(data).subscribe(x => this.tarefaDomingo = x)
             break;
           case 1:

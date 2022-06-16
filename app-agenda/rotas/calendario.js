@@ -93,7 +93,6 @@ rota.put('/:id', (req, res) => {
                 var sql = 'UPDATE tarefa SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
                 var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
                 client.query(sql, values, (error, result) => {
-                    console.log(result)
                     if (error) {
                         release()
                         return res.status(401).send('Operação não permitida')

@@ -2,9 +2,9 @@
     <div class="div-perfil">
         <div class="div-icon">
             <i class="bi bi-person-circle img-usuario"></i>
-            <label class="label-perfil">{{ aluno.nome }}</label>
-            <label class="label-perfil">{{ aluno.usuario }}</label>
-            <label class="label-perfil">{{ aluno.email }}</label>
+            <label class="label-perfil"><h3>{{ aluno.nome }}</h3></label>
+            <label class="label-perfil"><h3>{{ aluno.usuario }}</h3></label>
+            <label class="label-perfil"><h3>{{ aluno.email }}</h3></label>
             <div class="div-btn-sair">
                 <button class="btn btn-dark" (click)="Deslogar()">Sair</button>
             </div>
@@ -33,7 +33,7 @@
             </div>
             <input type="text" [(ngModel)]="aluno.usuario" #fusuario="ngModel" ngModel name="usuario"
                 placeholder="Digite Usuário" required>
-            <div *ngIf="f.invalid">
+            <div *ngIf="!f.invalid">
                 <button type="submit" class="btn btn-salvar">Salvar</button>
             </div>
         </form>

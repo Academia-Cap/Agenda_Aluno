@@ -119,7 +119,7 @@ export class CalendarioCadastroComponent implements OnInit {
   avancar() {
     var data = new Date(this.ultimaDiaSemana.periodo)
     var dia = data.getDate() + 1;
-    var mes = data.getMonth() + 1;
+    var mes = data.getMonth();
     var ano = data.getFullYear();
     this.dataAtual = new Date(ano, mes, dia)
     this.gerarDIas(this.dataAtual)
@@ -129,7 +129,7 @@ export class CalendarioCadastroComponent implements OnInit {
   voltar() {
     var data = new Date(this.primeiroDiaSemana.periodo)
     var dia = data.getDate() - 1;
-    var mes = data.getMonth() - 1;
+    var mes = data.getMonth();
     var ano = data.getFullYear();
     this.dataAtual = new Date(ano, mes, dia)
     this.gerarDIas(this.dataAtual)

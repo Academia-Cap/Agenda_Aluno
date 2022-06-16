@@ -30,7 +30,7 @@ rota.get('/calendario/:id', (req, res) => {
             release()
             return res.status(401).send('operação não permitida')
         }
-        client.query('SELECT * FROM tarefa WHERE id=$1',[req.params.id],(erro, result) => {
+        client.query('SELECT * FROM tarefa WHERE id=$1', [req.params.id], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send("não autorizado")
@@ -49,7 +49,7 @@ rota.post('/periodo', (req, res) => {
             return res.status(401).send('operação não permitida')
         }
         var data = new Date(req.body.periodo).toLocaleDateString('en-US')
-        client.query('SELECT * FROM tarefa WHERE periodo=$1 AND idaluno = $2',[data,req.body.idaluno],(erro, result) => {
+        client.query('SELECT * FROM tarefa WHERE periodo=$1 AND idaluno = $2', [data, req.body.idaluno], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send(erro)
@@ -68,7 +68,7 @@ rota.post('/', (req, res) => {
             return res.status(401).send('Conexao não autorizada')
         }
         var sql = 'INSERT INTO tarefa(titulo,periodo,horainicio,horafinal,descricao,iddisc,idaluno) VALUES($1,$2,$3,$4,$5,$6,$7)'
-        client.query(sql, [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.body.idaluno], (error, result) => {
+        client.query(sql, [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.body.idaluno], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Operação não permitida')
@@ -90,11 +90,11 @@ rota.put('/:id', (req, res) => {
                 release()
                 return res.status(401).send('Operação não permitida 1')
             }
-            
+
             if (resul.rowCount > 0) {
                 var sql = 'UPDATE tarefa SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
-                var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
-                
+                var values = [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.params.id]
+
                 client.query(sql, values, (error, result) => {
                     if (error) {
                         release()
@@ -103,12 +103,12 @@ rota.put('/:id', (req, res) => {
                     res.status(201).send(result.rows[0])
                     release()
                 })
-            } else{
+            } else {
                 release()
                 res.status(401).send('Operação não permitida 3')
             }
         })
-        
+
     })
 });
 

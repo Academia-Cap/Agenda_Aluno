@@ -135,7 +135,7 @@ rota.get('/gerarDias', (req, res) => {
         var dia = data.getUTCDate();
         var mes = data.getUTCMonth();
         var ano = data.getUTCFullYear();
-        var diaDaSemana = data.getDay();
+        var diaDaSemana = data.getDay() + 1;
 
         if (diaDaSemana == 0) {
             for (let i = 0; i < 7; i++) {

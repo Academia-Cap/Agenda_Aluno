@@ -20,9 +20,8 @@
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
 
-            <select class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel
+            <select required class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel
                 name="iddisc">
-                <option selected disabled>Selecione</option>
                 <option *ngFor="let disc of disciplina" value="{{disc.id}}">
                     {{disc.nome}}
                 </option>
@@ -48,14 +47,14 @@
             <div id="div-domingo" class="div-formato">
                 <h5>Domingo</h5>
                 <hr>
-                <div *ngFor="let tr of tarefaSegunda" class="card">
+                <div *ngFor="let tr of tarefaDomingo" class="card">
                     <div class="card-body">
                         <h3>{{ tr.titulo }}</h3>
                         <h5>{{ tr.periodo | date | uppercase }}
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -72,7 +71,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -89,7 +88,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -106,7 +105,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -123,7 +122,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -140,7 +139,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -157,7 +156,7 @@
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ disciplina.nome }}</h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"

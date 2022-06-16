@@ -7,7 +7,7 @@
 
             <div class="col-12">
                 <div class="input-group">
-                    <input required class="form-control input-data" placeholder="yyyy-mm-dd" name="periodo"
+                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo"
                         [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
@@ -19,8 +19,9 @@
                 [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
-            
-            <select class="form-select select-cadastro" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel name="iddisc">
+
+            <select class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel
+                name="iddisc">
                 <option selected disabled>Selecione</option>
                 <option *ngFor="let disc of disciplina" value="{{disc.id}}">
                     {{disc.nome}}
@@ -56,7 +57,7 @@
                             {{ tr.descricao }}
                             {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -67,14 +68,13 @@
                 <div *ngFor="let tr of tarefaSegunda" class="card">
                     <div class="card-body">
                         <h3>{{ tr.titulo }}</h3>
-                        <h5>{{ tr.periodo | date | uppercase }}</h5>
                         <h5>{{ tr.periodo | date | uppercase }}
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
                             {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -103,13 +103,14 @@
                     <div class="card-body">
                         <h3>{{ tr.titulo }}</h3>
                         <h5>{{ tr.periodo | date | uppercase }}
-                        {{ tr.horainicio }}
-                        {{ tr.horafinal }}
-                        {{ tr.descricao }}
-                        {{ tr.iddisc }}</h5>
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
-                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"(click)="excluir(tr.id)">delete</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
                 </div>
             </div>
             <div id="div-quinta" class="div-formato">
@@ -124,7 +125,7 @@
                             {{ tr.descricao }}
                             {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -141,7 +142,7 @@
                             {{ tr.descricao }}
                             {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>
@@ -158,7 +159,7 @@
                             {{ tr.descricao }}
                             {{ tr.iddisc }}</h5>
                     </div>
-                    <i role="button"  class="material-icons text-light"(click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                         (click)="excluir(tr.id)">delete</i>
                 </div>

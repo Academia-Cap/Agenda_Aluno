@@ -1,23 +1,28 @@
 <div class="div-tela">
     <div class="div-perfil">
         <h1>Cadastro de Instituição</h1>
-        <form #f="ngForm" (ngSubmit)="gravar(f.value)">
-            <input required class="form-control" type="text" #fnome="ngModel" (blur)="validaNome($event)" ngModel name="nome"
-                placeholder="Nome" />
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="form-cadastro">
+            <input required class="form-control" type="text" #fnome="ngModel" (blur)="validaNome($event)" ngModel
+                name="nome" placeholder="Nome" />
             <p class="msg">{{msgNome}}</p>
-            <input required class="form-control" type="text" #fsigla="ngModel" (blur)="validaSigla($event)" ngModel name="sigla"
-                placeholder="Sigla" />
+            <input required class="form-control" type="text" #fsigla="ngModel" (blur)="validaSigla($event)" ngModel
+                name="sigla" placeholder="Sigla" />
             <p class="msg">{{msgSigla}}</p>
-            <input required  class="form-control" mask="00.000-000" type="text" id = "cep" #fcep="ngModel" ngModel name="cep" (blur)="consultarCep($event)" placeholder="CEP"/>
+            <input required class="form-control" mask="00.000-000" type="text" id="cep" #fcep="ngModel" ngModel
+                name="cep" (blur)="consultarCep($event)" placeholder="CEP" />
             <p class="msg">{{msgCep}}</p>
-            <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua" placeholder="Digite rua" required>
-            <input class="form-control" type="text" [(ngModel)]="endereco.localidade" #fcidade="ngModel" ngModel name="cidade" placeholder="Digite cidade" required>
-            <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado" placeholder="Digite estado" required>    
-           
+            <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua"
+                placeholder="Digite rua" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.localidade" #fcidade="ngModel" ngModel
+                name="cidade" placeholder="Digite cidade" required>
+            <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado"
+                placeholder="Digite estado" required>
+
             <div class="mt-2 btn-botoes">
-                <button [disabled]="f.invalid" class="btn me-2"
-                    onClick="window.location.reload()">Salvar</button>
-                <button type="reset" class="btn">Cancelar</button>
+                <div class="div-botoes">
+                    <button [disabled]="f.invalid" class="btn me-2" onClick="window.location.reload()">Salvar</button>
+                    <button type="reset" class="btn">Cancelar</button>
+                </div>
             </div>
         </form>
     </div>
@@ -31,7 +36,8 @@
                 <p class="card-text">{{ inst.rua }} {{ inst.cidade }} {{ inst.estado }} {{ inst.cep}}</p>
             </div>
             <a [routerLink]="['/instituicao',inst.id]"><i class="material-icons text-light">mode_edit</i></a>
-            <i role="button" onClick="window.location.reload()" class="material-icons text-light" (click)="excluir(inst.id)">delete</i>
+            <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                (click)="excluir(inst.id)">delete</i>
         </div>
     </div>
 

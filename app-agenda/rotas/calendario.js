@@ -95,7 +95,6 @@ rota.put('/:id', (req, res) => {
                 var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
                 
                 client.query(sql, values, (error, result) => {
-                    console.log(result)
                     if (error) {
                         release()
                         return res.status(401).send('Operação não permitida 2')

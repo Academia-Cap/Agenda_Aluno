@@ -40,6 +40,7 @@ export class CalendarioCadastroComponent implements OnInit {
     dados.idaluno = this.alunoToken.id
     dados.iddisc = Number(dados.iddisc)
     dados.periodo = dados.periodo.year + '/' + dados.periodo.month + '/' + dados.periodo.day
+ 
     if(this.tarefa.id == null){
       this.calendarioService.gravar(dados).subscribe(x => this.tarefa = x)
     }else{

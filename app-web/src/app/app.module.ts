@@ -18,6 +18,7 @@ import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/discipli
 import { NotasComponent } from './disciplina/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
 import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
+import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alterarsenha.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { CalendarioEditarComponent } from './calendario/calendario-editar/calend
     NotasComponent,
     DropComponent,
     CalendarioEditarComponent,
+    AlunoAlterarsenhaComponent,
   
   ],
   imports: [

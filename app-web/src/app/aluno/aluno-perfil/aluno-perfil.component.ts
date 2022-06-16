@@ -47,7 +47,7 @@ export class AlunoPerfilComponent implements OnInit {
   }
 
   Deslogar() {
-    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
     this.router.navigate(['/']);
   }
 }

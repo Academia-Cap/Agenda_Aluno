@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Router } from '@angular/router';
 import { DecodeTokenService } from '../aluno/autenticacao/decode-token.service';
 
 @Component({
@@ -9,10 +9,15 @@ import { DecodeTokenService } from '../aluno/autenticacao/decode-token.service';
 })
 export class DropComponent implements OnInit {
   alunoToken: any;
-  constructor(private decodeToken: DecodeTokenService) { }
+  constructor(private decodeToken: DecodeTokenService, private router: Router) { }
 
   ngOnInit(): void {
     this.alunoToken = this.decodeToken.decodeTokenJWT()
+  }
+
+  Deslogar() {
+    sessionStorage.removeItem('token')
+    this.router.navigate(['/']);
   }
 
 }

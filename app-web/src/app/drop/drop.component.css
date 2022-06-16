@@ -55,6 +55,11 @@
    transition-duration: 180ms;
 }
 
+.menu-item:nth-child(7) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
 .menu-open-button {
    z-index: 2;
    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -110,6 +115,14 @@
    transform: translate3d(0px, 400px, 0);
 }
 
+
+.menu-open:checked~.menu-item:nth-child(7) {
+   transition-duration: 580ms;
+   -webkit-transition-duration: 580ms;
+   -webkit-transform: translate3d(0px, 500px, 0);
+   transform: translate3d(0px, 500px, 0);
+}
+
 /* ITENS DO DROP */
 
 .agenda {
@@ -119,6 +132,16 @@
 }
 
 .agenda:hover {
+   background-color: #f3d7e1c7;
+}
+
+.logout{
+   background-color: #CFEAF2;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.logout:hover{
    background-color: #f3d7e1c7;
 }
 
@@ -187,5 +210,15 @@
    padding: 0.3em;
 }
 #disciplina:hover{
+   color: #1A1859;
+}
+
+#logout{
+   color: white;
+   font-size: 3em;
+   padding: 0.3em;
+}
+
+#logout:hover{
    color: #1A1859;
 }

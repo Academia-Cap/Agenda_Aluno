@@ -1,0 +1,30 @@
+<div class="modal fade" id="alterarsenha">
+    <div class="modal-dialog">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <h4 class="modal-title">Alterar Senha</h4>
+            </div>
+
+            <form #f="ngForm"  class="modal-body">
+
+                <input required class="input-group-text mb-3" type="text" #dsenhaantiga="ngModel" ngModel name="senhaantiga"
+                    placeholder="Senha Antiga" />
+
+                <input class="input-group-text mb-3" type="text" #fnovasenha="ngModel" ngModel name="novasenha"
+                    placeholder="Nova Senha" />
+
+                <input class="input-group-text mb-3" type="text" #fconfirmesenha="ngModel" ngModel name="confirmesenha"
+                    placeholder="Confirme Senha" />
+
+            </form>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal">Alterar</button>
+
+                <button type="button" class="btn btn-secondary btn-modal" onclick="window.location.reload">Cancelar</button>
+            </div>
+
+        </div>
+    </div>
+</div>

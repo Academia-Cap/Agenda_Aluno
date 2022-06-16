@@ -5,9 +5,16 @@
             <label class="label-perfil"><h3>{{ aluno.nome }}</h3></label>
             <label class="label-perfil"><h3>{{ aluno.usuario }}</h3></label>
             <label class="label-perfil"><h3>{{ aluno.email }}</h3></label>
-            <div class="div-btn-sair">
+            <!--<div class="div-btn-sair">
                 <button class="btn btn-dark" (click)="Deslogar()">Sair</button>
+            </div> -->
+            <div class="div-btn-sair">
+                <button required type="button" class="btn btn-dark col-md-10" data-bs-toggle="modal" data-bs-target="#alterarsenha">Alterar Senha</button>
+                <app-aluno-alterarsenha></app-aluno-alterarsenha>
             </div>
+
+            
+            
         </div>
     </div>
     <div class="div-cadastro">

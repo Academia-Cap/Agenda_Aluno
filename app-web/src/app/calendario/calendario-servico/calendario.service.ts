@@ -26,7 +26,7 @@ export class CalendarioService {
 
   getDias(data: any){
     let url = `http://localhost:8000/calendario/gerarDias`
-    return this.http.get(url, data)
+    return this.http.post(url, data)
   }
 
   getId(id: number){

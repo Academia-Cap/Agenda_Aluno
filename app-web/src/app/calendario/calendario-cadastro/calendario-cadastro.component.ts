@@ -25,6 +25,9 @@ export class CalendarioCadastroComponent implements OnInit {
   tarefaDomingo: any;
   alunoToken: any;
   listaDisciplina: any;
+  ultimaDiaSemana: any;
+  primeiroDiaSemana: any;
+  dataAtual = new Date();
 
   constructor(private serviceCalendario: CalendarioService,
     private decodeToken: DecodeTokenService, private disciplinaService: CadastroService,
@@ -32,7 +35,7 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.gerarDIas(new Date());
+    this.gerarDIas(this.dataAtual);
     this.selectDisciplina();
     this.alunoToken = this.decodeToken.decodeTokenJWT()
   }
@@ -41,7 +44,6 @@ export class CalendarioCadastroComponent implements OnInit {
     dados.idaluno = this.alunoToken.id
     dados.iddisc = this.serviceValidar.gerarIdDisciplina(dados)
     dados.periodo = this.serviceValidar.gerarData(dados)
-    console.log(dados)
 
     if (this.tarefa.id == null) {
       this.serviceCalendario.gravar(dados).subscribe(x => this.tarefa = x)
@@ -52,7 +54,8 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarDIas(date: Date) {
-    this.serviceCalendario.getDias(date).subscribe(x => {
+    var dados = {'data': date}
+    this.serviceCalendario.getDias(dados).subscribe(x => {
       this.todosDiasSemana = x
       this.gerarTarefasDoDia(this.todosDiasSemana)
     })
@@ -64,13 +67,16 @@ export class CalendarioCadastroComponent implements OnInit {
 
   gerarTarefasDoDia(listaDias: any) {
     if (listaDias != undefined) {
+      console.log(listaDias)
       for (let i = 0; i < 7; i++) {
-        let dia: String = listaDias[i]
-        const data = { "periodo": listaDias[i], "idaluno":this.alunoToken.id }
+        const data = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
         switch (i) {
           case 0:
-            console.log(data)
-            this.serviceCalendario.getTarefa(data).subscribe(x => this.tarefaDomingo = x)
+            this.serviceCalendario.getTarefa(data).subscribe(x => {
+              this.tarefaDomingo = x
+              console.log(this.tarefaDomingo)
+              this.primeiroDiaSemana = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
+            })
             break;
           case 1:
             this.serviceCalendario.getTarefa(data).subscribe(x => this.tarefaSegunda = x)
@@ -88,7 +94,10 @@ export class CalendarioCadastroComponent implements OnInit {
             this.serviceCalendario.getTarefa(data).subscribe(x => this.tarefaSexta = x)
             break;
           case 6:
-            this.serviceCalendario.getTarefa(data).subscribe(x => this.tarefaSabado = x)
+            this.serviceCalendario.getTarefa(data).subscribe(x => {
+              this.tarefaSabado = x
+              this.ultimaDiaSemana = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
+            })
             break;
         }
       }
@@ -105,7 +114,26 @@ export class CalendarioCadastroComponent implements OnInit {
       let aux: Date = new Date(this.tarefa.periodo)
       this.tarefa.periodo = { year: aux.getFullYear(), month: aux.getMonth() + 1, day: aux.getDate() }
     })
+  }
 
+  avancar() {
+    var data = new Date(this.ultimaDiaSemana.periodo)
+    var dia = data.getDate() + 1;
+    var mes = data.getMonth() + 1;
+    var ano = data.getFullYear();
+    this.dataAtual = new Date(ano, mes, dia)
+    this.gerarDIas(this.dataAtual)
+    //window.location.reload()
+  }
+
+  voltar() {
+    var data = new Date(this.primeiroDiaSemana.periodo)
+    var dia = data.getDate() - 1;
+    var mes = data.getMonth() - 1;
+    var ano = data.getFullYear();
+    this.dataAtual = new Date(ano, mes, dia)
+    this.gerarDIas(this.dataAtual)
+    //window.location.reload()
   }
 
 }

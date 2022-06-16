@@ -87,22 +87,24 @@ rota.put('/:id', (req, res) => {
         client.query('SELECT * FROM tarefa WHERE id = $1', [req.params.id], (erro, resul) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não permitida')
+                return res.status(401).send('Operação não permitida 1')
             }
+            
             if (resul.rowCount > 0) {
                 var sql = 'UPDATE tarefa SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
                 var values = [req.body.titulo,req.body.periodo,req.body.horainicio,req.body.horafinal,req.body.descricao,req.body.iddisc,req.params.id]
+                
                 client.query(sql, values, (error, result) => {
                     if (error) {
                         release()
-                        return res.status(401).send('Operação não permitida')
+                        return res.status(401).send('Operação não permitida 2')
                     }
                     res.status(201).send(result.rows[0])
                     release()
                 })
             } else{
                 release()
-                res.status(401).send('Operação não permitida')
+                res.status(401).send('Operação não permitida 3')
             }
         })
         

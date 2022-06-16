@@ -2,8 +2,8 @@
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
         <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto form-cadastro">
-            <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
-                name="titulo" placeholder="Titulo" />
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel"
+                ngModel name="titulo" placeholder="Titulo">
 
             <div class="col-12">
                 <div class="input-group">

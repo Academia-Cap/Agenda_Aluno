@@ -12,10 +12,6 @@ export class CalendarioService {
     return this.http.post('http://localhost:8000/calendario', dados)
   }
 
-  getTodos(){
-   return this.http.get('http://localhost:8000/calendario')
-  }
-
   excluir(id: number){
     return this.http.delete(`http://localhost:8000/calendario/${id}`)
   }

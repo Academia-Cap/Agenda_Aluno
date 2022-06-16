@@ -103,7 +103,7 @@ export class CalendarioCadastroComponent implements OnInit {
     this.serviceCalendario.getId(dados).subscribe(x => {
       this.tarefa = x
       let aux: Date = new Date(this.tarefa.periodo)
-      this.tarefa.periodo = { year: aux.getFullYear(), month: aux.getMonth(), day: aux.getDate() }
+      this.tarefa.periodo = { year: aux.getFullYear(), month: aux.getMonth() + 1, day: aux.getDate() }
     })
 
   }

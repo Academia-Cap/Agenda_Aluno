@@ -8,6 +8,7 @@ export class ValidarService {
   constructor() { }
 
   gerarData(dados: any) {
+    console.log(dados)
     return dados.periodo.year + '/' + dados.periodo.month + '/' + dados.periodo.day
   }
 

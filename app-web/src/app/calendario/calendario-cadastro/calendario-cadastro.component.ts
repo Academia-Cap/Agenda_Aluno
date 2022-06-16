@@ -24,7 +24,7 @@ export class CalendarioCadastroComponent implements OnInit {
   tarefaSabado: any;
   tarefaDomingo: any;
   alunoToken: any;
-  disciplina: any;
+  listaDisciplina: any;
 
   constructor(private serviceCalendario: CalendarioService,
     private decodeToken: DecodeTokenService, private disciplinaService: CadastroService,
@@ -53,14 +53,13 @@ export class CalendarioCadastroComponent implements OnInit {
 
   gerarDIas(date: Date) {
     this.serviceCalendario.getDias(date).subscribe(x => {
-      console.log(x)
       this.todosDiasSemana = x
       this.gerarTarefasDoDia(this.todosDiasSemana)
     })
   }
 
   selectDisciplina() {
-    this.disciplinaService.getTodos().subscribe(x => this.disciplina = x)
+    this.disciplinaService.getTodos().subscribe(x => this.listaDisciplina = x)
   }
 
   gerarTarefasDoDia(listaDias: any) {

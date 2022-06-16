@@ -8,21 +8,14 @@
 
             <input required class="input-group-text" type="text" #fnome="ngModel" ngModel name="nome"
                 placeholder="Informe a disciplina" />
-            <div *ngIf="fnome.invalid" class="ng-invalid">
-                *Campo disciplina é obrigatório
-            </div>
+            <span *ngIf="fnome.invalid && fnome.touched">*Campo disciplina é obrigatório</span>
 
-            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao"
-                placeholder="Informe a abreviação" />
-            <div *ngIf="fabreviacao.invalid" class="ng-invalid">
-                *Campo abreviação é obrigatório
-            </div>
+            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao" placeholder="Informe a abreviação" />
+            <span *ngIf="fabreviacao.invalid && fabreviacao.touched">*Campo abreviação é obrigatório</span>
 
             <input required class="input-group-text" type="text" #fdocente="ngModel" ngModel name="docente"
                 placeholder="Informe o docente" />
-            <div *ngIf="fdocente.invalid" class="ng-invalid">
-                *Campo docente é obrigatório
-            </div>
+            <span *ngIf="fdocente.invalid && fdocente.touched">*Campo docente é obrigatório</span>
 
             <input class="input-group-text" rows="1" cols="35" type="text" ngModel name="anotacao"
                 placeholder="Anotações" />

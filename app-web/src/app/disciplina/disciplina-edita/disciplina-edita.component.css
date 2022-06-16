@@ -6,12 +6,14 @@
     background-color: #E2BECC;
     width: 25%;
     height: 100vh;
+    /* position: fixed; */
 }
 
 .div-janela{
     width: 50%;
     margin-top: 3%;
     margin-left: 10%;
+    /* margin-left: 35%; */
 }
 
 input{

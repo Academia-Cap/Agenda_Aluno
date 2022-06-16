@@ -28,7 +28,8 @@
             </select>
 
             <div class="mt-2 div-botoes">
-                <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2">Salvar</button>
+                <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid"
+                    class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>
@@ -48,13 +49,15 @@
                 <h5>Domingo</h5>
                 <hr>
                 <div *ngFor="let tr of tarefaDomingo" class="card">
-                    <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>{{ tr.periodo | date | uppercase }}
+                    <div *ngFor="let d of listaDisciplina">
+                        <h5 *ngIf="d.id == tr.iddisc">
+                            <h3>{{ tr.titulo }}</h3>
+                            {{ tr.periodo | date | uppercase }}
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
-                            {{ tr.iddisc }}</h5>
+                            {{ d.nome }}
+                        </h5>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
                     <i role="button" onClick="window.location.reload()" class="material-icons text-light"
@@ -66,15 +69,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaSegunda" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
@@ -87,15 +90,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaTerca" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
@@ -108,15 +111,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaQuarta" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
@@ -129,15 +132,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaQuinta" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
@@ -150,15 +153,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaSexta" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
@@ -171,15 +174,15 @@
                 <hr>
                 <div *ngFor="let tr of tarefaSabado" class="card">
                     <div class="card-body">
-                        <h3>{{ tr.titulo }}</h3>
-                        <h5>
-                            {{ tr.periodo | date | uppercase }}
-                            {{ tr.horainicio }}
-                            {{ tr.horafinal }}
-                            {{ tr.descricao }}
-                        </h5>
                         <div *ngFor="let d of listaDisciplina">
-                            <h5 *ngIf="d.id == tr.iddisc">{{ d.nome }}</h5>
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
                         </div>
                     </div>
                     <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>

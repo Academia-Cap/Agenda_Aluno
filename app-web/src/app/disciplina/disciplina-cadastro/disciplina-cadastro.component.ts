@@ -14,12 +14,15 @@ export class DisciplinaCadastroComponent implements OnInit {
   disciplina: any ={'nome':'', 'abreviacao':'', 'docente':'', 'anotacao':'', 'idinst':null};
   listaInstituicao: any ;
   alunoToken: any;
+  toDisplay = false;
 
   constructor(private serviceCadastro: CadastroService, private instituicaoService: InstituicaoService,private decodeToken: DecodeTokenService ) { 
     
   }
 
+
   ngOnInit(): void {
+    this.toDisplay = false;
     this.selectInstituicao();
     this.mostrarTodos();
     this.alunoToken = this.decodeToken.decodeTokenJWT()
@@ -41,6 +44,7 @@ export class DisciplinaCadastroComponent implements OnInit {
   }
 
   editar(id: any) {
+    this.toDisplay = true;
     this.serviceCadastro.getId(id).subscribe(x => this.disciplina = x)
   }
 

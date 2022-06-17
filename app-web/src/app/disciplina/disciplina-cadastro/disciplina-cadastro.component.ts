@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
 import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
 import { CadastroService } from '../disciplina-services/cadastro.service';
+import { ValidarService } from '../disciplina-services/validar.service';
 
 @Component({
   selector: 'app-disciplina-cadastro',
@@ -15,9 +16,9 @@ export class DisciplinaCadastroComponent implements OnInit {
   listaInstituicao: any ;
   alunoToken: any;
   toDisplay = false;
+  iddisciplina: number = 0;
 
-  constructor(private serviceCadastro: CadastroService, private instituicaoService: InstituicaoService,private decodeToken: DecodeTokenService ) { 
-    
+  constructor(private serviceCadastro: CadastroService, private instituicaoService: InstituicaoService,private decodeToken: DecodeTokenService, private validar: ValidarService ) { 
   }
 
 
@@ -26,6 +27,7 @@ export class DisciplinaCadastroComponent implements OnInit {
     this.selectInstituicao();
     this.mostrarTodos();
     this.alunoToken = this.decodeToken.decodeTokenJWT()
+    
   }
 
 
@@ -45,6 +47,8 @@ export class DisciplinaCadastroComponent implements OnInit {
 
   editar(id: any) {
     this.toDisplay = true;
+    this.validar.guardarId(id)
+    this.iddisciplina = id
     this.serviceCadastro.getId(id).subscribe(x => this.disciplina = x)
   }
 
@@ -55,5 +59,6 @@ export class DisciplinaCadastroComponent implements OnInit {
   selectInstituicao(){
     this.instituicaoService.getTodos().subscribe(x => this.listaInstituicao = x)
   }
+  
   
 }

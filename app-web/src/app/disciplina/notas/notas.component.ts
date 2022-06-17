@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { ValidarService } from '../disciplina-services/validar.service';
 import { NotaService } from './notas-service/nota.service';
 
 @Component({
@@ -15,14 +16,17 @@ export class NotasComponent implements OnInit {
   iddisc: any;
   notaMedia: number = 0;
 
-  constructor(private route: ActivatedRoute, private notaService: NotaService) {
-    let rota = this.route.snapshot.paramMap;
-    this.iddisc = Number(rota.get("id"))
-    this.notaService.getTodos(this.iddisc).subscribe(x => this.nota = x)
-    this.notaService.getTodos(this.iddisc).subscribe(x => this.gerarMedia(x))
+  constructor(private route: ActivatedRoute, private notaService: NotaService, private validar: ValidarService) {
+    this.iddisc = this.validar.getId()
+    
   }
 
   ngOnInit(): void {
+    
+    this.iddisc = this.validar.getId()
+    console.log(this.iddisc)
+    this.notaService.getTodos(this.iddisc).subscribe(x => this.nota = x)
+    this.notaService.getTodos(this.iddisc).subscribe(x => this.gerarMedia(x))
   }
 
   salvarNota(nota: any) {

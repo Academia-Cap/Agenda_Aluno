@@ -6,26 +6,30 @@
 
         <form #f="ngForm" (ngSubmit)="efetivarAlteracao(f.value)">
 
-            <input class="form-control" type="text" [(ngModel)]="disciplina.id" #fid="ngModel" ngModel name="id" placeholder="ID" disabled>
+            <input class="form-control" type="text" [(ngModel)]="disciplina.id" #fid="ngModel" ngModel name="id"
+                placeholder="ID" disabled>
 
-            <input class="form-control" type="text" [(ngModel)]="disciplina.nome" #fnome="ngModel" ngModel name="nome" placeholder="Informe a disciplina" required>
+            <input class="form-control" type="text" [(ngModel)]="disciplina.nome" #fnome="ngModel" ngModel name="nome"
+                placeholder="Informe a disciplina" required>
 
-            <input class="form-control" type="text" [(ngModel)]="disciplina.abreviacao" #fabreviacao="ngModel" ngModel name="abreviacao" placeholder="Informe abreviacao" required>
+            <input class="form-control" type="text" [(ngModel)]="disciplina.abreviacao" #fabreviacao="ngModel" ngModel
+                name="abreviacao" placeholder="Informe abreviacao" required>
 
-            <input class="form-control" type="text" [(ngModel)]="disciplina.docente" #fdocente="ngModel" ngModel name="docente" placeholder="Informe docente" required>
+            <input class="form-control" type="text" [(ngModel)]="disciplina.docente" #fdocente="ngModel" ngModel
+                name="docente" placeholder="Informe docente" required>
 
-            <input class="form-control" type="text" [(ngModel)]="disciplina.anotacao" #fanotacao="ngModel" ngModel name="anotacao" placeholder="Informe anotacao">
+            <input class="form-control" type="text" [(ngModel)]="disciplina.anotacao" #fanotacao="ngModel" ngModel
+                name="anotacao" placeholder="Informe anotacao">
 
-            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal" data-bs-target="#myModal">Notas</button>
-
-            <!-- MODAL -->
-            <app-notas></app-notas>
-            <!-- FIM MODAL -->
+            <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
+                data-bs-target="#myModal">Notas</button>
 
             <div class="botoes">
-                <button class="btn btn-secondary col-md-4" onClick="window.location.replace('/disciplina')">Salvar</button>
+                <button class="btn btn-secondary col-md-4"
+                    onClick="window.location.replace('/disciplina')">Salvar</button>
 
-                <button class="btn btn-secondary col-md-4" onClick="window.location.replace('/disciplina')">Cancelar</button>
+                <button class="btn btn-secondary col-md-4"
+                    onClick="window.location.replace('/disciplina')">Cancelar</button>
             </div>
 
         </form>
@@ -36,6 +40,9 @@
 
     <div class="div-janela">
 
+        <!-- MODAL -->
+        <app-notas></app-notas>
+        <!-- FIM MODAL -->
         <h1>Disciplina</h1>
 
         <div *ngFor="let disc of disciplina" class="card" style="width: 18rem;">

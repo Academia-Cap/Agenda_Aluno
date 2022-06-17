@@ -10,7 +10,6 @@
             </div> -->
             <div class="div-btn-sair">
                 <button required type="button" class="btn btn-dark col-md-10" data-bs-toggle="modal" data-bs-target="#alterarsenha">Alterar Senha</button>
-                <app-aluno-alterarsenha></app-aluno-alterarsenha>
             </div>
 
             
@@ -18,6 +17,7 @@
         </div>
     </div>
     <div class="div-cadastro">
+        <app-aluno-alterarsenha></app-aluno-alterarsenha>
         <h1>Informações cadastrais</h1>
         <form class="form-editar" #f="ngForm" (ngSubmit)="editar(f.value)">
             <div *ngIf="fnome.invalid" class="ng-invalid">

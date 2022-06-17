@@ -23,6 +23,11 @@ input{
     width: 95%;
     border-radius: 10px;
     border-color: white;
+    color: white;
+}
+
+::placeholder{
+    color: white;
 }
 
 h2{
@@ -93,4 +98,23 @@ h1{
 
 .card-text{
     color: #CFEAF2;
+}
+
+.form-select {
+    margin-left: 3%;
+    margin-top: 3%;
+    width: 95%;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: white;
+    font-family: Kameron;
+}
+
+.div-botoes {
+    width: 100%;
+    text-align: center;
+}
+
+.validacao{
+    color: gray;
 }

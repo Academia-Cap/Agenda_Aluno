@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
+import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
 import { CadastroService } from '../disciplina-services/cadastro.service';
 
 @Component({
@@ -9,21 +11,45 @@ import { CadastroService } from '../disciplina-services/cadastro.service';
 export class DisciplinaCadastroComponent implements OnInit {
 
   msg: string = ""
-  disciplina: any;
+  disciplina: any ={'nome':'', 'abreviacao':'', 'docente':'', 'anotacao':'', 'idinst':null};
+  listaInstituicao: any ;
+  alunoToken: any;
 
-  constructor(private serviceCadastro: CadastroService ) { 
+  constructor(private serviceCadastro: CadastroService, private instituicaoService: InstituicaoService,private decodeToken: DecodeTokenService ) { 
+    
+  }
+
+  ngOnInit(): void {
+    this.selectInstituicao();
+    this.mostrarTodos();
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
+  }
+
+
+  mostrarTodos(){
     this.serviceCadastro.getTodos().subscribe(x => this.disciplina = x)
   }
 
-  gravar(dados: any){
-    this.serviceCadastro.gravar(dados).subscribe(x => window.location.reload())
+  gravar(dados: any) {
+    dados.idaluno = this.alunoToken.id
+    if (this.disciplina.id == null) {
+      this.serviceCadastro.gravar(dados).subscribe(x => this.disciplina = x)
+    } else {
+      dados.id = this.disciplina.id
+      this.serviceCadastro.alterar(dados).subscribe(x => this.disciplina = x)
+    }
+  }
+
+  editar(id: any) {
+    this.serviceCadastro.getId(id).subscribe(x => this.disciplina = x)
   }
 
   excluir(id: any) {
     this.serviceCadastro.excluir(id).subscribe(x => window.location.reload())
   }
 
-  ngOnInit(): void {
+  selectInstituicao(){
+    this.instituicaoService.getTodos().subscribe(x => this.listaInstituicao = x)
   }
-
+  
 }

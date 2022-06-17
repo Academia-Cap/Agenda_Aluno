@@ -6,29 +6,45 @@
 
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
 
-            <input required class="input-group-text" type="text" #fnome="ngModel" ngModel name="nome"
+            <input required class="input-group-text" type="text"  [(ngModel)]="disciplina.nome" #fnome="ngModel" ngModel name="nome"
                 placeholder="Informe a disciplina" />
-            <span *ngIf="fnome.invalid && fnome.touched">*Campo disciplina é obrigatório</span>
+            <span class="validacao" *ngIf="fnome.invalid && fnome.touched">*Campo disciplina é obrigatório</span>
 
-            <input required class="input-group-text" type="text" #fabreviacao="ngModel" ngModel name="abreviacao" placeholder="Informe a abreviação" />
-            <span *ngIf="fabreviacao.invalid && fabreviacao.touched">*Campo abreviação é obrigatório</span>
+            <input required class="input-group-text" type="text"  [(ngModel)]="disciplina.abreviacao" #fabreviacao="ngModel" ngModel name="abreviacao"
+                placeholder="Informe a abreviação" />
+            <span class="validacao" *ngIf="fabreviacao.invalid && fabreviacao.touched">*Campo abreviação é obrigatório</span>
 
-            <input required class="input-group-text" type="text" #fdocente="ngModel" ngModel name="docente"
+            <input required class="input-group-text" type="text"  [(ngModel)]="disciplina.docente" #fdocente="ngModel" ngModel name="docente"
                 placeholder="Informe o docente" />
-            <span *ngIf="fdocente.invalid && fdocente.touched">*Campo docente é obrigatório</span>
+            <span class="validacao" *ngIf="fdocente.invalid && fdocente.touched">*Campo docente é obrigatório</span>
 
-            <input class="input-group-text" rows="1" cols="35" type="text" ngModel name="anotacao"
+            <input class="input-group-text" rows="1" cols="35" type="text" [(ngModel)]="disciplina.anotacao" #fanotacao="ngModel" ngModel name="anotacao"
                 placeholder="Anotações" />
+
+            <select required class="form-select" [(ngModel)]="disciplina.idinst" #fidinst="ngModel" ngModel name="idinst">
+                <option *ngFor="let inst of listaInstituicao" value="{{inst.id}}">
+                    {{inst.nome}}
+                </option> 
+            </select>
 
         </form>
 
-        <div class="botoes">
-            <button [disabled]="f.invalid" class="btn btn-secondary col-md-10" (click)="gravar(f.value)">Salvar</button>
+        <button required type="button" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
+                data-bs-target="#myModal">Notas</button>
+
+        <div class="mt-2 div-botoes">
+            <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid"
+                class="btn me-2" (click)="gravar(f.value)">Salvar</button>
+            <button type="reset" onClick="window.location.reload()" class="btn">Cancelar</button>
         </div>
 
     </div>
 
     <div class="div-janela">
+
+         <!-- MODAL -->
+         <app-notas></app-notas>
+         <!-- FIM MODAL -->
 
         <h1>Disciplina</h1>
 
@@ -39,8 +55,7 @@
                 <p class="card-text">{{ disc.anotacao }}</p>
             </div>
 
-            <a [routerLink]="['/disciplina',disc.id]"><i [routerLink]="['/disciplina',disc.id]"
-                    class="material-icons text-ligth">mode_edit</i></a>
+            <i role="button" class="material-icons text-light" (click)="editar(disc.id)">mode_edit</i>
 
             <i role="button" onClick="window.location.reload()" class="material-icons text-ligth"
                 (click)="excluir(disc.id)">delete</i>

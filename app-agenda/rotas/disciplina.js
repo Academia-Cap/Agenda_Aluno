@@ -39,8 +39,8 @@ rota.post('/', (req, res) => {
             release()
             return res.status(401).send('Conexao não autorizada')
         }
-        var sql = 'insert into disciplina (nome, abreviacao, docente, anotacao) VALUES($1, $2, $3, $4)'
-        client.query(sql, [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao], (error, result) => {
+        var sql = 'insert into disciplina (nome, abreviacao, docente, anotacao, idaluno, idinst) VALUES($1, $2, $3, $4, $5, $6)'
+        client.query(sql, [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao, req.body.idaluno, req.body.idinst], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Operação não permitida')
@@ -84,8 +84,8 @@ rota.put('/:id', (req, res) => {
                 return res.status(401).send('Disciplina não localizada')
             }
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE disciplina SET nome = $1, abreviacao = $2, docente = $3, anotacao = $4 WHERE id = $5'
-                var values = [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao, req.params.id]
+                var sql = 'UPDATE disciplina SET nome = $1, abreviacao = $2, docente = $3, anotacao = $4, idinst = $5 WHERE id = $6'
+                var values = [req.body.nome, req.body.abreviacao, req.body.docente, req.body.anotacao, req.body.idinst, req.params.id]
                 client.query(sql, values, (error, result) => {
                     if (error) {
                         release()
@@ -110,7 +110,7 @@ rota.delete('/:id', (req, res) => {
             release()
             return res.status(401).send('Não foi')
         }
-        client.query('delete from disciplina where id = $1', [req.params.id], (error, result) => {
+        client.query('DELETE FROM disciplina WHERE id = $1', [req.params.id], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Não funcionou')

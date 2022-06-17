@@ -15,49 +15,60 @@ export class NotasComponent implements OnInit {
   nota = { 'id': null, 'descricao': '', 'nota': null, 'iddisc': null };
   todasAsNotas: any;
   notaMedia: number = 0;
-  listaNotas: any;
-  iddisciplina = 7;
+  iddisciplina: number = 0;
 
   constructor(private notaService: NotaService, private disciplinaService: CadastroService) {
-    this.gerarTodos();
+    this.gerarTodos(this.iddisciplina);
   }
 
   ngOnInit(): void {
-    this.disciplinaService.getTodos().subscribe(x => this.listaDisciplinas = x)
-    this.gerarTodos();
+    this.disciplinaService.getTodos().subscribe(x => {
+      this.listaDisciplinas = x
+      this.gerarAlgumaDisciplina(x)
+      this.gerarTodos(this.iddisciplina);
+    })
   }
 
-  gerarTodos() {
-    this.notaService.getTodos(this.iddisciplina).subscribe(x => this.todasAsNotas = x)
+  gerarAlgumaDisciplina(listaDisciplinas: any) {
+    for (let obj of listaDisciplinas) {
+      this.iddisciplina = obj.id
+    }
+  }
+
+  gerarTodos(id: Number) {
+    this.notaService.getTodos(id).subscribe(x => {
+      this.todasAsNotas = x
+      this.gerarMedia(x)
+    })
   }
 
   gravar(nota: any) {
-    this.notaService.salvarNota(nota).subscribe(() => location.reload())
+    this.notaService.salvarNota(nota).subscribe(() => {
+      location.reload()
+    })
   }
 
   excluir(id: any) {
-    this.notaService.excluirNota(id).subscribe(() => location.reload())
+    this.notaService.excluirNota(id).subscribe(() => {
+      location.reload()
+    })
   }
 
   gerarMedia(dados: any) {
-    console.log(dados)
     var media: number = 0
     for (let calcMedia of dados) {
       media = Number(calcMedia.nota) + media
     }
-    this.notaMedia = media / dados.length
+    this.notaMedia = Number((media / dados.length).toFixed(2))
   }
 
   gerarDisciplinas(dado: any) {
-    if (dado.disciplina != undefined && dado.disciplina != null) {
-      this.iddisciplina = dado.disciplina
-      this.notaService.getTodos(this.iddisciplina).subscribe(x => {
-        this.todasAsNotas = x
-        this.notaService.getTodos(this.iddisciplina).subscribe(x => this.gerarMedia(x))
-      })
-    } else {
-      alert("Selecione uma Disciplina")
-    }
+    this.iddisciplina = dado.disciplina
+    this.notaService.getTodos(dado.disciplina).subscribe(x => {
+      console.log(x)
+      this.todasAsNotas = x
+      this.gerarMedia(x)
+    })
   }
 
 }

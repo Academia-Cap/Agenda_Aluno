@@ -1,59 +1,61 @@
 <div class="div-geral">
 
     <div class="div-cadastro">
+        <h2 class="h2-nota">Adicionar Nota</h2>
+        <div class="div-form">
+            <form #f="ngForm" (ngSubmit)="gravar(f.value)">
+                <input required class="input-group-text" type="text" [(ngModel)]="nota.descricao" #fdescricao="ngModel"
+                    ngModel name="descricao" placeholder="Informe uma descrição" />
+                <span class="validacao" *ngIf="fdescricao.invalid && fdescricao.touched">*Campo descrição é
+                    obrigatório</span>
 
-        <h2>Adicionar Nota</h2>
+                <input required class="input-group-text" type="number" [(ngModel)]="nota.nota" #fnota="ngModel" ngModel
+                    name="nota" placeholder="Informe a nota" />
+                <span class="validacao" *ngIf="fnota.invalid && fnota.touched">*Campo notas é obrigatório</span>
 
-        <form #f="ngForm" (ngSubmit)="gravar(f.value)">
+                <select required class="form-select" [(ngModel)]="nota.iddisc" #fidinst="ngModel" ngModel name="iddisc">
+                    <option *ngFor="let disc of listaDisciplinas" value="{{disc.id}}">
+                        {{disc.nome}}
+                    </option>
+                </select>
 
-            <input required class="input-group-text" type="text" [(ngModel)]="nota.descricao" #fdescricao="ngModel"
-                ngModel name="descricao" placeholder="Informe uma descrição" />
-            <span class="validacao" *ngIf="fdescricao.invalid && fdescricao.touched">*Campo descrição é
-                obrigatório</span>
-
-            <input required class="input-group-text" type="number" [(ngModel)]="nota.nota" #fnota="ngModel" ngModel
-                name="nota" placeholder="Informe a nota" />
-            <span class="validacao" *ngIf="fnota.invalid && fnota.touched">*Campo notas é obrigatório</span>
-
-            <select required class="form-select" [(ngModel)]="nota.iddisc" #fidinst="ngModel" ngModel name="iddisc">
-                <option *ngFor="let disc of listaDisciplinas" value="{{disc.id}}">
-                    {{disc.nome}}
-                </option>
-            </select>
-
-        </form>
+            </form>
+        </div>
         <div class="mt-2 div-botoes">
             <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
                 (click)="gravar(f.value)">Salvar</button>
-            <button type="reset" class="btn">Cancelar</button>
+            <button type="button" onClick="window.location.reload()" class="btn">Cancelar</button>
         </div>
     </div>
 
     <div class="div-janela">
         <h1>Nota</h1>
 
-        <div>
-            <form #g="ngForm" (ngSubmit)="gerarDisciplinas(g.value)">
-                <select required class="form-select" [(ngModel)]="iddisciplina" #gdisciplina="ngModel" ngModel
-                    name="disciplina">
-                    <option *ngFor="let disc of listaDisciplinas" value="{{disc.id}}">
-                        {{disc.nome}}
-                    </option>
-                </select>
-                <button class="btn" type="submit">Ver Notas</button>
-            </form>
-        </div>
-
-        <div *ngFor="let nt of listaNotas" class="card" style="width: 18rem;">
+        <form #g="ngForm" (ngSubmit)="gerarDisciplinas(g.value)">
+            <div class="selecao-disciplina">
+                <div>
+                    <select required class="form-select" [(ngModel)]="iddisciplina" #gdisciplina="ngModel" ngModel
+                        name="disciplina">
+                        <option *ngFor="let disc of listaDisciplinas" value="{{disc.id}}">
+                            {{disc.nome}}
+                        </option>
+                    </select>
+                </div>
+                <div>
+                    <button class="btn" type="submit">Ver Notas</button>
+                </div>
+            </div>
+        </form>
+        <div *ngFor="let nt of todasAsNotas" class="card" style="width: 6rem;">
             <div class="card-body">
                 <h5 class="card-title">{{ nt.descricao }}</h5>
                 <p class="card-text">{{ nt.nota }}</p>
             </div>
             <i role="button" onClick="window.location.reload()" class="material-icons text-ligth"
                 (click)="excluir(nt.id)">delete</i>
-            <hr>
-            {{ notaMedia }}
         </div>
+        <hr>
+        <label class="label-media">Media: {{ notaMedia }}</label>
     </div>
 
     <app-drop style="max-height: 2em;"></app-drop>

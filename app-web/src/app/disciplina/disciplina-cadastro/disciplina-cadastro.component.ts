@@ -21,15 +21,13 @@ export class DisciplinaCadastroComponent implements OnInit {
   constructor(private serviceCadastro: CadastroService, private instituicaoService: InstituicaoService,private decodeToken: DecodeTokenService, private validar: ValidarService ) { 
   }
 
-
   ngOnInit(): void {
     this.toDisplay = false;
     this.selectInstituicao();
     this.mostrarTodos();
     this.alunoToken = this.decodeToken.decodeTokenJWT()
-    
+  
   }
-
 
   mostrarTodos(){
     this.serviceCadastro.getTodos().subscribe(x => this.disciplina = x)

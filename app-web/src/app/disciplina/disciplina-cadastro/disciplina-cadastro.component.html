@@ -30,26 +30,18 @@
             </select>
 
         </form>
-
-        <div *ngIf="toDisplay">
-            <button required type="button" onClick="gerarIdDisciplina()" class="btn btn-secondary col-md-10" data-bs-toggle="modal"
-                data-bs-target="#myModal">Notas</button>
-        </div>
-
-
         <div class="mt-2 div-botoes">
             <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
                 (click)="gravar(f.value)">Salvar</button>
             <button type="reset" onClick="window.location.reload()" class="btn">Cancelar</button>
         </div>
-
     </div>
 
     <div class="div-janela">
 
-        <!-- MODAL -->
+        <!-- MODAL 
         <app-notas></app-notas>
-        <!-- FIM MODAL -->
+        FIM MODAL -->
 
         <h1>Disciplina</h1>
 

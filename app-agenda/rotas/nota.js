@@ -16,7 +16,7 @@ rota.get('/:iddisc', (req, res) => {
             release()
             return res.status(401).send('operação não permitida')
         }
-        client.query('select * from nota where iddisc = $1', [req.params.iddisc], (error, result) => {
+        client.query('SELECT * FROM nota WHERE iddisc = $1', [req.params.iddisc], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Operação não autorizada')

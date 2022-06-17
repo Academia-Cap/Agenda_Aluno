@@ -15,7 +15,7 @@ import {NgbDate, NgbCalendar, NgbDateParserFormatter, NgbModule} from '@ng-boots
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
 import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
-import { NotasComponent } from './disciplina/notas/notas.component';
+import { NotasComponent } from './nota/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
 import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
 import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alterarsenha.component';

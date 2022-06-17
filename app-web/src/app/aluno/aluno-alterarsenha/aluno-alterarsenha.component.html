@@ -1,28 +1,21 @@
-<div class="modal fade" id="alterarsenha">
+<div class="modal fade div-fade" id="alterarsenha">
     <div class="modal-dialog">
         <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title">Alterar Senha</h4>
+            <div class="modal-header div-centralizar">
+                <h2 class="modal-title h2-style">Alterar Senha</h2>
             </div>
+            <div class=" div-centralizar">
+                <form #f="ngForm" class="modal-body">
+                    <input required class="input-group-text mb-3" type="text" #dsenhaantiga="ngModel" ngModel
+                        name="senhaAntiga" placeholder="Senha Antiga" />
 
-            <form #f="ngForm"  class="modal-body">
-
-                <input required class="input-group-text mb-3" type="text" #dsenhaantiga="ngModel" ngModel name="senhaantiga"
-                    placeholder="Senha Antiga" />
-
-                <input class="input-group-text mb-3" type="text" #fnovasenha="ngModel" ngModel name="novasenha"
-                    placeholder="Nova Senha" />
-
-                <input class="input-group-text mb-3" type="text" #fconfirmesenha="ngModel" ngModel name="confirmesenha"
-                    placeholder="Confirme Senha" />
-
-            </form>
-
+                    <input class="input-group-text mb-3" type="text" #fnovasenha="ngModel" ngModel name="novaSenha"
+                        placeholder="Nova Senha" />
+                </form>
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary btn-modal" data-bs-dismiss="modal">Alterar</button>
-
-                <button type="button" class="btn btn-secondary btn-modal" onclick="window.location.reload">Cancelar</button>
+                <button type="submit" class="btn btn-secondary btn-modal" data-bs-dismiss="modal"><i class="material-icons" onclick="window.location.reload()" (click)="alterarSenha(f.value)">done</i></button>
+                <button type="reset" class="btn btn-secondary btn-modal"  onclick="window.location.reload()"><i data-bs-dismiss="modal" class="material-icons">close</i></button>
             </div>
 
         </div>

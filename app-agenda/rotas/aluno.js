@@ -136,4 +136,44 @@ rota.delete('/:idAluno', (req, res) => {
     })
 });
 
+
+rota.put('/alterarSenha/:id', (req, res, release) => {
+    pool.connect((err, client, release) => {
+        if (err) {
+            release()
+            return res.status(401).send("Conexão não autorizada")
+        }
+        client.query('select * from aluno where id = $1', [req.params.id], (error, result) => {
+            if (error) {
+                release()
+                return res.status(401).send('operação não permitida')
+            }
+            bcrypt.compare(req.body.senhaAntiga, result.rows[0].senha, (error, results) => {
+                if (error) {
+                    release()
+                    return res.status(401).send({
+                        message: "Falha na autenticação"
+                    })
+                }
+                bcrypt.hash(req.body.novaSenha, 10, (error, hash) => {
+                    if (error) {
+                        release()
+                        return res.status(500).send({
+                            message: 'erro de autenticação',
+                            erro: error.message
+                        })
+                    }
+                    client.query('UPDATE aluno SET senha = $1 WHERE id = $2', [hash, req.params.id], (error, result) => {
+                        if (error) {
+                            return res.status(401).send('Operação não permitida')
+                        }
+                        res.status(201).send(result.rows[0])
+                        release()
+                    })
+                })
+            })
+        })
+    })
+})
+
 module.exports = rota;

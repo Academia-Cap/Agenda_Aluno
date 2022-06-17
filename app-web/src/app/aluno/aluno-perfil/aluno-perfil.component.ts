@@ -11,12 +11,11 @@ import { DecodeTokenService } from '../autenticacao/decode-token.service';
   styleUrls: ['./aluno-perfil.component.css']
 })
 export class AlunoPerfilComponent implements OnInit {
-  //aluno = {'id': null, 'nome': '', 'telefone': '', 'email': '', 'usuario': '', 'senha': ''};
   aluno: any;
   idAluno: number = 0
   alunoToken: any;
 
-  constructor(private servicoAluno: AlunoService, private route: ActivatedRoute, private router: Router, 
+  constructor(private servicoAluno: AlunoService, private router: Router, 
     private serviceValidar: ValidarCamposService, private decodeToken: DecodeTokenService) {
     this.alunoToken = this.decodeToken.decodeTokenJWT()
     this.idAluno = this.alunoToken.id

@@ -106,3 +106,17 @@ span {
     font-size: larger;
     color: white;
 }
+
+#mostrarInfo{
+    display: none;
+    color:#1A1859;
+  }
+
+#info:hover #mostrarInfo{
+    display:block;
+}
+
+.iconinfo{
+    display:inline;
+}
+

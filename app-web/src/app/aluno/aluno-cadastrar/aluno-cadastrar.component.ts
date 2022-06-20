@@ -73,4 +73,5 @@ export class AlunoCadastrarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
 }

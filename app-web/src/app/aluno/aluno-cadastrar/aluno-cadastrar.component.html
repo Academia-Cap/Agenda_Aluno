@@ -7,8 +7,8 @@
                 <input required class="form-control input-login" type="text" #gemail="ngModel" ngModel name="email">
                 <Label class="label-login">Senha</Label>
                 <input required class="form-control input-login" type="password" #gsenha="ngModel" ngModel name="senha">
-                <!--[routerLink]="['/perfilAluno', this.idAluno.id]"--> 
-                <button class="btn btn-login" type="submit" >Entrar</button>
+                <!--[routerLink]="['/perfilAluno', this.idAluno.id]"-->
+                <button class="btn btn-login" type="submit">Entrar</button>
             </form>
         </div>
     </div>
@@ -17,23 +17,39 @@
     <div class="div-cadastrar">
         <h1 class="h1-color-cadastro">Cadastre-se</h1>
         <form #f="ngForm" (ngSubmit)="cadastrar(f.value)">
-            <input required class="form-control input-cadastro" type="text" #fnome="ngModel" ngModel name="nome"
+         
+            <input required class="form-control iconinfo input-cadastro" type="text" #fnome="ngModel" ngModel name="nome"
                 placeholder="Nome">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir nome social com mais de 6 caracteres</div></i>
             <span *ngIf="fnome.invalid && fnome.touched">*Nome inválido</span>
-            <input required class="form-control input-cadastro" type="text" #ftelefone="ngModel" ngModel name="telefone"
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #ftelefone="ngModel" ngModel name="telefone"
                 placeholder="Telefone" [dropSpecialCharacters]="false" mask="(00) 00000-0000">
-            <input required class="form-control input-cadastro" type="text" #femail="ngModel" ngModel name="email"
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir numero de telefone com DDD e 9 digitos</div></i>
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #femail="ngModel" ngModel name="email"
                 placeholder="Email">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir e-mail com formato "email@email.com"</div></i>
             <span *ngIf="femail.invalid && femail.touched">*Email inválido</span>
-            <input required class="form-control input-cadastro" type="text" #fusuario="ngModel" ngModel name="usuario"
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #fusuario="ngModel" ngModel name="usuario"
                 placeholder="Usuário">
-            <input required class="form-control input-cadastro" type="text" #fsenha="ngModel" ngModel name="senha"
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir nome de usuario com 6 caracteres</div></i>
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #fsenha="ngModel" ngModel name="senha"
                 placeholder="Senha">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir senha com mínimo 6 digitos </div></i>
 
             <div
                 *ngIf="!fnome.invalid && !ftelefone.invalid && !femail.invalid && !fusuario.invalid && !fsenha.invalid">
                 <button #fbuttonSub="ngModel" ngModel type="submit" class="btn btn-entrar">Cadastrar</button>
             </div>
+            
             <div *ngIf="fnome.invalid || femail.invalid || fusuario.invalid || fsenha.invalid">
                 <button class="btn btn-entrar" type="button">Cadastrar</button>
             </div>

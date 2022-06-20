@@ -47,6 +47,7 @@
         <div class="div-calendario">
             <div id="div-domingo" class="div-formato">
                 <h5>Domingo</h5>
+                <h5> {{todosDiasSemana[0] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaDomingo" class="card">
                     <div *ngFor="let d of listaDisciplina">
@@ -66,6 +67,7 @@
             </div>
             <div id="div-segunda" class="div-formato">
                 <h5>Segunda</h5>
+                <h5> {{todosDiasSemana[1] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaSegunda" class="card">
                     <div class="card-body">
@@ -87,6 +89,7 @@
             </div>
             <div id="div-terça" class="div-formato">
                 <h5>Terça</h5>
+                <h5> {{todosDiasSemana[2] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaTerca" class="card">
                     <div class="card-body">
@@ -108,6 +111,7 @@
             </div>
             <div id="div-quarta" class="div-formato">
                 <h5>Quarta</h5>
+                <h5> {{todosDiasSemana[3] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaQuarta" class="card">
                     <div class="card-body">
@@ -129,6 +133,7 @@
             </div>
             <div id="div-quinta" class="div-formato">
                 <h5>Quinta</h5>
+                <h5> {{todosDiasSemana[4] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaQuinta" class="card">
                     <div class="card-body">
@@ -150,6 +155,7 @@
             </div>
             <div id="div-sexta" class="div-formato">
                 <h5>Sexta</h5>
+                <h5> {{todosDiasSemana[5] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaSexta" class="card">
                     <div class="card-body">
@@ -171,6 +177,7 @@
             </div>
             <div id="div-sábado" class="div-formato">
                 <h5>Sábado</h5>
+                <h5> {{todosDiasSemana[6] | date | uppercase}} </h5>
                 <hr>
                 <div *ngFor="let tr of tarefaSabado" class="card">
                     <div class="card-body">

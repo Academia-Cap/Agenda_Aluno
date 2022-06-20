@@ -27,4 +27,9 @@ export class AlunoService {
     let url = `http://localhost:8000/aluno/${idAluno}`
     return this.http.get(url)
   }
+
+  alterarSenha(dados: any, idAluno: number){
+    let url = `http://localhost:8000/aluno/alterarSenha/${idAluno}`
+    return this.http.put(url, dados)
+  }
 }

@@ -1,10 +1,10 @@
 #img {
-   width: 5em;
+   width: 2em;
 }
 
-@media screen and (max-width: 700px) {
+@media screen and (max-width: 200px) {
    body {
-      padding: 170px 0 0 0;
+      padding: 100px 0 0 0;
       width: 100%
    }
 }
@@ -12,16 +12,16 @@
 .menu-item,
 .menu-open-button {
    background: #CD85A0;
-   border-radius: 100%;
-   width: 70px;
-   height: 70px;
+   border-radius: 60%;
+   width: 40px;
+   height: 40px;
    position: absolute;
    -webkit-transform: translate3d(0, 0, 0);
    transform: translate3d(0, 0, 0);
-   -webkit-transition: -webkit-transform ease-out 200ms;
-   transition: -webkit-transform ease-out 200ms;
-   transition: transform ease-out 200ms;
-   transition: transform ease-out 200ms, -webkit-transform ease-out 200ms;
+   -webkit-transition: -webkit-transform ease-out 100ms;
+   transition: -webkit-transform ease-out 100ms;
+   transition: transform ease-out 100ms;
+   transition: transform ease-out 100ms, -webkit-transform ease-out 100ms;
 }
 
 .menu-open {
@@ -51,6 +51,11 @@
 }
 
 .menu-item:nth-child(6) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
+.menu-item:nth-child(7) {
    -webkit-transition-duration: 180ms;
    transition-duration: 180ms;
 }
@@ -85,29 +90,44 @@
 .menu-open:checked~.menu-item:nth-child(3) {
    transition-duration: 180ms;
    -webkit-transition-duration: 180ms;
-   -webkit-transform: translate3d(0px, 100px, 0);
-   transform: translate3d(0px, 100px, 0);
+   -webkit-transform: translate3d(0px, 50px, 0);
+   transform: translate3d(0px, 50px, 0);
 }
 
 .menu-open:checked~.menu-item:nth-child(4) {
    transition-duration: 280ms;
    -webkit-transition-duration: 280ms;
-   -webkit-transform: translate3d(0px, 200px, 0);
-   transform: translate3d(0px, 200px, 0);
+   -webkit-transform: translate3d(0px, 100px, 0);
+   transform: translate3d(0px, 100px, 0);
 }
 
 .menu-open:checked~.menu-item:nth-child(5) {
    transition-duration: 380ms;
    -webkit-transition-duration: 380ms;
-   -webkit-transform: translate3d(0px, 300px, 0);
-   transform: translate3d(0px, 300px, 0);
+   -webkit-transform: translate3d(0px, 150px, 0);
+   transform: translate3d(0px, 150px, 0);
 }
 
 .menu-open:checked~.menu-item:nth-child(6) {
    transition-duration: 480ms;
    -webkit-transition-duration: 480ms;
-   -webkit-transform: translate3d(0px, 400px, 0);
-   transform: translate3d(0px, 400px, 0);
+   -webkit-transform: translate3d(0px, 200px, 0);
+   transform: translate3d(0px, 200px, 0);
+}
+
+
+.menu-open:checked~.menu-item:nth-child(7) {
+   transition-duration: 580ms;
+   -webkit-transition-duration: 580ms;
+   -webkit-transform: translate3d(0px, 250px, 0);
+   transform: translate3d(0px, 250px, 0);
+}
+
+.menu-open:checked~.menu-item:nth-child(8) {
+   transition-duration: 580ms;
+   -webkit-transition-duration: 580ms;
+   -webkit-transform: translate3d(0px, 300px, 0);
+   transform: translate3d(0px, 300px, 0);
 }
 
 /* ITENS DO DROP */
@@ -119,6 +139,16 @@
 }
 
 .agenda:hover {
+   background-color: #f3d7e1c7;
+}
+
+.logout{
+   background-color: #CFEAF2;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.logout:hover{
    background-color: #f3d7e1c7;
 }
 
@@ -156,8 +186,8 @@
 
 #agenda {
    color: white;
-   font-size: 3em;
-   padding: 0.3em;
+   font-size: 2em;
+   padding: 0.2em;
 }
 #agenda:hover{
    color: #CFEAF2;
@@ -165,8 +195,8 @@
 
 #perfil {
    color: white;
-   font-size: 3em;
-   padding: 0.3em;
+   font-size: 2em;
+   padding: 0.2em;
 }
 #perfil:hover{
    color: #89A4C8;
@@ -174,8 +204,8 @@
 
 #instituicao {
    color: white;
-   font-size: 3em;
-   padding: 0.3em;
+   font-size: 2em;
+   padding: 0.2em;
 }
 #instituicao:hover{
    color: #6595C4;
@@ -183,9 +213,19 @@
 
 #disciplina {
    color: white;
-   font-size: 3em;
-   padding: 0.3em;
+   font-size: 2em;
+   padding: 0.2em;
 }
 #disciplina:hover{
+   color: #1A1859;
+}
+
+#logout{
+   color: white;
+   font-size: 2em;
+   padding: 0.2em;
+}
+
+#logout:hover{
    color: #1A1859;
 }

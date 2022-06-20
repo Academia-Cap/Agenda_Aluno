@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlunoService } from '../aluno-servico/aluno.service';
 import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
+import { DecodeTokenService } from '../autenticacao/decode-token.service';
 
 
 @Component({
@@ -12,10 +13,12 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 export class AlunoPerfilComponent implements OnInit {
   aluno: any;
   idAluno: number = 0
+  alunoToken: any;
 
-  constructor(private servicoAluno: AlunoService, private route: ActivatedRoute, private router: Router, private serviceValidar: ValidarCamposService) {
-    let routeParams = this.route.snapshot.paramMap;
-    this.idAluno = Number(routeParams.get("id"))
+  constructor(private servicoAluno: AlunoService, private router: Router, 
+    private serviceValidar: ValidarCamposService, private decodeToken: DecodeTokenService) {
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
+    this.idAluno = this.alunoToken.id
     this.servicoAluno.getAluno(this.idAluno).subscribe(x => this.aluno = x)
   }
 
@@ -43,7 +46,7 @@ export class AlunoPerfilComponent implements OnInit {
   }
 
   Deslogar() {
-    localStorage.removeItem('token')
+    sessionStorage.removeItem('token')
     this.router.navigate(['/']);
   }
 }

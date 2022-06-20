@@ -6,11 +6,12 @@
     background-color: #E2BECC;
     width: 25%;
     height: 100vh;
+    position: fixed;
 }
 
 .div-cadastro {
     width: 100%;
-    margin-left: 0%;
+    margin-left: 25%;
 }
 
 input {
@@ -42,20 +43,19 @@ input::placeholder {
 }
 
 .ng-invalid {
-    text-align: left;
-    margin-left: 8px;
+    text-align: center;
 }
 
 .h1-adicionar {
     text-align: center;
     color: #FFFFFF;
-    margin-top: 10%;
+    margin-top: 13%;
 }
 
 .btn {
     background-color: #1A1859;
     color: #FEFEFE;
-    margin-top: 45%;
+    margin-top: 35%;
 }
 
 .msg {
@@ -74,7 +74,6 @@ input::placeholder {
 
 .div-formato {
     width: 30%;
-    height: 70vh;
     border-style: groove;
     text-align: center;
 }
@@ -118,4 +117,36 @@ input::placeholder {
 
 .div-drop-drop {
     width: 17%;
+}
+
+.card {
+    width: 130px;
+    flex-direction: column;
+    display: inline-block;
+    margin: 2px;
+    background-color: #CFEAF2;
+    margin-bottom: 10%;
+}
+
+.instcad {
+    text-align: center;
+    color: black;
+}
+
+.form-select {
+    margin-left: 8%;
+    margin-top: 3%;
+    width: 85%;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: white;
+    font-family: Kameron;
+}
+
+.form-cadastro{
+    margin-top: 15%;
+}
+
+.div-botoes-calendario{
+    margin-bottom: 3%;
 }

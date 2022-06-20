@@ -6,12 +6,13 @@
     background-color: #E2BECC;
     width: 25%;
     height: 100vh;
+    position:fixed;
 }
 
 .div-cadastro{
     width: 50%;
     margin-top: 3%;
-    margin-left: 10%;
+    margin-left: 35%;
 }
 
 input{
@@ -82,5 +83,13 @@ h1{
 }
 
 .btn-botoes{
+    text-align: center;
+}
+
+.div-botoes{
+    margin-top: 25%;
+}
+
+.form-cadastro{
     text-align: center;
 }

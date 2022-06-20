@@ -8,7 +8,7 @@ export class DecodeTokenService {
 
   public decodeTokenJWT(): string {
     try{
-      let token = localStorage.getItem('token') || ''
+      let token = sessionStorage.getItem('token') || ''
       return jwt(token)
     }
     catch(error){

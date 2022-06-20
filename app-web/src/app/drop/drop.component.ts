@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Router } from '@angular/router';
+import { DecodeTokenService } from '../aluno/autenticacao/decode-token.service';
 
 @Component({
   selector: 'app-drop',
@@ -6,10 +8,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./drop.component.css']
 })
 export class DropComponent implements OnInit {
-
-  constructor() { }
+  alunoToken: any;
+  constructor(private decodeToken: DecodeTokenService, private router: Router) { }
 
   ngOnInit(): void {
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
+  }
+
+  Deslogar() {
+    sessionStorage.removeItem('token')
+    this.router.navigate(['/']);
   }
 
 }

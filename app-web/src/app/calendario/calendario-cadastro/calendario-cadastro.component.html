@@ -1,75 +1,206 @@
 <div class="div-tela">
     <div class="div-perfil">
         <h1 class="h1-adicionar">Adicionar Tarefa</h1>
-        <form #f="ngForm" (ngSubmit)="gravar()" class="row row-cols-sm-auto">
-            <input required class="form-control" type="text" #ftitulo="ngModel" ngModel name="titulo"
-                placeholder="Titulo" />
+        <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto form-cadastro">
+            <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
+                name="titulo" placeholder="Titulo">
+
             <div class="col-12">
                 <div class="input-group">
-                    <input class="form-control" placeholder="yyyy-mm-dd" name="dp" [(ngModel)]="model" ngbDatepicker
-                        #d="ngbDatepicker">
+                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo"
+                        [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
                 </div>
             </div>
-            <input required class="form-control hora" type="time" name="horainicial" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horainicial" #fhorainicial="ngModel" required>
+            <input required class="form-control hora" type="time" name="horainicio" min="00:00" max="23:59"
+                [(ngModel)]="tarefa.horainicio" #fhorainicial="ngModel">
             <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel" required>
-            <input required class="form-control" type="text" [(ngModel)]="tarefa.disciplina" #fdisciplina="ngModel"
-                ngModel name="disciplina" placeholder="Disciplina">
+                [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
 
+            <select required class="form-select" [(ngModel)]="tarefa.iddisc" #fdisciplina="ngModel" ngModel
+                name="iddisc">
+                <option *ngFor="let disc of listaDisciplina" value="{{disc.id}}">
+                    {{disc.nome}}
+                </option>
+            </select>
+
             <div class="mt-2 div-botoes">
-                <button [disabled]="f.invalid" class="btn me-2" onClick="window.location.reload()">Salvar</button>
+                <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid"
+                    class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>
     </div>
     <div class="div-cadastro">
-       
+
         <div class="div-drop">
             <div class="div-drop-h1">
                 <h1 class="h1-calendario">Calendario</h1>
             </div>
             <div class="div-drop-drop">
-               <app-drop style="max-height: 2em;"></app-drop> 
+                <app-drop style="max-height: 2em;"></app-drop>
             </div>
         </div>
         <div class="div-calendario">
             <div id="div-domingo" class="div-formato">
                 <h5>Domingo</h5>
+                <h5> {{todosDiasSemana[0] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaDomingo" class="card">
+                    <div *ngFor="let d of listaDisciplina">
+                        <h5 *ngIf="d.id == tr.iddisc">
+                            <h3>{{ tr.titulo }}</h3>
+                            {{ tr.periodo | date | uppercase }}
+                            {{ tr.horainicio }}
+                            {{ tr.horafinal }}
+                            {{ tr.descricao }}
+                            {{ d.nome }}
+                        </h5>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-segunda" class="div-formato">
                 <h5>Segunda</h5>
+                <h5> {{todosDiasSemana[1] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSegunda" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-terça" class="div-formato">
                 <h5>Terça</h5>
+                <h5> {{todosDiasSemana[2] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaTerca" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-quarta" class="div-formato">
                 <h5>Quarta</h5>
+                <h5> {{todosDiasSemana[3] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaQuarta" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-quinta" class="div-formato">
                 <h5>Quinta</h5>
+                <h5> {{todosDiasSemana[4] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaQuinta" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-sexta" class="div-formato">
                 <h5>Sexta</h5>
+                <h5> {{todosDiasSemana[5] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSexta" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
             <div id="div-sábado" class="div-formato">
                 <h5>Sábado</h5>
+                <h5> {{todosDiasSemana[6] | date | uppercase}} </h5>
                 <hr>
+                <div *ngFor="let tr of tarefaSabado" class="card">
+                    <div class="card-body">
+                        <div *ngFor="let d of listaDisciplina">
+                            <h5 *ngIf="d.id == tr.iddisc">
+                                <h3>{{ tr.titulo }}</h3>
+                                {{ tr.periodo | date | uppercase }}
+                                {{ tr.horainicio }}
+                                {{ tr.horafinal }}
+                                {{ tr.descricao }}
+                                {{ d.nome }}
+                            </h5>
+                        </div>
+                    </div>
+                    <i role="button" class="material-icons text-light" (click)="editar(tr.id)">mode_edit</i>
+                    <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+                        (click)="excluir(tr.id)">delete</i>
+                </div>
             </div>
         </div>
-        <div>
-            <button type="button" class="btn-voltar"><</button>
-            <button type="button" class="btn-avancar">></button>
+        <div class="div-botoes-calendario">
+            <button type="button" (click)="voltar()" class="btn-voltar"><</button>
+            <button type="button" (click)="avancar()"  class="btn-avancar">></button>
         </div>
     </div>
 

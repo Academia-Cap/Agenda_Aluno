@@ -8,13 +8,11 @@ import { AlunoPerfilComponent } from './aluno/aluno-perfil/aluno-perfil.componen
 import { AlunoCadastrarComponent } from './aluno/aluno-cadastrar/aluno-cadastrar.component';
 import { CurrencyMaskModule } from "ng2-currency-mask";
 import { InstituicaoCadastroComponent } from './instituicao/instituicao-cadastro/instituicao-cadastro.component';
-import { InstituicaoEditaComponent } from './instituicao/instituicao-edita/instituicao-edita.component';
 import { NgxMaskModule, IConfig } from 'ngx-mask';
 import { CalendarioCadastroComponent } from './calendario/calendario-cadastro/calendario-cadastro.component';
 import {NgbDate, NgbCalendar, NgbDateParserFormatter, NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
-import { DisciplinaEditaComponent } from './disciplina/disciplina-edita/disciplina-edita.component';
 import { NotasComponent } from './nota/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
 import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
@@ -27,10 +25,8 @@ import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alt
     AlunoPerfilComponent,
     AlunoCadastrarComponent,
     InstituicaoCadastroComponent,
-    InstituicaoEditaComponent,
     CalendarioCadastroComponent,
     DisciplinaCadastroComponent,
-    DisciplinaEditaComponent,
     NotasComponent,
     DropComponent,
     CalendarioEditarComponent,

@@ -14,15 +14,24 @@ import { ValidaCamposService } from '../instituicao-servico-valida/valida-campos
 export class InstituicaoCadastroComponent implements OnInit {
 
   msg: string = ""
-  instituicao: any;
+  instituicao: any = {'nome':'','sigla':'', 'cep':''};
 
   constructor(private instituicaoService: InstituicaoService, private cepService: CepServicoService, private camposService: ValidaCamposService) {
     this.instituicaoService.getTodos().subscribe(x => this.instituicao = x)
   }
 
   gravar(dados: any) {
-    this.instituicaoService.gravar(dados).subscribe(x => this.msg = "instituicao criado com sucesso")
+    console.log(dados)
+    if (this.instituicao.id == null) {
+      this.instituicaoService.gravar(dados).subscribe(x => this.instituicao = x)
+    } else {
+      dados.id = this.instituicao.id
+      this.instituicaoService.alterar(dados).subscribe(x => this.instituicao = x)
+    }
+  }
 
+  editar(id: any) {
+    this.instituicaoService.getId(id).subscribe(x => this.instituicao = x)
   }
 
   excluir(id: any) {

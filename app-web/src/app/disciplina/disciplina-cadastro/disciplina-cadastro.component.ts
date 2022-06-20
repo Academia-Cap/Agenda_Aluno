@@ -48,6 +48,7 @@ export class DisciplinaCadastroComponent implements OnInit {
     this.validar.guardarId(id)
     this.iddisciplina = id
     this.serviceCadastro.getId(id).subscribe(x => this.disciplina = x)
+   
   }
 
   excluir(id: any) {
@@ -57,6 +58,5 @@ export class DisciplinaCadastroComponent implements OnInit {
   selectInstituicao(){
     this.instituicaoService.getTodos().subscribe(x => this.listaInstituicao = x)
   }
-  
   
 }

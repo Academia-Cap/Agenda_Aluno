@@ -2,13 +2,13 @@
     <div class="div-perfil">
         <h1>Cadastro de Instituição</h1>
         <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="form-cadastro">
-            <input required class="form-control" type="text" #fnome="ngModel" (blur)="validaNome($event)" ngModel
-                name="nome" placeholder="Nome" />
-            <p class="msg">{{msgNome}}</p>
-            <input required class="form-control" type="text" #fsigla="ngModel" (blur)="validaSigla($event)" ngModel
-                name="sigla" placeholder="Sigla" />
-            <p class="msg">{{msgSigla}}</p>
-            <input required class="form-control" mask="00.000-000" type="text" id="cep" #fcep="ngModel" ngModel
+            <input required class="form-control" type="text" [(ngModel)]="instituicao.nome" #fnome="ngModel" ngModel
+                name="nome" placeholder="Nome">
+                <p class="msg">{{msgNome}}</p>
+            <input required class="form-control" type="text" [(ngModel)]="instituicao.sigla" #fsigla="ngModel" ngModel
+                name="sigla" placeholder="Sigla">
+                <p class="msg">{{msgSigla}}</p>
+            <input required class="form-control" [(ngModel)]="instituicao.cep" mask="00.000-000" type="text" id="cep" #fcep="ngModel" ngModel
                 name="cep" (blur)="consultarCep($event)" placeholder="CEP" />
             <p class="msg">{{msgCep}}</p>
             <input class="form-control" type="text" [(ngModel)]="endereco.logradouro" #frua="ngModel" ngModel name="rua"
@@ -18,11 +18,9 @@
             <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado"
                 placeholder="Digite estado" required>
 
-            <div class="mt-2 btn-botoes">
-                <div class="div-botoes">
-                    <button [disabled]="f.invalid" class="btn me-2" onClick="window.location.reload()">Salvar</button>
-                    <button type="reset" class="btn">Cancelar</button>
-                </div>
+            <div class="mt-2 div-botoes">
+                <button type="submit" [disabled]="f.invalid" onClick="window.location.reload()" class="btn me-2">Salvar</button>
+                <button type="reset" class="btn">Cancelar</button>
             </div>
         </form>
     </div>
@@ -35,7 +33,7 @@
                 <h6 class="card-subtitle mb-2 text-muted">{{ inst.sigla }}</h6>
                 <p class="card-text">{{ inst.rua }} {{ inst.cidade }} {{ inst.estado }} {{ inst.cep}}</p>
             </div>
-            <a [routerLink]="['/instituicao',inst.id]"><i class="material-icons text-light">mode_edit</i></a>
+            <i role="button" class="material-icons text-light" (click)="editar(inst.id)">mode_edit</i>
             <i role="button" onClick="window.location.reload()" class="material-icons text-light"
                 (click)="excluir(inst.id)">delete</i>
         </div>

@@ -1,24 +1,38 @@
 function getAll(){
-    return 'select * from aluno';
+    return 'SELECT * FROM aluno';
 }
 
-function getEmail(dados){
-    return 'select * from aluno where email = $1', [dados.email]
+function getEmail(){
+    return 'SELECT * FROM aluno WHERE email = $1'
 }
 
-function postOne(dados, hash){
-    return 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)', 
-    [dados.nome, dados.telefone, dados.email, dados, hash];
+function getOne(){
+    return 'SELECT * FROM aluno WHERE id = $1';
 }
 
-function getOne(dados){
+function postOne(){
+    return 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)';
+}
 
+function putAll(){
+    return 'UPDATE aluno SET nome = $1, telefone = $2, usuario = $3 WHERE id = $4';
+}
+
+function putPassword(){
+    return 'UPDATE aluno SET senha = $1 WHERE id = $2';
+}
+
+function deleteOne(){
+    return 'DELETE FROM aluno WHERE id = $1';
 }
 
 module.exports = {
     getAll,
     getEmail,
     postOne,
-    getOne
+    getOne,
+    putAll,
+    deleteOne,
+    putPassword
 }
 

@@ -55,7 +55,7 @@ rota.delete('/:id', (req, res) => {
             release()
             return res.status(401).send('Não foi')
         }
-        client.query('delete from Nota where id = $1', [req.params.id], (error, result) => {
+        client.query('delete from nota where id = $1', [req.params.id], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Não funcionou')

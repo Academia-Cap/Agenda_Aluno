@@ -7,6 +7,7 @@ var pg = require('pg')
 var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
+
 rota.get('/', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
@@ -25,7 +26,7 @@ rota.post('/', (req, res) => {
             return res.status(401).send('Conexão não autorizada')
         }
 
-        client.query('select * from aluno where usuario = $1', [req.body.usuario], (erro, result) => {
+        client.query('select * from aluno where email = $1', [req.body.email], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não autorizada')

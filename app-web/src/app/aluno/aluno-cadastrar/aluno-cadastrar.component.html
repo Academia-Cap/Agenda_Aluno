@@ -7,15 +7,11 @@
                 <input required class="form-control input-login" type="text" #gemail="ngModel" ngModel name="email">
                 <span *ngIf="gemail.invalid && gemail.touched">*Digite um login</span>
                 <br>
-
                 <Label class="label-login">Senha</Label>
                 <input required class="form-control input-login" type="password" #gsenha="ngModel" ngModel name="senha">
-                <span *ngIf="gsenha.invalid && gsenha.touched">*Digite uma senha</span>
-                <br>
+                <span *ngIf="gsenha.invalid && gsenha.touched">*Digite uma senha<br></span>
+                <span>{{msgLogin}}<br></span>
                 <button class="btn btn-login" type="submit">Entrar</button>
-                <br>
-                <p>{{msgLogin}}</p>
-
             </form>
         </div>
     </div>

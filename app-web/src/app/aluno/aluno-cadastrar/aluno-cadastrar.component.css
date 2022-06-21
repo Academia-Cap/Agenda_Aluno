@@ -70,6 +70,7 @@ button:hover {
     color: #1A1859;
     background-color: transparent;
     padding: 1%;
+
 }
 
 .input-cadastro::placeholder {
@@ -120,3 +121,14 @@ span {
     display:inline;
 }
 
+p{
+    margin-left: 20%;
+    margin-top: 10%;
+    font-family: Kameron;
+    font-size: larger;
+    color: white;
+}
+
+span{
+    color: #1A1859;
+}

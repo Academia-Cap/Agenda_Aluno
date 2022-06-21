@@ -14,27 +14,36 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 export class AlunoCadastrarComponent implements OnInit {
   aluno = { id: 0 };
   alunoToken: any;
+  msg: string = '';
+  msgNome: String = '';
+  msgEmail: String = '';
+  msgTel: string = '';
+  msgSenha: String = '';
+  msgLogin: string = '';
+
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
     private decodeToken: DecodeTokenService) { }
 
+
+
   cadastrar(dados: any) {
     dados.telefone = this.serviceValidar.validarTelefone(dados.telefone)
 
     if (this.serviceValidar.validarNome(dados.nome) == "INVALID") {
-      alert('Nome Inválido')
+      this.msgNome = "Nome Inválido"
     }
     if (this.serviceValidar.validarEmail(dados.email) == "INVALID") {
-      alert('Email Inválido')
+      this.msgEmail = "Email Inválido"
     }
 
     if (dados.telefone == "INVALID") {
-      alert('Telefone Inválido')
+      this.msgTel="Telefone Inválido"
     }
 
     if (dados.senha == "") {
-      alert('Senha Inválido')
+      this.msgSenha="Senha Inválido"
     }
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
@@ -45,7 +54,7 @@ export class AlunoCadastrarComponent implements OnInit {
 
   Gravar(dados: any) {
     this.servicoAluno.gravar(dados).subscribe(() => "Cadastrado")
-    alert('Cadastro criado com sucesso')
+    this.msg = "Cadastro criado com sucesso"
   }
 
   login(dados: any) {
@@ -57,21 +66,15 @@ export class AlunoCadastrarComponent implements OnInit {
             this.alunoToken = this.decodeToken.decodeTokenJWT()
             this.router.navigate(['/perfilAluno', this.alunoToken.id])
           } else {
-            alert("Login inválido")
+            this.msgLogin = "Login inválido"
           }
         }
       )
     } else {
-      alert('Email e senha incorretos')
+      this.msgLogin = "Email e senha incorretos"
     }
   }
 
-  //verToken() {
-  //  let usuario = this.decodeToken.decodeTokenJWT()
-  //  console.log(usuario)
-  //}
-
   ngOnInit(): void {
   }
-
 }

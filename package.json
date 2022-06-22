@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "jsonwebtoken": "^8.5.1",
-    "jwt-decode": "^3.1.2"
+    "swagger-ui-express": "^4.4.0"
   }
 }

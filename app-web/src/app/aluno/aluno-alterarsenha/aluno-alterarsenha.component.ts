@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AlunoService } from '../aluno-servico/aluno.service';
-import { DecodeTokenService } from '../autenticacao/decode-token.service';
+import { DecodeTokenService } from '../aluno-servico/autenticacao/decode-token.service';
 
 @Component({
   selector: 'app-aluno-alterarsenha',

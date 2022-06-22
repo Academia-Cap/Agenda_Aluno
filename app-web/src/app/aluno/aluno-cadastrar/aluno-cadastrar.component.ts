@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthenticationService } from 'src/app/aluno/autenticacao/authentication.service';
-import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
+import { AuthenticationService } from 'src/app/aluno/aluno-servico/autenticacao/authentication.service';
+import { DecodeTokenService } from 'src/app/aluno/aluno-servico/autenticacao/decode-token.service';
 import { AlunoService } from '../aluno-servico/aluno.service';
+import { InformacaoService } from '../aluno-servico/informacao.service';
 import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 
 
@@ -24,7 +25,7 @@ export class AlunoCadastrarComponent implements OnInit {
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
-    private decodeToken: DecodeTokenService) { }
+    private decodeToken: DecodeTokenService, private displayInfo: InformacaoService) { }
 
 
 
@@ -55,6 +56,7 @@ export class AlunoCadastrarComponent implements OnInit {
   Gravar(dados: any) {
     this.servicoAluno.gravar(dados).subscribe(() => "Cadastrado")
     this.msg = "Cadastro criado com sucesso"
+    this.displayInfo.setDisplayInfo("block")
   }
 
   login(dados: any) {

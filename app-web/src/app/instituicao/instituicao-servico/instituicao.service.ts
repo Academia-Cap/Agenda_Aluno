@@ -10,27 +10,22 @@ export class InstituicaoService {
 
   gravar(dados: any){
     return this.http.post('http://localhost:8000/instituicao', dados)
-    //return this.http.post('http://localhost:8080/instituicao', dados)
   }
 
-  getTodos(){
-   return this.http.get('http://localhost:8000/instituicao')
-   //return this.http.get('http://localhost:8080/instituicao')
+  getTodos(dados: any){
+   return this.http.post('http://localhost:8000/instituicao/get',dados)
   }
 
   excluir(id: number){
     return this.http.delete(`http://localhost:8000/instituicao/${id}`)
-    //return this.http.delete(`http://localhost:8080/instituicao/${id}`)
   }
 
   getId(id: number){
     return this.http.get(`http://localhost:8000/instituicao/${id}`)
-    //return this.http.get(`http://localhost:8080/instituicao/${id}`)
   }
 
   alterar(dados:any){
     return this.http.put(`http://localhost:8000/instituicao/${dados.id}`, dados)
-    //return this.http.put(`http://localhost:8080/instituicao/${dados.id}`, dados)
   }
   
 }

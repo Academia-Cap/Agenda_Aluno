@@ -14,13 +14,13 @@ const pool = new pg.Pool({ connectionString: consString, ssl: { rejectUnauthoriz
 //     return res.status(200).send('Conexão feita')
 // })
 
-rota.get('/', (req, res) => {
+rota.post('/get', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('operação não permitida')
         }
-        client.query('SELECT * FROM disciplina', (erro, result) => {
+        client.query('SELECT * FROM disciplina WHERE idaluno = $1',[req.body.id], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não autorizada')

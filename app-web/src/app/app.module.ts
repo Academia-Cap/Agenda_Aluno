@@ -15,8 +15,8 @@ import {NgbPaginationModule, NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 import { DisciplinaCadastroComponent } from './disciplina/disciplina-cadastro/disciplina-cadastro.component';
 import { NotasComponent } from './nota/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
-import { CalendarioEditarComponent } from './calendario/calendario-editar/calendario-editar.component';
 import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alterarsenha.component';
+import { InfoComponent } from './info/info.component';
 
 
 @NgModule({
@@ -29,8 +29,8 @@ import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alt
     DisciplinaCadastroComponent,
     NotasComponent,
     DropComponent,
-    CalendarioEditarComponent,
     AlunoAlterarsenhaComponent,
+    InfoComponent,
   
   ],
   imports: [

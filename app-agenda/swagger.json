@@ -8,7 +8,7 @@
     },
     "servers": [
         {
-            "url": "http:localhost:3000/doc",
+            "url": "http:localhost:8000/doc",
             "description": "Documentação"
         }
     ],
@@ -159,6 +159,46 @@
                 "responses": {
                     "201": {
                         "description": "Created"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    } 
+                }
+            }
+        },
+        "/aluno//alterarSenha/{id}":{
+            "put":{
+                "description":"Edita senha do aluno",
+                "summary":"Edita senha do aluno",
+                "tags": ["Aluno"],
+                "parameters":[
+                    {
+                        "name":"usuario",
+                        "in":"path",
+                        "description":"Edita senha do aluno",
+                        "required": true
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schema/senha"
+                            },
+                            "examples": {
+                                "senha": {
+                                    "value": {
+                                        "ususario": "Maria456",
+                                        "senha": "Senha@maria123"
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "500": {
+                        "description":"Internal server error"
                     },
                     "401": {
                         "description": "Unauthorized"
@@ -776,6 +816,17 @@
                     },
                     "nota":{
                         "type":"number"
+                    }
+                }
+            },
+            "senha":{
+                "type":"object",
+                "properties":{
+                    "usuario":{
+                        "type":"string"
+                    },
+                    "senha":{
+                        "type":"string"
                     }
                 }
             }

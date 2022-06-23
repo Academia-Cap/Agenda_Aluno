@@ -1,6 +1,8 @@
 const express = require('express')
 const rota = express.Router();
 
+const consultaBD = require('../banco_de_dados/comando_bd/aluno_comando')
+
 var pg = require('pg')
 var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
@@ -10,24 +12,13 @@ const jwt = require('jsonwebtoken');
 
 const login = require('../middleware/login')
 
-rota.get('/', (req, res) => {
-    pool.connect((err, client, release) => {
-        if (err) {
-            release()
-            return res.status(401).send('Conexão não autorizada')
-        }
-        res.status(200).send('Conectado com sucesso')
-        release()
-    })
-});
-
 rota.post('/login', login, (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send("Conexão não autorizada")
         }
-        client.query('select * from aluno where email = $1', [req.body.email], (error, result) => {
+        client.query(consultaBD.getEmail, [req.body.email], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('operação não permitida')

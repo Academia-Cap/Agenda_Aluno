@@ -2,6 +2,8 @@ const express = require('express')
 const rota = express.Router();
 const bcrypt = require('bcrypt')
 
+const consultaBD = require('../banco_de_dados/comando_bd/aluno_comando')
+
 var pg = require('pg')
 var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
@@ -24,7 +26,7 @@ rota.post('/', (req, res) => {
             return res.status(401).send('Conexão não autorizada')
         }
 
-        client.query('select * from aluno where email = $1', [req.body.email], (erro, result) => {
+        client.query(consultaBD.getEmail, [req.body.email], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não autorizada')
@@ -42,10 +44,8 @@ rota.post('/', (req, res) => {
                         erro: error.message
                     })
                 }
-
-                var sql = 'INSERT INTO aluno(nome, telefone, email, usuario, senha) VALUES($1,$2,$3,$4,$5)'
                 var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, hash]
-                client.query(sql, values, (error, result) => {
+                client.query(consultaBD.postOne, values, (error, result) => {
                     if (error) {
                         return res.status(401).send('Operação não permitida')
                     }
@@ -63,9 +63,8 @@ rota.get('/:idAluno', (req, res) => {
             release()
             return res.status(401).send('Conexão não autorizada')
         }
-        var sql = 'SELECT * FROM aluno WHERE id = $1'
         var values = [req.params.idAluno]
-        client.query(sql, values, (error, result) => {
+        client.query(consultaBD.getOne, values, (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Operação não permitida')
@@ -82,15 +81,14 @@ rota.put('/:idAluno', (req, res) => {
             release()
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query(consultaBD.getOne, [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE aluno SET nome = $1, telefone = $2, usuario = $3 WHERE id = $4'
                 var values = [req.body.nome, req.body.telefone, req.body.usuario, req.params.idAluno]
-                client.query(sql, values, (error, result) => {
+                client.query(consultaBD.putAll, values, (error, result) => {
                     if (error) {
                         release()
                         return res.status(401).send('Operação não permitida')
@@ -112,13 +110,13 @@ rota.delete('/:idAluno', (req, res) => {
             release()
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query(consultaBD.getOne, [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não permitida')
             }
             if (resul.rowCount > 0) {
-                client.query('DELETE FROM aluno WHERE id = $1', [req.params.idAluno], (error, result) => {
+                client.query(consultaBD.deleteOne, [req.params.idAluno], (error, result) => {
                     if (error) {
                         release()
                         return res.status(401).send('Operação não permitida')
@@ -142,7 +140,7 @@ rota.put('/alterarSenha/:id', (req, res, release) => {
             release()
             return res.status(401).send("Conexão não autorizada")
         }
-        client.query('select * from aluno where id = $1', [req.params.id], (error, result) => {
+        client.query(consultaBD.getOne, [req.params.id], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('operação não permitida')
@@ -162,7 +160,7 @@ rota.put('/alterarSenha/:id', (req, res, release) => {
                             erro: error.message
                         })
                     }
-                    client.query('UPDATE aluno SET senha = $1 WHERE id = $2', [hash, req.params.id], (error, result) => {
+                    client.query(consultaBD.putPassword, [hash, req.params.id], (error, result) => {
                         if (error) {
                             return res.status(401).send('Operação não permitida')
                         }

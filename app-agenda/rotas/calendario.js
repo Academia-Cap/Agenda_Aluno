@@ -2,21 +2,22 @@ const express = require('express')
 const rota = express.Router();
 
 const consultaBD = require('../banco_de_dados/comando_bd/calendario_comando')
+const mensagem = require('../mensagens/mensagem')
 
 var pg = require('pg')
-var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
+var conString = process.env.DATABASE_URL;
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
 rota.get('/', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.getAll, (erro, result) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não autorizada')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             res.status(200).send(result.rows)
             release()
@@ -28,12 +29,12 @@ rota.get('/calendario/:id', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.getOne, [req.params.id], (erro, result) => {
             if (erro) {
                 release()
-                return res.status(401).send("não autorizado")
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             res.status(200).send(result.rows[0])
             release()
@@ -46,7 +47,7 @@ rota.post('/periodo', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         var data = new Date(req.body.periodo).toLocaleDateString('en-US')
         client.query(consultaBD.getDate, [data, req.body.idaluno], (erro, result) => {
@@ -65,14 +66,14 @@ rota.post('/', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Conexao não autorizada')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.postOne, [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.body.idaluno], (error, result) => {
             if (error) {
                 release()
-                return res.status(401).send('Operação não permitida')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(201).send("Tarefa Cadastrada")
+            res.status(201).send(result.rows)
             release()
         })
     })
@@ -82,12 +83,12 @@ rota.put('/:id', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Conexão não autorizada')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.getOne, [req.params.id], (erro, resul) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não permitida 1')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
 
             if (resul.rowCount > 0) {
@@ -95,14 +96,14 @@ rota.put('/:id', (req, res) => {
                 client.query(consultaBD.putAll, values, (error, result) => {
                     if (error) {
                         release()
-                        return res.status(401).send('Operação não permitida 2')
+                        return res.status(401).send(mensagem.ERRO_OPERACAO)
                     }
                     res.status(201).send(result.rows[0])
                     release()
                 })
             } else {
                 release()
-                res.status(401).send('Operação não permitida 3')
+                res.status(401).send(mensagem.ERRO_OPERACAO)
             }
         })
 
@@ -113,14 +114,14 @@ rota.delete('/:id', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Deu erro! Operação não liberada!')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.deleteOne, [req.params.id], (error, result) => {
             if (error) {
                 release()
-                return res.status(401).send('Não funcionou')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(200).send('Tarefa deletada com sucesso!')
+            res.status(200).send(mensagem.SUCESSO_OPERACAO)
             release()
         })
     })
@@ -162,9 +163,9 @@ rota.post('/gerarDias', (req, res) => {
             }
             return res.status(201).send(lista_datas)
         }
-        return res.status(401).send("Erro")
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
     } else {
-        return res.status(401).send("Erro")
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
     }
 })
 

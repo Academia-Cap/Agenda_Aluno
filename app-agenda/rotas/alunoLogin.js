@@ -2,9 +2,10 @@ const express = require('express')
 const rota = express.Router();
 
 const consultaBD = require('../banco_de_dados/comando_bd/aluno_comando')
+const mensagem = require('../mensagens/mensagem')
 
 var pg = require('pg')
-var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
+var conString = process.env.DATABASE_URL;
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
 const bcrypt = require('bcrypt')
@@ -16,20 +17,18 @@ rota.post('/login', login, (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send("Conexão não autorizada")
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         client.query(consultaBD.getEmail, [req.body.email], (error, result) => {
             if (error) {
                 release()
-                return res.status(401).send('operação não permitida')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             if (result.rowCount > 0) {
                 bcrypt.compare(req.body.senha, result.rows[0].senha, (error, results) => {
                     if (error) {
                         release()
-                        return res.status(401).send({
-                            message: "Falha na autenticação"
-                        })
+                        return res.status(401).send(mensagem.ERRO_AUNTENTICACAO)
                     }
                     if (results) {
                         let token = jwt.sign({
@@ -38,17 +37,12 @@ rota.post('/login', login, (req, res) => {
                             },
                             process.env.JWTKEY, { expiresIn: '1h' })
                         release()
-                        return res.status(200).send({
-                            message: 'Conectado com sucesso',
-                            token: token
-                        })
+                        return res.status(200).send({token: token})
                     }
                 })
             } else {
                 release()
-                return res.status(200).send({
-                    message: 'usuário não encontrado'
-                })
+                return res.status(400).send(mensagem.SUCESSO_USUARIO)
             }
         })
     })

@@ -60,6 +60,11 @@
    transition-duration: 180ms;
 }
 
+.menu-item:nth-child(8) {
+   -webkit-transition-duration: 180ms;
+   transition-duration: 180ms;
+}
+
 .menu-open-button {
    z-index: 2;
    -webkit-transition-timing-function: cubic-bezier(0.175, 0.885, 0.32, 1.275);
@@ -130,6 +135,13 @@
    transform: translate3d(0px, 300px, 0);
 }
 
+.menu-open:checked~.menu-item:nth-child(9) {
+   transition-duration: 680ms;
+   -webkit-transition-duration: 680ms;
+   -webkit-transform: translate3d(0px, 350px, 0);
+   transform: translate3d(0px, 350px, 0);
+}
+
 /* ITENS DO DROP */
 
 .agenda {
@@ -182,6 +194,16 @@
    background-color: #f3d7e1c7;
 }
 
+.info{
+   background-color: #1A1859;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4
+}
+
+.info:hover{
+   background-color: #f3d7e1c7;
+}
+
 /* ICONES */
 
 #agenda {
@@ -227,5 +249,15 @@
 }
 
 #logout:hover{
+   color: #1A1859;
+}
+
+#info{
+   color: white;
+   font-size: 2em;
+   padding: 0.2em;
+}
+
+#info:hover{
    color: #1A1859;
 }

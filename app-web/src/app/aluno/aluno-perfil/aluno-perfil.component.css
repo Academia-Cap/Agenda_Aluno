@@ -68,7 +68,7 @@ h1{
 }
 
 .ng-invalid{
-    color: red;
+    color:#1A1859 ;
 }
 
 .label-cadastro{
@@ -84,3 +84,6 @@ h1{
     margin-top: 20%;
 }
 
+span{
+    color: #1A1859;
+}

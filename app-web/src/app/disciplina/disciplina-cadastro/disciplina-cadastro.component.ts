@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
+import { DecodeTokenService } from 'src/app/aluno/aluno-servico/autenticacao/decode-token.service';
 import { InstituicaoService } from 'src/app/instituicao/instituicao-servico/instituicao.service';
 import { CadastroService } from '../disciplina-services/cadastro.service';
 import { ValidarService } from '../disciplina-services/validar.service';
@@ -12,8 +12,9 @@ import { ValidarService } from '../disciplina-services/validar.service';
 export class DisciplinaCadastroComponent implements OnInit {
 
   msg: string = ""
-  disciplina: any ={'nome':'', 'abreviacao':'', 'docente':'', 'anotacao':'', 'idinst':null};
-  listaInstituicao: any ;
+  disciplina: any ={'nome':'', 'abreviacao':'', 'docente':'', 'anotacao':'', 'idinst':null, 'idaluno':null};
+  listaInstituicao: any = {'nome':'', 'id':null};
+  select: any;
   alunoToken: any;
   toDisplay = false;
   iddisciplina: number = 0;
@@ -22,15 +23,15 @@ export class DisciplinaCadastroComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
     this.toDisplay = false;
     this.selectInstituicao();
     this.mostrarTodos();
-    this.alunoToken = this.decodeToken.decodeTokenJWT()
-  
+
   }
 
   mostrarTodos(){
-    this.serviceCadastro.getTodos().subscribe(x => this.disciplina = x)
+    this.serviceCadastro.getTodos(this.alunoToken).subscribe(x => this.disciplina = x)
   }
 
   gravar(dados: any) {
@@ -56,7 +57,13 @@ export class DisciplinaCadastroComponent implements OnInit {
   }
 
   selectInstituicao(){
-    this.instituicaoService.getTodos().subscribe(x => this.listaInstituicao = x)
+    this.instituicaoService.getTodos(this.alunoToken).subscribe(x => {
+      this.listaInstituicao = x 
+      if(this.listaInstituicao == 0){
+        this.msg = "*Não existem instituições cadastradas"
+      }
+    })
+    
   }
   
 }

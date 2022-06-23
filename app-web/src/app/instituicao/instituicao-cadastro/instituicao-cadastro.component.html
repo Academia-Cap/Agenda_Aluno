@@ -5,9 +5,11 @@
             <input required class="form-control" type="text" [(ngModel)]="instituicao.nome" #fnome="ngModel" ngModel
                 name="nome" placeholder="Nome">
                 <p class="msg">{{msgNome}}</p>
+            <span *ngIf="fnome.invalid && fnome.touched">*Digite um nome</span>
             <input required class="form-control" type="text" [(ngModel)]="instituicao.sigla" #fsigla="ngModel" ngModel
                 name="sigla" placeholder="Sigla">
                 <p class="msg">{{msgSigla}}</p>
+            <span *ngIf="fsigla.invalid && fsigla.touched">*Digite uma sigla</span>
             <input required class="form-control" [(ngModel)]="instituicao.cep" mask="00.000-000" type="text" id="cep" #fcep="ngModel" ngModel
                 name="cep" (blur)="consultarCep($event)" placeholder="CEP" />
             <p class="msg">{{msgCep}}</p>
@@ -26,6 +28,7 @@
     </div>
 
     <div class="div-cadastro">
+        <app-info></app-info>
         <h2 class="instcad">Instituições Cadastradas</h2>
         <div *ngFor="let inst of instituicao" class="card" style="width: 18rem;">
             <div class="card-body">

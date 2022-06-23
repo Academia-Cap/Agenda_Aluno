@@ -1,0 +1,16 @@
+p,h2{
+    text-align: justify;
+}
+
+img{
+    width: 45px;
+    height: 40px;
+}
+
+.menuicon{
+    display: inline;
+}
+
+.instrucoesInfo{
+    text-align: left;
+}

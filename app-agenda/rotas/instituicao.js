@@ -7,13 +7,13 @@ var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
 //Substitui o app.get pelo rota.get
-rota.get('/', (req, res) => {
+rota.post('/get', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('operação não permitida')
         }
-        client.query('SELECT * FROM instituicao', (erro, result) => {
+        client.query('SELECT * FROM instituicao WHERE idaluno = $1',[req.body.id], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não autorizada')
@@ -46,8 +46,8 @@ rota.post('/', (req, res) => {
             release()
             return res.status(401).send('Conexao não autorizada', err.rows)
         }
-        var sql = 'INSERT INTO instituicao(nome, sigla, cep, rua, cidade, estado) VALUES($1,$2,$3,$4,$5,$6)'
-        client.query(sql, [req.body.nome, req.body.sigla, req.body.cep, req.body.rua, req.body.cidade, req.body.estado], (error, result) => {
+        var sql = 'INSERT INTO instituicao(nome, sigla, cep, rua, cidade, estado, idaluno) VALUES($1,$2,$3,$4,$5,$6,$7)'
+        client.query(sql, [req.body.nome, req.body.sigla, req.body.cep, req.body.rua, req.body.cidade, req.body.estado,req.body.idaluno], (error, result) => {
             if (error) {
                 release()
                 return res.status(401).send('Operação não permitida')

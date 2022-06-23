@@ -12,6 +12,31 @@
     </div>
     <div class="div-cadastro">
         <app-aluno-alterarsenha></app-aluno-alterarsenha>
+        <app-info></app-info>
+
+        <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}" id="info">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h4 class="modal-title">Conheça O Aluno Agenda!</h4>
+                </div>
+                <div class="modal-body">
+                  <p>É novo por aqui!?</p>
+                  <p>Conheça o Aluno Agenda! Aqui você pode organizar suas atividades sem perder nem um compromisso!</p>
+                  <p>Olha só o que você consegue fazer!</p>
+                  <p>Cadastre as instituições em que estuda</p>
+                  <p>Cadastre as disciplinas que participa em cada instituição</p>
+                  <p>Cadastre suas notas das avaliações de cada disciplina</p>
+                  <p>Cadastre e visualize seus comprimissos das suas disciplinas </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="reset" class="btn btn-secondary btn-modal" (click)="closeInfo()"><i data-bs-dismiss="modal" class="material-icons">close</i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
         <h1>Informações cadastrais</h1>
         <form class="form-editar" #f="ngForm" (ngSubmit)="editar(f.value)">
             <div *ngIf="fnome.invalid" class="ng-invalid">
@@ -22,11 +47,13 @@
             <div *ngIf="ftelefone.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
+            <span>{{msgNome}}</span>
             <input type="text" [(ngModel)]="aluno.telefone" #ftelefone="ngModel" ngModel name="telefone"
                 placeholder="Digite Telefone" mask="(00) 00000-0000" required>
             <div *ngIf="femail.invalid" class="ng-invalid">
                 <label class="label-cadastro">Campo obrigatório</label>
             </div>
+            <span>{{msgTel}}</span>
             <input type="text" [(ngModel)]="aluno.email" #femail="ngModel" ngModel name="email"
                 placeholder="Digite Email" required disabled>
             <div *ngIf="fusuario.invalid" class="ng-invalid">
@@ -37,7 +64,9 @@
             <div *ngIf="!f.invalid">
                 <button type="submit" class="btn btn-salvar">Salvar</button>
             </div>
+            <span>{{msgLogin}}</span>
         </form>
     </div>
     <app-drop style="max-height: 2em;"></app-drop>
 </div>
+

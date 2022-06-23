@@ -21,7 +21,6 @@ export class ValidarCamposService {
   validarTelefone(telefone: any): string {
     if (telefone != "" && telefone.length == 15 || telefone.length == 11) {
       var telefoneSemMask = telefone.replace(/([^\w]*)/gi, '');
-      console.log(telefoneSemMask)
       return telefoneSemMask;
     }
     return "INVALID";

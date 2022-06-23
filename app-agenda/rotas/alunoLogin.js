@@ -21,7 +21,7 @@ rota.get('/', (req, res) => {
     })
 });
 
-rota.post('/login', (req, res) => {
+rota.post('/login', login, (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()

@@ -3,7 +3,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { InstituicaoService } from './instituicao.service';
 
-fdescribe('InstituicaoService', () => {
+describe('InstituicaoService', () => {
 
   let service: InstituicaoService;
 

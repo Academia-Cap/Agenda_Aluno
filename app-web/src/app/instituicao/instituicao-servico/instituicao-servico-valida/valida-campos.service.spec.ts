@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ValidaCamposService } from './valida-campos.service';
 
-describe('ValidaCamposService', () => {
+fdescribe('ValidaCamposService', () => {
   let service: ValidaCamposService;
 
   beforeEach(() => {
@@ -10,7 +10,10 @@ describe('ValidaCamposService', () => {
     service = TestBed.inject(ValidaCamposService);
   });
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
+  // it('should be created', () => {
+  //   expect(service).toBeTruthy();
+  // });
+
+
+
 });

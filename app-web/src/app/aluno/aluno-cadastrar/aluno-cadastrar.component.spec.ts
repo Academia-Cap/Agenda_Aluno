@@ -22,4 +22,10 @@ describe('AlunoCadastrarComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should field descricao have size >= 5', () => {
+    component.descricao = "peixe"
+    expect(component.descricao.length).toBeGreaterThanOrEqual(5)
+  }); 
+
 });

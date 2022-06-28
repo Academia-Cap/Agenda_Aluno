@@ -87,3 +87,7 @@ h1{
 span{
     color: #1A1859;
 }
+
+.file-input {
+    display: none;
+  }

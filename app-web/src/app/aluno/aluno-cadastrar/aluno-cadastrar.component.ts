@@ -13,7 +13,6 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
   styleUrls: ['./aluno-cadastrar.component.css']
 })
 export class AlunoCadastrarComponent implements OnInit {
-  aluno = { id: 0 };
   alunoToken: any;
   msg: string = '';
   msgNome: String = '';
@@ -22,12 +21,9 @@ export class AlunoCadastrarComponent implements OnInit {
   msgSenha: String = '';
   msgLogin: string = '';
 
-
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
     private decodeToken: DecodeTokenService, private displayInfo: InformacaoService) { }
-
-
 
   cadastrar(dados: any) {
     dados.telefone = this.serviceValidar.validarTelefone(dados.telefone)

@@ -4,6 +4,7 @@ import { AlunoService } from '../aluno-servico/aluno.service';
 import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 import { DecodeTokenService } from '../aluno-servico/autenticacao/decode-token.service';
 import { InformacaoService } from '../aluno-servico/informacao.service';
+import { Token } from '@angular/compiler';
 
 
 @Component({
@@ -21,13 +22,13 @@ export class AlunoPerfilComponent implements OnInit {
   alunoToken: any;
   displayStyle: any;
   block = false;
+  token: any = {"token": ""};
 
   constructor(private servicoAluno: AlunoService, private router: Router, 
     private serviceValidar: ValidarCamposService, private decodeToken: DecodeTokenService, private displayInfo: InformacaoService) {
     this.alunoToken = this.decodeToken.decodeTokenJWT()
     this.idAluno = this.alunoToken.id
     this.servicoAluno.getAluno(this.idAluno).subscribe(x => this.aluno = x)
-    
   }
   ngOnInit(): void {
    this.displayStyle = this.displayInfo.getDisplayInfo()

@@ -9,7 +9,6 @@ export class ValidarCamposService {
 
   validarNome(nome: any): String {
     const control = new FormControl(nome, [Validators.minLength(6), Validators.required]);
-    console.log(control.status)
     return control.status;
   }
 

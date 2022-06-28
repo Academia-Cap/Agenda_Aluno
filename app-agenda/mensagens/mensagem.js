@@ -4,7 +4,7 @@ const ERRO_REGISTRO= 'Resgistro já existe';
 const ERRO_AUNTENTICACAO = 'Erro de autenticação';
 
 const SUCESSO_OPERACAO = 'Operação realizada com sucesso';
-const SUCESSO_USUARIO = 'Usuário não encontrado';
+const SUCESSO_USUARIO = 'Usuário encontrado';
 
 module.exports = {
     ERRO_CONEXAO,

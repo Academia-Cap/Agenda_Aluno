@@ -11,9 +11,7 @@ const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorize
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken');
 
-const login = require('../middleware/login')
-
-rota.post('/login', login, (req, res) => {
+rota.post('/login', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -38,11 +36,14 @@ rota.post('/login', login, (req, res) => {
                             process.env.JWTKEY, { expiresIn: '1h' })
                         release()
                         return res.status(200).send({token: token})
+                    }else {
+                        release()
+                        return res.status(400).send(mensagem.ERRO_OPERACAO)
                     }
                 })
             } else {
                 release()
-                return res.status(400).send(mensagem.SUCESSO_USUARIO)
+                return res.status(400).send(mensagem.ERRO_OPERACAO)
             }
         })
     })

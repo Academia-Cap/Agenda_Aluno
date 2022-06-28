@@ -1,4 +1,5 @@
 var jwt = require('jsonwebtoken')
+const mensagem = require('../mensagens/mensagem')
 
 module.exports = (req, res, next) => {
     try {
@@ -6,7 +7,7 @@ module.exports = (req, res, next) => {
         req.email = decode
         next()
     } catch (error) {
-        return res.status(401).send({ message: "falha na autenticação" })
+        return res.status(401).send(mensagem.ERRO_AUNTENTICACAO)
     }
 
 }

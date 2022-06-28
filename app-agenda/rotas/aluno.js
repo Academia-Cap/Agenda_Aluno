@@ -1,6 +1,7 @@
 const express = require('express')
 const rota = express.Router();
 const bcrypt = require('bcrypt')
+const login = require('../middleware/login')
 const validar = require('../validar/aluno_validar')
 
 const consultaBD = require('../banco_de_dados/comando_bd/aluno_comando')
@@ -14,7 +15,6 @@ rota.post('/', (req, res) => {
     if(!validar.validarDados(req.body)){
         return res.status(401).send(mensagem.ERRO_OPERACAO)
     }
-
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -41,7 +41,7 @@ rota.post('/', (req, res) => {
                     if (error) {
                         return res.status(401).send(mensagem.ERRO_OPERACAO)
                     }
-                    res.status(201).send(result.rows[0])
+                    res.status(201).send(mensagem.SUCESSO_OPERACAO)
                     release()
                 })
             })

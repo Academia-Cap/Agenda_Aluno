@@ -1,5 +1,4 @@
 var validatorEmail = require("email-validator"); 
-var validatorTelefone = require("validar-telefone"); 
 
 function validarCampo(campo){
     if(campo.length >= 6){
@@ -10,11 +9,7 @@ function validarCampo(campo){
 }
 
 function validarEmail(email){
-    validatorEmail.validate(email);
-}
-
-function validarTelefone(telefone){
-    validatorTelefone.validate(telefone);
+    return validatorEmail.validate(email)
 }
 
 function validarDados(dados){
@@ -22,9 +17,10 @@ function validarDados(dados){
         return false;
     }
     if(!validarEmail(dados.email)){
+        console.log("aqui")
         return false;
     }
-    if(!validarTelefone(dados.telefone)){
+    if(!validarCampo(dados.telefone)){
         return false;
     }
     if(!validarCampo(dados.usuario)){
@@ -40,7 +36,7 @@ function validarDadosAlteracao(dados){
     if(!validarCampo(dados.nome)){
         return false;
     }
-    if(!validarTelefone(dados.telefone)){
+    if(!validarCampo(dados.telefone)){
         return false;
     }
     if(!validarCampo(dados.usuario)){

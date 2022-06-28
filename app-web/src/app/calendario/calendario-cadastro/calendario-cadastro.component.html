@@ -4,19 +4,23 @@
         <form #f="ngForm" (ngSubmit)="gravar(f.value)" class="row row-cols-sm-auto form-cadastro">
             <input required class="form-control" type="text" [(ngModel)]="tarefa.titulo" #ftitulo="ngModel" ngModel
                 name="titulo" placeholder="Titulo">
+        <span *ngIf="ftitulo.invalid && ftitulo.touched">*Digite um titulo</span>
 
             <div class="col-12">
                 <div class="input-group">
-                    <input required class="form-control" placeholder="yyyy-mm-dd" name="periodo"
+                    <input required class="form-control" placeholder="__/___/__" name="periodo"
                         [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
                     <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
                 </div>
+                <span *ngIf="fperiodo.invalid && fperiodo.touched">*Data inválido</span>
             </div>
             <input required class="form-control hora" type="time" name="horainicio" min="00:00" max="23:59"
-                [(ngModel)]="tarefa.horainicio" #fhorainicial="ngModel">
+                [(ngModel)]="tarefa.horainicio" #fhorainicial="ngModel" >
+            <span *ngIf="fhorainicial.invalid && fhorainicial.touched">*Horário inválido</span>
             <input required class="form-control hora" type="time" name="horafinal" min="00:00" max="23:59"
                 [(ngModel)]="tarefa.horafinal" #fhorafinal="ngModel">
+                <span *ngIf="fhorafinal.invalid && fhorafinal.touched">*Horário inválido</span>
             <input required class="form-control" type="text" [(ngModel)]="tarefa.descricao" #fdescricao="ngModel"
                 ngModel name="descricao" placeholder="Descrição">
 
@@ -26,6 +30,8 @@
                     {{disc.nome}}
                 </option>
             </select>
+            <span *ngIf="fdisciplina.invalid && fdisciplina.touched">*Escolha uma Disciplina</span>
+            <span>{{msg}}</span>
 
             <div class="mt-2 div-botoes">
                 <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid"
@@ -35,7 +41,7 @@
         </form>
     </div>
     <div class="div-cadastro">
-
+        <app-info></app-info>
         <div class="div-drop">
             <div class="div-drop-h1">
                 <h1 class="h1-calendario">Calendario</h1>

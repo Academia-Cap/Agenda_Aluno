@@ -14,8 +14,8 @@ export class CadastroService {
     return this.http.post(url, dados)
   }
 
-  getTodos() {
-    return this.http.get(`http://localhost:8000/disciplina`)
+  getTodos(dados: any) {
+    return this.http.post(`http://localhost:8000/disciplina/get`,dados)
   }
 
   excluir(id: number) {

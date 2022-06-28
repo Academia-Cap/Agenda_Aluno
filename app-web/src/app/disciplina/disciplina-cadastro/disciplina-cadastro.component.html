@@ -1,7 +1,7 @@
 <div class="div-geral">
 
     <div class="div-cadastro">
-
+        
         <h2>Adicionar disciplina</h2>
 
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
@@ -28,7 +28,7 @@
                     {{inst.nome}}
                 </option>
             </select>
-
+            <span>{{msg}}</span>
         </form>
         <div class="mt-2 div-botoes">
             <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
@@ -39,10 +39,8 @@
     </div>
 
     <div class="div-janela">
-
-        <!-- MODAL 
-        <app-notas></app-notas>
-        FIM MODAL -->
+        
+        <app-info></app-info>
 
         <h1>Disciplina</h1>
 

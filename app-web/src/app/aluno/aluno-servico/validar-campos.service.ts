@@ -9,6 +9,7 @@ export class ValidarCamposService {
 
   validarNome(nome: any): String {
     const control = new FormControl(nome, [Validators.minLength(6), Validators.required]);
+    console.log(control.status)
     return control.status;
   }
 
@@ -18,9 +19,8 @@ export class ValidarCamposService {
   }
 
   validarTelefone(telefone: any): string {
-    if (telefone != "" && telefone.length == 15 || telefone.length == 11) {
+    if (telefone != "" && telefone.length == 15) {
       var telefoneSemMask = telefone.replace(/([^\w]*)/gi, '');
-      console.log(telefoneSemMask)
       return telefoneSemMask;
     }
     return "INVALID";

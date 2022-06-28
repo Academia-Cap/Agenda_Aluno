@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { DecodeTokenService } from 'src/app/aluno/aluno-servico/autenticacao/decode-token.service';
 import { CadastroService } from 'src/app/disciplina/disciplina-services/cadastro.service';
 import { ValidarService } from '../../disciplina/disciplina-services/validar.service';
 import { NotaService } from '../notas-service/nota.service';
@@ -12,18 +13,28 @@ import { NotaService } from '../notas-service/nota.service';
 
 export class NotasComponent implements OnInit {
   listaDisciplinas: any;
+  msg: string = '';
   nota = { 'id': null, 'descricao': '', 'nota': null, 'iddisc': null };
   todasAsNotas: any;
   notaMedia: number = 0;
   iddisciplina: number = 0;
+  alunoToken: any;
 
-  constructor(private notaService: NotaService, private disciplinaService: CadastroService) {
+  constructor(private notaService: NotaService, private disciplinaService: CadastroService, private decodeToken: DecodeTokenService) {
     this.gerarTodos(this.iddisciplina);
   }
 
   ngOnInit(): void {
-    this.disciplinaService.getTodos().subscribe(x => {
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
+    this.selectDisciplina()
+  }
+
+  selectDisciplina(){
+    this.disciplinaService.getTodos(this.alunoToken).subscribe(x => {
       this.listaDisciplinas = x
+      if(this.listaDisciplinas == 0){
+        this.msg = "*Não existem disciplinas cadastradas"
+      }
       this.gerarAlgumaDisciplina(x)
       this.gerarTodos(this.iddisciplina);
     })
@@ -56,10 +67,14 @@ export class NotasComponent implements OnInit {
 
   gerarMedia(dados: any) {
     var media: number = 0
-    for (let calcMedia of dados) {
-      media = Number(calcMedia.nota) + media
+    if (dados.length > 0) {
+      for (let calcMedia of dados) {
+        media = Number(calcMedia.nota) + media
+      }
+      this.notaMedia = Number((media / dados.length).toFixed(2))
+    } else {
+      this.notaMedia = 0;
     }
-    this.notaMedia = Number((media / dados.length).toFixed(2))
   }
 
   gerarDisciplinas(dado: any) {

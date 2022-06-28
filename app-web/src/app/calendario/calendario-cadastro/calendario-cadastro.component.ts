@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
-import { DecodeTokenService } from 'src/app/aluno/autenticacao/decode-token.service';
+import { DecodeTokenService } from 'src/app/aluno/aluno-servico/autenticacao/decode-token.service';
 import { CadastroService } from 'src/app/disciplina/disciplina-services/cadastro.service';
 import { CalendarioService } from '../calendario-servico/calendario.service';
 import { ValidarService } from '../calendario-servico/validar.service';
@@ -13,7 +13,7 @@ import { ValidarService } from '../calendario-servico/validar.service';
 export class CalendarioCadastroComponent implements OnInit {
   model: NgbDateStruct | undefined;
 
-  msg: string = "";
+  msg: String = "";
   tarefa: any = { 'id': null, 'titulo': '', 'periodo': null, 'horainicio': null, 'horafinal': null, 'descricao': '', 'iddisc': null, 'idaluno': null };
   todosDiasSemana: any;
   tarefaSegunda: any;
@@ -29,15 +29,16 @@ export class CalendarioCadastroComponent implements OnInit {
   primeiroDiaSemana: any;
   dataAtual = new Date();
 
+
   constructor(private serviceCalendario: CalendarioService,
     private decodeToken: DecodeTokenService, private disciplinaService: CadastroService,
     private serviceValidar: ValidarService) {
   }
 
   ngOnInit(): void {
+    this.alunoToken = this.decodeToken.decodeTokenJWT()
     this.gerarDIas(this.dataAtual);
     this.selectDisciplina();
-    this.alunoToken = this.decodeToken.decodeTokenJWT()
   }
 
   gravar(dados: any) {
@@ -62,7 +63,12 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   selectDisciplina() {
-    this.disciplinaService.getTodos().subscribe(x => this.listaDisciplina = x)
+    this.disciplinaService.getTodos(this.alunoToken).subscribe(x => {
+      this.listaDisciplina = x
+      if(this.listaDisciplina == 0){
+        this.msg = "*Não existem disciplinas cadastradas"
+      }
+  })
   }
 
   gerarTarefasDoDia(listaDias: any) {
@@ -74,7 +80,6 @@ export class CalendarioCadastroComponent implements OnInit {
           case 0:
             this.serviceCalendario.getTarefa(data).subscribe(x => {
               this.tarefaDomingo = x
-              console.log(this.tarefaDomingo)
               this.primeiroDiaSemana = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
             })
             break;

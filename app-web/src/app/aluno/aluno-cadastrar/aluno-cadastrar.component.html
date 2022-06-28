@@ -5,10 +5,13 @@
             <form #g="ngForm" (ngSubmit)="login(g.value)">
                 <Label class="label-login">Email</Label>
                 <input required class="form-control input-login" type="text" #gemail="ngModel" ngModel name="email">
+                <span *ngIf="gemail.invalid && gemail.touched">*Digite um login</span>
+                <br>
                 <Label class="label-login">Senha</Label>
                 <input required class="form-control input-login" type="password" #gsenha="ngModel" ngModel name="senha">
-                <!--[routerLink]="['/perfilAluno', this.idAluno.id]"--> 
-                <button class="btn btn-login" type="submit" >Entrar</button>
+                <span *ngIf="gsenha.invalid && gsenha.touched">*Digite uma senha<br></span>
+                <span>{{msgLogin}}<br></span>
+                <button class="btn btn-login" type="submit">Entrar</button>
             </form>
         </div>
     </div>
@@ -17,25 +20,54 @@
     <div class="div-cadastrar">
         <h1 class="h1-color-cadastro">Cadastre-se</h1>
         <form #f="ngForm" (ngSubmit)="cadastrar(f.value)">
-            <input required class="form-control input-cadastro" type="text" #fnome="ngModel" ngModel name="nome"
-                placeholder="Nome">
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #fnome="ngModel" ngModel
+                name="nome" placeholder="Nome">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir nome social com mais de 6 caracteres</div>
+            </i>
             <span *ngIf="fnome.invalid && fnome.touched">*Nome inválido</span>
-            <input required class="form-control input-cadastro" type="text" #ftelefone="ngModel" ngModel name="telefone"
-                placeholder="Telefone" [dropSpecialCharacters]="false" mask="(00) 00000-0000">
-            <input required class="form-control input-cadastro" type="text" #femail="ngModel" ngModel name="email"
-                placeholder="Email">
+            <span>{{msgNome}}</span>
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #ftelefone="ngModel" ngModel
+                name="telefone" placeholder="Telefone" [dropSpecialCharacters]="false" mask="(00) 00000-0000">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir numero de telefone com DDD e 9 digitos</div>
+            </i>
+            <span *ngIf="ftelefone.invalid && ftelefone.touched">*Telefone inválido</span>
+            <span>{{msgTel}}</span>
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #femail="ngModel" ngModel
+                name="email" placeholder="Email">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <div id="mostrarInfo">Inserir e-mail com formato "email@email.com"</div>
+            </i>
             <span *ngIf="femail.invalid && femail.touched">*Email inválido</span>
-            <input required class="form-control input-cadastro" type="text" #fusuario="ngModel" ngModel name="usuario"
-                placeholder="Usuário">
-            <input required class="form-control input-cadastro" type="text" #fsenha="ngModel" ngModel name="senha"
-                placeholder="Senha">
+            <span>{{msgEmail}}</span>
+
+            <input required class="form-control iconinfo input-cadastro" type="text" #fusuario="ngModel" ngModel
+                name="usuario" placeholder="Usuário">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <span *ngIf="fusuario.invalid && fusuario.touched">*Usuario inválido</span>
+                <div id="mostrarInfo">Inserir nome de usuario com 6 caracteres</div>
+            </i>
+
+            <input required class="form-control iconinfo input-cadastro" type="password" #fsenha="ngModel" ngModel
+                name="senha" placeholder="Senha">
+            <i id="info" class="iconinfo bi bi-info-circle">
+                <span *ngIf="fsenha.invalid && fsenha.touched">*Usuario inválido</span>
+                <div id="mostrarInfo">Inserir senha com mínimo 6 digitos </div>
+            </i>
+            <span>{{msgSenha}}</span>
 
             <div
                 *ngIf="!fnome.invalid && !ftelefone.invalid && !femail.invalid && !fusuario.invalid && !fsenha.invalid">
                 <button #fbuttonSub="ngModel" ngModel type="submit" class="btn btn-entrar">Cadastrar</button>
             </div>
+
+            <span>{{msg}}</span>
             <div *ngIf="fnome.invalid || femail.invalid || fusuario.invalid || fsenha.invalid">
-                <button class="btn btn-entrar" type="button">Cadastrar</button>
+                <button onClick="window.location.reload()" class="btn btn-entrar" type="button">Cadastrar</button>
             </div>
         </form>
     </div>

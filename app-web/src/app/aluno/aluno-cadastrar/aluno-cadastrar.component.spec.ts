@@ -21,5 +21,6 @@ describe('AlunoCadastrarComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
-  });
+  }); 
+
 });

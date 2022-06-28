@@ -1,22 +1,24 @@
 const express = require('express')
-//Declara uma variavel do tipo Router
 const rota = express.Router();
 
+const consultaBD = require('../banco_de_dados/comando_bd/calendario_comando')
+const mensagem = require('../mensagens/mensagem')
+const validar = require('../validar/calendario_validar')
+
 var pg = require('pg')
-var conString = "postgres://rcyctkyujrcygh:b5460a54af185b46d27b4ce8fcdd299186bed84ea7796e63a3d992e96817f2be@ec2-52-200-215-149.compute-1.amazonaws.com:5432/da1kaev7a1i6hc"
+var conString = process.env.DATABASE_URL;
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
-//Substitui o app.get pelo rota.get
 rota.get('/', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
-        client.query('SELECT * FROM tarefa', (erro, result) => {
+        client.query(consultaBD.getAll, (erro, result) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não autorizada')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             res.status(200).send(result.rows)
             release()
@@ -28,12 +30,12 @@ rota.get('/calendario/:id', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
-        client.query('SELECT * FROM tarefa WHERE id=$1', [req.params.id], (erro, result) => {
+        client.query(consultaBD.getOne, [req.params.id], (erro, result) => {
             if (erro) {
                 release()
-                return res.status(401).send("não autorizado")
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             res.status(200).send(result.rows[0])
             release()
@@ -41,15 +43,17 @@ rota.get('/calendario/:id', (req, res) => {
     })
 })
 
-
 rota.post('/periodo', (req, res) => {
+    if(!validar.validarDate(req.body.periodo) || !validar.validarNumeros(req.body.idaluno)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('operação não permitida')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
         var data = new Date(req.body.periodo).toLocaleDateString('en-US')
-        client.query('SELECT * FROM tarefa WHERE periodo=$1 AND idaluno = $2', [data, req.body.idaluno], (erro, result) => {
+        client.query(consultaBD.getDate, [data, req.body.idaluno], (erro, result) => {
             if (erro) {
                 release()
                 return res.status(401).send(erro)
@@ -62,50 +66,53 @@ rota.post('/periodo', (req, res) => {
 
 
 rota.post('/', (req, res) => {
+    if(!validar.validarDados(req.body)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Conexao não autorizada')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
-        var sql = 'INSERT INTO tarefa(titulo,periodo,horainicio,horafinal,descricao,iddisc,idaluno) VALUES($1,$2,$3,$4,$5,$6,$7)'
-        client.query(sql, [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.body.idaluno], (error, result) => {
+        client.query(consultaBD.postOne, [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.body.idaluno], (error, result) => {
             if (error) {
                 release()
-                return res.status(401).send('Operação não permitida')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(201).send("Tarefa Cadastrada")
+            res.status(201).send(mensagem.SUCESSO_OPERACAO)
             release()
         })
     })
 })
 
 rota.put('/:id', (req, res) => {
+    if(!validar.validarDadosAlteracao(req.body)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Conexão não autorizada')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
-        client.query('SELECT * FROM tarefa WHERE id = $1', [req.params.id], (erro, resul) => {
+        client.query(consultaBD.getOne, [req.params.id], (erro, resul) => {
             if (erro) {
                 release()
-                return res.status(401).send('Operação não permitida 1')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
 
             if (resul.rowCount > 0) {
-                var sql = 'UPDATE tarefa SET titulo = $1, periodo = $2, horainicio = $3, horafinal = $4, descricao = $5, iddisc = $6 WHERE id = $7'
                 var values = [req.body.titulo, req.body.periodo, req.body.horainicio, req.body.horafinal, req.body.descricao, req.body.iddisc, req.params.id]
-
-                client.query(sql, values, (error, result) => {
+                client.query(consultaBD.putAll, values, (error, result) => {
                     if (error) {
                         release()
-                        return res.status(401).send('Operação não permitida 2')
+                        return res.status(401).send(mensagem.ERRO_OPERACAO)
                     }
                     res.status(201).send(result.rows[0])
                     release()
                 })
             } else {
                 release()
-                res.status(401).send('Operação não permitida 3')
+                res.status(401).send(mensagem.ERRO_OPERACAO)
             }
         })
 
@@ -116,22 +123,23 @@ rota.delete('/:id', (req, res) => {
     pool.connect((err, client, release) => {
         if (err) {
             release()
-            return res.status(401).send('Deu erro! Operação não liberada!')
+            return res.status(401).send(mensagem.ERRO_CONEXAO)
         }
-        client.query('DELETE FROM tarefa WHERE id = $1', [req.params.id], (error, result) => {
+        client.query(consultaBD.deleteOne, [req.params.id], (error, result) => {
             if (error) {
                 release()
-                return res.status(401).send('Não funcionou')
+                return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(200).send('Tarefa deletada com sucesso!')
+            res.status(200).send(mensagem.SUCESSO_OPERACAO)
             release()
         })
     })
 })
 
-
-//cria o modulo que sera exportado e vai ser chamado no index.js
 rota.post('/gerarDias', (req, res) => {
+    if(!validar.validarDate(req.body.data)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     var data = new Date(req.body.data);
     if (data != "" && data != undefined) {
         lista_datas = [];
@@ -167,9 +175,9 @@ rota.post('/gerarDias', (req, res) => {
             }
             return res.status(201).send(lista_datas)
         }
-        return res.status(401).send("Erro")
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
     } else {
-        return res.status(401).send("Erro")
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
     }
 })
 

@@ -150,3 +150,8 @@ input::placeholder {
 .div-botoes-calendario{
     margin-bottom: 3%;
 }
+
+span{
+    color:#1A1859;
+    margin-left: 20px;
+}

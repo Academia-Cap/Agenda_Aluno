@@ -9,27 +9,27 @@ export class AlunoService {
   constructor(private http: HttpClient) { }
 
   gravar(dados: any){
-    let url = `http://localhost:8000/aluno`
+    let url = `https://agendaaluno.herokuapp.com/aluno`
     return this.http.post(url,dados)
   }
 
   getAluno(idAluno: number){
-    let url = `http://localhost:8000/aluno/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/${idAluno}`
     return this.http.get(url)
   }
 
   alterarAluno(id: number, dados: any){
-    let url = `http://localhost:8000/aluno/${id}`
+    let url = `https://agendaaluno.herokuapp.com/${id}`
     return this.http.put(url, dados)
   }
 
   deletarAluno(idAluno: number){
-    let url = `http://localhost:8000/aluno/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/${idAluno}`
     return this.http.get(url)
   }
 
   alterarSenha(dados: any, idAluno: number){
-    let url = `http://localhost:8000/aluno/alterarSenha/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/alterarSenha/${idAluno}`
     return this.http.put(url, dados)
   }
 

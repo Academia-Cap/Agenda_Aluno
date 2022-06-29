@@ -10,16 +10,16 @@ export class NotaService {
   constructor(private http: HttpClient) { }
 
   salvarNota(nota: any){
-    let url = `http://localhost:8000/nota`
+    let url = `https://agendaaluno.herokuapp.com/nota`
     return this.http.post(url, nota)
   }
 
   excluirNota(id: any){
-    return this.http.delete(`http://localhost:8000/nota/${id}`)
+    return this.http.delete(`https://agendaaluno.herokuapp.com/nota/${id}`)
   }
 
   getTodos(iddisc: any) {
-    return this.http.get(`http://localhost:8000/nota/${iddisc}`)
+    return this.http.get(`https://agendaaluno.herokuapp.com/nota/${iddisc}`)
   }
 
 }

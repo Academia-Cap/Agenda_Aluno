@@ -40,7 +40,7 @@ rota.post('/', (req, res) => {
                 release()
                 return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(201).send(result.rows)
+            res.status(201).send(mensagem.SUCESSO_OPERACAO)
             release()
         })
     })

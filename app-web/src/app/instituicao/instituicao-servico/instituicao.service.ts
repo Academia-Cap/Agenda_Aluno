@@ -9,23 +9,23 @@ export class InstituicaoService {
   constructor(private http: HttpClient) { }
 
   gravar(dados: any){
-    return this.http.post('http://localhost:8000/instituicao', dados)
+    return this.http.post('https://agendaaluno.herokuapp.com/instituicao', dados)
   }
 
   getTodos(dados: any){
-   return this.http.post('http://localhost:8000/instituicao/get',dados)
+   return this.http.post('https://agendaaluno.herokuapp.com/instituicao/get',dados)
   }
 
   excluir(id: number){
-    return this.http.delete(`http://localhost:8000/instituicao/${id}`)
+    return this.http.delete(`https://agendaaluno.herokuapp.com/instituicao/${id}`)
   }
 
   getId(id: number){
-    return this.http.get(`http://localhost:8000/instituicao/${id}`)
+    return this.http.get(`https://agendaaluno.herokuapp.com/instituicao/${id}`)
   }
 
   alterar(dados:any){
-    return this.http.put(`http://localhost:8000/instituicao/${dados.id}`, dados)
+    return this.http.put(`https://agendaaluno.herokuapp.com/instituicao/${dados.id}`, dados)
   }
   
 }

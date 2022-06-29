@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "email-validator": "^2.0.4",
     "swagger-ui-express": "^4.4.0"
   }
 }

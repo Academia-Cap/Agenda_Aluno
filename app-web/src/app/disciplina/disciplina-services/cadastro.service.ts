@@ -10,24 +10,24 @@ export class CadastroService {
   constructor(private http: HttpClient) { }
 
   gravar(dados: any) {
-    let url = `http://localhost:8000/disciplina`
+    let url = `https://agendaaluno.herokuapp.com/disciplina`
     return this.http.post(url, dados)
   }
 
   getTodos(dados: any) {
-    return this.http.post(`http://localhost:8000/disciplina/get`,dados)
+    return this.http.post(`https://agendaaluno.herokuapp.com/disciplina/get`,dados)
   }
 
   excluir(id: number) {
-    return this.http.delete(`http://localhost:8000/disciplina/${id}`)
+    return this.http.delete(`https://agendaaluno.herokuapp.com/disciplina/${id}`)
   }
 
   getId(id: number) {
-    return this.http.get(`http://localhost:8000/disciplina/${id}`)
+    return this.http.get(`https://agendaaluno.herokuapp.com/disciplina/${id}`)
   }
 
   alterar(dados: any) {
-    return this.http.put(`http://localhost:8000/disciplina/${dados.id}`, dados)
+    return this.http.put(`https://agendaaluno.herokuapp.com/disciplina/${dados.id}`, dados)
   }
 
 }

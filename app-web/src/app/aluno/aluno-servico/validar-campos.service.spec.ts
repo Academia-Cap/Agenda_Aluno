@@ -1,7 +1,9 @@
+import { Component } from '@angular/core';
 import { TestBed } from '@angular/core/testing';
+
 import { ValidarCamposService } from './validar-campos.service';
 
-fdescribe('ValidarCamposService', () => {
+describe('ValidarCamposService', () => {
   let service: ValidarCamposService;
 
   beforeEach(() => {
@@ -13,19 +15,8 @@ fdescribe('ValidarCamposService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should function validarEmail to valid', () => {
-    let emailTeste = "mariana@gmail.com"
-    expect(service.validarEmail(emailTeste)).toEqual("VALID");
-  });
-
-  it('should function validarNome to valid', () => {
-    var nomeTeste = "mariana";
-    expect(service.validarNome(nomeTeste)).toEqual("VALID");
-  });
-
-  it('should function validaTelefone to valid', () => {
-    var telefoneTeste = "(33)33333-3333";
-    expect(service.validarNome(telefoneTeste)).toEqual("VALID");
+  it('should function validarEmail to be true', () => {
+    expect(service.validarEmail("mariana@gmail.com")).toBeTruthy();
   });
 
 });

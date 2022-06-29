@@ -14,22 +14,22 @@ export class AlunoService {
   }
 
   getAluno(idAluno: number){
-    let url = `https://agendaaluno.herokuapp.com/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/${idAluno}`
     return this.http.get(url)
   }
 
   alterarAluno(id: number, dados: any){
-    let url = `https://agendaaluno.herokuapp.com/${id}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/${id}`
     return this.http.put(url, dados)
   }
 
   deletarAluno(idAluno: number){
-    let url = `https://agendaaluno.herokuapp.com/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/${idAluno}`
     return this.http.get(url)
   }
 
   alterarSenha(dados: any, idAluno: number){
-    let url = `https://agendaaluno.herokuapp.com/alterarSenha/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/alterarSenha/${idAluno}`
     return this.http.put(url, dados)
   }
 

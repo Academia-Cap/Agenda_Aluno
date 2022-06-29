@@ -3,6 +3,7 @@ const rota = express.Router();
 
 const consultaBD = require('../banco_de_dados/comando_bd/calendario_comando')
 const mensagem = require('../mensagens/mensagem')
+const validar = require('../validar/calendario_validar')
 
 var pg = require('pg')
 var conString = process.env.DATABASE_URL;
@@ -42,8 +43,10 @@ rota.get('/calendario/:id', (req, res) => {
     })
 })
 
-
 rota.post('/periodo', (req, res) => {
+    if(!validar.validarDate(req.body.periodo) || !validar.validarNumeros(req.body.idaluno)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -63,6 +66,9 @@ rota.post('/periodo', (req, res) => {
 
 
 rota.post('/', (req, res) => {
+    if(!validar.validarDados(req.body)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -73,13 +79,16 @@ rota.post('/', (req, res) => {
                 release()
                 return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
-            res.status(201).send(result.rows)
+            res.status(201).send(mensagem.SUCESSO_OPERACAO)
             release()
         })
     })
 })
 
 rota.put('/:id', (req, res) => {
+    if(!validar.validarDadosAlteracao(req.body)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -128,6 +137,9 @@ rota.delete('/:id', (req, res) => {
 })
 
 rota.post('/gerarDias', (req, res) => {
+    if(!validar.validarDate(req.body.data)){
+        return res.status(401).send(mensagem.ERRO_OPERACAO)
+    }
     var data = new Date(req.body.data);
     if (data != "" && data != undefined) {
         lista_datas = [];

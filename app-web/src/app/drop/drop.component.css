@@ -205,11 +205,18 @@
 }
 
 /* ICONES */
+#avatar{
+   position: inherit;
+   width: 50px;
+   height: 50px;
+   margin-left: -47.5px;
+   margin-top: -2.5px;
+}
 
 #agenda {
    color: white;
    font-size: 2em;
-   padding: 0.2em;
+   padding: 0.2em;   
 }
 #agenda:hover{
    color: #CFEAF2;

@@ -4,21 +4,12 @@
 
             <img src="{{image}}" class="rounded-circle" width="200" height="200" alt="">
 
-            <!-- teste -->
-            <div class="text-center">
-                <input class="form-control" type="file" (change)="onChange($event)">
 
-                <button (click)="onUpload()" class="btn btn-success">
-                    Upload
-                </button>
-
-                <button (click)="excluirImagem()" class="btn btn-success">
-                    excluir
+            <div class="">
+                <button class="btn avatarEdit mt-2" data-bs-toggle="modal" data-bs-target="#alunoAvatar">
+                    <i class="bi bi-camera"></i>
                 </button>
             </div>
-
-            <!-- teste -->
-
 
             <label class="label-perfil">
                 <h3>{{ aluno.nome }}</h3>
@@ -30,7 +21,7 @@
                 <h3>{{ aluno.email }}</h3>
             </label>
             <div class="div-btn-sair">
-                <button required type="button" class="btn btn-dark col-md-10" data-bs-toggle="modal"
+                <button required type="button" class="btn btn-dark col-md-10 mt-2" data-bs-toggle="modal"
                     data-bs-target="#alterarsenha">Alterar Senha</button>
             </div>
         </div>
@@ -38,7 +29,7 @@
     <div class="div-cadastro">
         <app-aluno-alterarsenha></app-aluno-alterarsenha>
         <app-info></app-info>
-
+        <app-aluno-avatar></app-aluno-avatar>
         <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}" id="info">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">

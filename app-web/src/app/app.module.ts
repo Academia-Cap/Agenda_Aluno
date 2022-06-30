@@ -17,6 +17,7 @@ import { NotasComponent } from './nota/notas/notas.component';
 import { DropComponent } from './drop/drop.component';
 import { AlunoAlterarsenhaComponent } from './aluno/aluno-alterarsenha/aluno-alterarsenha.component';
 import { InfoComponent } from './info/info.component';
+import { AlunoAvatarComponent } from './aluno/aluno-avatar/aluno-avatar.component';
 
 
 @NgModule({
@@ -31,6 +32,7 @@ import { InfoComponent } from './info/info.component';
     DropComponent,
     AlunoAlterarsenhaComponent,
     InfoComponent,
+    AlunoAvatarComponent,
   
   ],
   imports: [

@@ -176,12 +176,13 @@ rota.put('/alterarSenha/:id', (req, res, release) => {
 })
 
 rota.put('/addAvatar/:idAluno', (req, res) => {
+    console.log(req.body.idAvatar,req.params.idAluno)
     pool.connect((err, client, release) => {
         if (err) {
             release()
             return res.status(401).send('Conexão não autorizada')
         }
-        client.query('SELECT * FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
+        client.query('SELECT idAvatar FROM aluno WHERE id = $1', [req.params.idAluno], (erro, resul) => {
             if (erro) {
                 release()
                 return res.status(401).send('Operação não permitida')

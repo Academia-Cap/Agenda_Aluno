@@ -167,7 +167,6 @@ rota.put('/alterarSenha/:id', (req, res, release) => {
 })
 
 rota.put('/addAvatar/:idAluno', (req, res) => {
-    console.log(req.body.idAvatar,req.params.idAluno)
     pool.connect((err, client, release) => {
         if (err) {
             release()

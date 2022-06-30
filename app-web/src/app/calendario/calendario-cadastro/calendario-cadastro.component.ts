@@ -55,9 +55,10 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   gerarDIas(date: Date) {
-    var dados = {'data': date}
+    var dados = { 'data': date }
     this.serviceCalendario.getDias(dados).subscribe(x => {
       this.todosDiasSemana = x
+      console.log(this.todosDiasSemana)
       this.gerarTarefasDoDia(this.todosDiasSemana)
     })
   }
@@ -65,14 +66,15 @@ export class CalendarioCadastroComponent implements OnInit {
   selectDisciplina() {
     this.disciplinaService.getTodos(this.alunoToken).subscribe(x => {
       this.listaDisciplina = x
-      if(this.listaDisciplina == 0){
+      if (this.listaDisciplina == 0) {
         this.msg = "*Não existem disciplinas cadastradas"
       }
-  })
+    })
   }
 
   gerarTarefasDoDia(listaDias: any) {
     if (listaDias != undefined) {
+      console.log(listaDias)
       for (let i = 0; i < 7; i++) {
         const data = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
         switch (i) {

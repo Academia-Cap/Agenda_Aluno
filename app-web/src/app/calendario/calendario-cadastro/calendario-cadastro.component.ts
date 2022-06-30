@@ -122,6 +122,7 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   avancar() {
+    console.log("aqui")
     var data = new Date(this.ultimaDiaSemana.periodo)
     var dia = data.getDate() + 1;
     var mes = data.getMonth();

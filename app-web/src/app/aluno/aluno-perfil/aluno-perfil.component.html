@@ -1,40 +1,58 @@
 <div class="div-tela">
     <div class="div-perfil">
         <div class="div-icon">
-            <i class="bi bi-person-circle img-usuario"></i>
-            <label class="label-perfil"><h3>{{ aluno.nome }}</h3></label>
-            <label class="label-perfil"><h3>{{ aluno.usuario }}</h3></label>
-            <label class="label-perfil"><h3>{{ aluno.email }}</h3></label>
+
+            <img src="{{image}}" class="rounded-circle" width="200" height="200" alt="">
+
+
+            <div class="div-avatar">
+                <button class="btn avatarEdit mt-2" data-bs-toggle="modal" data-bs-target="#alunoAvatar">
+                    <i class="bi bi-camera"></i>
+                </button>
+            </div>
+
+            <label class="label-perfil">
+                <h3>{{ aluno.nome }}</h3>
+            </label>
+            <label class="label-perfil">
+                <h3>{{ aluno.usuario }}</h3>
+            </label>
+            <label class="label-perfil">
+                <h3>{{ aluno.email }}</h3>
+            </label>
             <div class="div-btn-sair">
-                <button required type="button" class="btn btn-dark col-md-10" data-bs-toggle="modal" data-bs-target="#alterarsenha">Alterar Senha</button>
+                <button required type="button" class="btn btn-dark col-md-10 mt-2" data-bs-toggle="modal"
+                    data-bs-target="#alterarsenha">Alterar Senha</button>
             </div>
         </div>
     </div>
     <div class="div-cadastro">
         <app-aluno-alterarsenha></app-aluno-alterarsenha>
         <app-info></app-info>
-
+        <app-aluno-avatar></app-aluno-avatar>
         <div class="modal" tabindex="-1" role="dialog" [ngStyle]="{'display':displayStyle}" id="info">
             <div class="modal-dialog" role="document">
-              <div class="modal-content">
-                <div class="modal-header">
-                  <h4 class="modal-title">Conheça O Aluno Agenda!</h4>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Conheça O Aluno Agenda!</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>É novo por aqui!?</p>
+                        <p>Conheça o Aluno Agenda! Aqui você pode organizar suas atividades sem perder nem um
+                            compromisso!</p>
+                        <p>Olha só o que você consegue fazer!</p>
+                        <p>Cadastre as instituições em que estuda</p>
+                        <p>Cadastre as disciplinas que participa em cada instituição</p>
+                        <p>Cadastre suas notas das avaliações de cada disciplina</p>
+                        <p>Cadastre e visualize seus comprimissos das suas disciplinas </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="reset" class="btn btn-secondary btn-modal" (click)="closeInfo()"><i
+                                data-bs-dismiss="modal" class="material-icons">close</i></button>
+                    </div>
                 </div>
-                <div class="modal-body">
-                  <p>É novo por aqui!?</p>
-                  <p>Conheça o Aluno Agenda! Aqui você pode organizar suas atividades sem perder nem um compromisso!</p>
-                  <p>Olha só o que você consegue fazer!</p>
-                  <p>Cadastre as instituições em que estuda</p>
-                  <p>Cadastre as disciplinas que participa em cada instituição</p>
-                  <p>Cadastre suas notas das avaliações de cada disciplina</p>
-                  <p>Cadastre e visualize seus comprimissos das suas disciplinas </p>
-                </div>
-                <div class="modal-footer">
-                    <button type="reset" class="btn btn-secondary btn-modal" (click)="closeInfo()"><i data-bs-dismiss="modal" class="material-icons">close</i></button>
-                </div>
-              </div>
             </div>
-          </div>
+        </div>
 
 
         <h1>Informações cadastrais</h1>
@@ -69,4 +87,3 @@
     </div>
     <app-drop style="max-height: 2em;"></app-drop>
 </div>
-

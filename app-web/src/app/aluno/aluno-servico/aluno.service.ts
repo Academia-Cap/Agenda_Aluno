@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +34,16 @@ export class AlunoService {
     return this.http.put(url, dados)
   }
 
-  info(){
+  viewAvatar(idAluno: number) {
+    let url = `https://agendaaluno.herokuapp.com/aluno/viewAvatar/${idAluno}`
+    return this.http.get(url)
+  }
 
+  addAvatar( idAvatar: string, idAluno: number) {
+    console.log(idAvatar, idAluno)
+    let url = `https://agendaaluno.herokuapp.com/aluno/addAvatar/${idAluno}`
+    return this.http.put(url, idAvatar)
   }
 }
+
+

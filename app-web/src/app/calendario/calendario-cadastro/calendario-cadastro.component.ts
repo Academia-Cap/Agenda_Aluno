@@ -73,7 +73,6 @@ export class CalendarioCadastroComponent implements OnInit {
 
   gerarTarefasDoDia(listaDias: any) {
     if (listaDias != undefined) {
-      console.log(listaDias)
       for (let i = 0; i < 7; i++) {
         const data = { "periodo": listaDias[i], "idaluno": this.alunoToken.id }
         switch (i) {
@@ -123,22 +122,20 @@ export class CalendarioCadastroComponent implements OnInit {
 
   avancar() {
     var data = new Date(this.ultimaDiaSemana.periodo)
-    var dia = data.getDate() + 1;
-    var mes = data.getMonth();
-    var ano = data.getFullYear();
+    var dia = data.getUTCDate() + 1;
+    var mes = data.getUTCMonth();
+    var ano = data.getUTCFullYear();
     this.dataAtual = new Date(ano, mes, dia)
     this.gerarDIas(this.dataAtual)
-    //window.location.reload()
   }
 
   voltar() {
     var data = new Date(this.primeiroDiaSemana.periodo)
-    var dia = data.getDate() - 1;
-    var mes = data.getMonth();
-    var ano = data.getFullYear();
+    var dia = data.getUTCDate() - 1;
+    var mes = data.getUTCMonth();
+    var ano = data.getUTCFullYear();
     this.dataAtual = new Date(ano, mes, dia)
     this.gerarDIas(this.dataAtual)
-    //window.location.reload()
   }
 
 }

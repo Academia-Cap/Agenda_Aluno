@@ -5,6 +5,7 @@ import { ValidarCamposService } from '../aluno-servico/validar-campos.service';
 import { DecodeTokenService } from '../aluno-servico/autenticacao/decode-token.service';
 import { InformacaoService } from '../aluno-servico/informacao.service';
 import { Token } from '@angular/compiler';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 
 @Component({
@@ -13,18 +14,26 @@ import { Token } from '@angular/compiler';
   styleUrls: ['./aluno-perfil.component.css'],
 })
 export class AlunoPerfilComponent implements OnInit {
+  name = 'Angular';
   msgNome: String = '';
   msg: String = '';
   msgTel: string = '';
   msgLogin: string = '';
   aluno: any = {};
+  imagem: any = {'title':'', 'description':'', 'image': ''}
+  avatar: any = {'image':''}
+  idavatar: any;
   idAluno: number = 0
   alunoToken: any;
   displayStyle: any;
   block = false;
   token: any = {"token": ""};
+  image: string = '';
+  imageHash:any;
+  link:any;
 
-  constructor(private servicoAluno: AlunoService, private router: Router, 
+
+  constructor(private servicoAluno: AlunoService, private router: Router, private http: HttpClient,
     private serviceValidar: ValidarCamposService, private decodeToken: DecodeTokenService, private displayInfo: InformacaoService) {
     this.alunoToken = this.decodeToken.decodeTokenJWT()
     this.idAluno = this.alunoToken.id
@@ -32,6 +41,7 @@ export class AlunoPerfilComponent implements OnInit {
   }
   ngOnInit(): void {
    this.displayStyle = this.displayInfo.getDisplayInfo()
+   this.viewImagem()
   }
 
   closeInfo() {
@@ -65,4 +75,15 @@ export class AlunoPerfilComponent implements OnInit {
     sessionStorage.removeItem('token')
     this.router.navigate(['/']);
   }
-}
+
+  viewImagem(){
+    this.servicoAluno.viewAvatar(this.idAluno).subscribe(x =>{
+      this.imageHash = x
+      this.link = "https://i.imgur.com/"+this.imageHash.idavatar+".png"
+      this.image = this.link
+    })
+
+  }
+
+
+ }

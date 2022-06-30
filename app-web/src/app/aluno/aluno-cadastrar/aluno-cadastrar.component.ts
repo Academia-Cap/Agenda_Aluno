@@ -20,6 +20,7 @@ export class AlunoCadastrarComponent implements OnInit {
   msgTel: string = '';
   msgSenha: String = '';
   msgLogin: string = '';
+  dadosGravar: any ={'nome':'', 'telefone':'', 'email':'','usuario':'', 'senha':null, 'idAvatar':''}
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
@@ -45,6 +46,7 @@ export class AlunoCadastrarComponent implements OnInit {
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
       dados.telefone != "INVALID" && dados.senha.length >= 6) {
+      dados.idAvatar = "F43LwoR"
       this.Gravar(dados)
     }
   }

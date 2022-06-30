@@ -155,7 +155,7 @@
 }
 
 .logout{
-   background-color: #CFEAF2;
+   background-color: #BF6083;
    box-shadow: 3px 3px 0 0 #C4C4C4;
    text-shadow: 1px 1px 0 #C4C4C4;
 }
@@ -185,7 +185,7 @@
 }
 
 .disciplina {
-   background-color: #1A1859;
+   background-color: #214e7a;
    box-shadow: 3px 3px 0 0 #C4C4C4;
    text-shadow: 1px 1px 0 #C4C4C4;
 }
@@ -194,8 +194,18 @@
    background-color: #f3d7e1c7;
 }
 
-.info{
+.nota{
    background-color: #1A1859;
+   box-shadow: 3px 3px 0 0 #C4C4C4;
+   text-shadow: 1px 1px 0 #C4C4C4;
+}
+
+.nota:hover{
+   background-color: #f3d7e1c7;
+}
+
+.info{
+   background-color: #CD85A0;
    box-shadow: 3px 3px 0 0 #C4C4C4;
    text-shadow: 1px 1px 0 #C4C4C4
 }
@@ -212,7 +222,7 @@
    padding: 0.2em;
 }
 #agenda:hover{
-   color: #CFEAF2;
+   color: #1A1859;
 }
 
 #perfil {
@@ -221,7 +231,7 @@
    padding: 0.2em;
 }
 #perfil:hover{
-   color: #89A4C8;
+   color: #1A1859;
 }
 
 #instituicao {
@@ -230,7 +240,7 @@
    padding: 0.2em;
 }
 #instituicao:hover{
-   color: #6595C4;
+   color: #1A1859;
 }
 
 #disciplina {
@@ -239,6 +249,15 @@
    padding: 0.2em;
 }
 #disciplina:hover{
+   color: #1A1859;
+}
+
+#logout {
+   color: white;
+   font-size: 2em;
+   padding: 0.2em;
+}
+#logout:hover{
    color: #1A1859;
 }
 

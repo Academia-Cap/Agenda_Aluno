@@ -1,8 +1,6 @@
 const express = require('express')
 const rota = express.Router();
 const bcrypt = require('bcrypt')
-const login = require('../middleware/login')
-const validar = require('../validar/aluno_validar')
 
 const consultaBD = require('../banco_de_dados/comando_bd/aluno_comando')
 const mensagem = require('../mensagens/mensagem')
@@ -12,9 +10,6 @@ var conString = process.env.DATABASE_URL;
 const pool = new pg.Pool({ connectionString: conString, ssl: { rejectUnauthorized: false } })
 
 rota.post('/', (req, res) => {
-    if(!validar.validarDados(req.body)){
-        return res.status(401).send(mensagem.ERRO_OPERACAO)
-    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -68,9 +63,6 @@ rota.get('/:idAluno', (req, res) => {
 });
 
 rota.put('/:idAluno', (req, res) => {
-    if(!validar.validarDadosAlteracao(req.body)){
-        return res.status(401).send(mensagem.ERRO_OPERACAO)
-    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -130,9 +122,6 @@ rota.delete('/:idAluno', (req, res) => {
 
 
 rota.put('/alterarSenha/:id', (req, res, release) => {
-    if(!validar.validarCampo(req.body)){
-        return res.status(401).send(mensagem.ERRO_OPERACAO)
-    }
     pool.connect((err, client, release) => {
         if (err) {
             release()

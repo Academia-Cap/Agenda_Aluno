@@ -35,13 +35,13 @@ export class AlunoService {
   }
 
   viewAvatar(idAluno: number) {
-    let url = `http://localhost:8000/aluno/viewAvatar/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/viewAvatar/${idAluno}`
     return this.http.get(url)
   }
 
   addAvatar( idAvatar: string, idAluno: number) {
     console.log(idAvatar, idAluno)
-    let url = `http://localhost:8000/aluno/addAvatar/${idAluno}`
+    let url = `https://agendaaluno.herokuapp.com/aluno/addAvatar/${idAluno}`
     return this.http.put(url, idAvatar)
   }
 }

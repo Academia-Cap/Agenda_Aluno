@@ -128,6 +128,7 @@ export class CalendarioCadastroComponent implements OnInit {
     var mes = data.getMonth();
     var ano = data.getFullYear();
     this.dataAtual = new Date(ano, mes, dia)
+    console.log(this.dataAtual)
     this.gerarDIas(this.dataAtual)
     //window.location.reload()
   }

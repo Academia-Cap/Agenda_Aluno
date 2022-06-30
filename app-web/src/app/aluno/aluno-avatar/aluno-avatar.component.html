@@ -1,0 +1,25 @@
+<div class="modal fade div-fade" id="alunoAvatar">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header div-centralizar">
+                <h2 class="modal-title h2-style">Esolha seu avatar!</h2>
+            </div>
+            <div class=" div-centralizar">
+                <div class="card">
+                    <div *ngFor="let avatar of avatarLista" class="card card-body">
+                        <form>
+                            <button onClick="window.location.reload()" type="submit" (click)="escolherAvatar(avatar)">
+                                <img type="image" id="avatares" src={{avatar}} class="inputImage">
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+
+            </div>
+
+        </div>
+    </div>
+</div>

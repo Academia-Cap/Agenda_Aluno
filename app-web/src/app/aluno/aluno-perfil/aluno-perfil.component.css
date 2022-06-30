@@ -87,3 +87,16 @@ h1{
 span{
     color: #1A1859;
 }
+
+.file-input {
+    display: none;
+  }
+
+.avatarEdit{
+    background-color: #CD85A0;
+    margin-top: 0px;
+}
+
+.div-avatar{
+    margin-top: 0px;
+}

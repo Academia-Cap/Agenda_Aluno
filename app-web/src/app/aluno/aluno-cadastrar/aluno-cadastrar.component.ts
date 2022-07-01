@@ -46,17 +46,15 @@ export class AlunoCadastrarComponent implements OnInit {
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
       dados.telefone != "INVALID" && dados.senha.length >= 6) {
-      dados.idAvatar = "F43LwoR"
+      dados.idAvatar = "5fTN301"
       this.Gravar(dados)
     }
   }
 
   Gravar(dados: any) {
-    dados.idAvatar = "";
-    this.servicoAluno.gravar(dados).subscribe(x => {
-      this.msg = "Cadastro criado com sucesso"
-      this.displayInfo.setDisplayInfo("block")
-    })
+    this.servicoAluno.gravar(dados).subscribe(() => {})
+    this.msg = "Cadastro criado com sucesso"
+    this.displayInfo.setDisplayInfo("block")
   }
 
   login(dados: any) {

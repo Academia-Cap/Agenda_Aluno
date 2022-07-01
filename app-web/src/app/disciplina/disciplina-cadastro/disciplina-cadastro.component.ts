@@ -42,7 +42,7 @@ export class DisciplinaCadastroComponent implements OnInit {
       dados.id = this.disciplina.id
       this.serviceCadastro.alterar(dados).subscribe(x => this.disciplina = x)
     }
-    window.location.reload()
+   
   }
 
   editar(id: any) {
@@ -54,7 +54,7 @@ export class DisciplinaCadastroComponent implements OnInit {
   }
 
   excluir(id: any) {
-    this.serviceCadastro.excluir(id).subscribe(x => window.location.reload())
+    this.serviceCadastro.excluir(id).subscribe(()=> "excluir")
   }
 
   selectInstituicao(){

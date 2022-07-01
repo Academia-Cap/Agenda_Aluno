@@ -44,6 +44,7 @@ export class CalendarioCadastroComponent implements OnInit {
   gravar(dados: any) {
     dados.idaluno = this.alunoToken.id
     dados.iddisc = this.serviceValidar.gerarIdDisciplina(dados)
+    console.log(dados)
     dados.periodo = this.serviceValidar.gerarData(dados)
 
     if (this.tarefa.id == null) {
@@ -111,8 +112,7 @@ export class CalendarioCadastroComponent implements OnInit {
   }
 
   excluir(id: any) {
-    this.serviceCalendario.excluir(id).subscribe(x => this.msg = "Tarefa excluida com sucesso")
-    window.location.reload();
+    this.serviceCalendario.excluir(id).subscribe(() => this.msg = "Tarefa excluida com sucesso")
   }
 
   editar(dados: any) {

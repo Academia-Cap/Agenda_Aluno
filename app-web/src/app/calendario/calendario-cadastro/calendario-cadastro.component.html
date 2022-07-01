@@ -62,7 +62,7 @@
                     <div *ngFor="let d of listaDisciplina">
                         <h5 *ngIf="d.id == tr.iddisc">
                             <h3>{{ tr.titulo }}</h3>
-                            {{ tr.periodo }}
+                            {{ formatarData(tr.periodo) | date }}
                             {{ tr.horainicio }}
                             {{ tr.horafinal }}
                             {{ tr.descricao }}
@@ -83,7 +83,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}
@@ -105,7 +105,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}
@@ -127,7 +127,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}
@@ -149,7 +149,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}
@@ -171,7 +171,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}
@@ -193,7 +193,7 @@
                         <div *ngFor="let d of listaDisciplina">
                             <h5 *ngIf="d.id == tr.iddisc">
                                 <h3>{{ tr.titulo }}</h3>
-                                {{ tr.periodo }}
+                                {{ formatarData(tr.periodo) | date }}
                                 {{ tr.horainicio }}
                                 {{ tr.horafinal }}
                                 {{ tr.descricao }}

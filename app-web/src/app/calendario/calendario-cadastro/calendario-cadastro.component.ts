@@ -28,7 +28,7 @@ export class CalendarioCadastroComponent implements OnInit {
   ultimaDiaSemana: any;
   primeiroDiaSemana: any;
   dataAtual = new Date();
-
+  verDataFormatada: any = null;
 
   constructor(private serviceCalendario: CalendarioService,
     private decodeToken: DecodeTokenService, private disciplinaService: CadastroService,
@@ -139,6 +139,10 @@ export class CalendarioCadastroComponent implements OnInit {
     var ano = data.getUTCFullYear();
     this.dataAtual = new Date(ano, mes, dia)
     this.gerarDIas(this.dataAtual)
+  }
+
+  formatarData(data: Date){
+    return data;
   }
 
 }

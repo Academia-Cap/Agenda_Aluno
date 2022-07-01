@@ -2,7 +2,7 @@
 
     <div class="div-cadastro">
         
-        <h2>Adicionar disciplina</h2>
+        <h1 id="h1">Cadastrar disciplina</h1>
 
         <form #f="ngForm" (ngSubmit)="gravar(f.value)">
 
@@ -22,13 +22,13 @@
             <input class="input-group-text" rows="1" cols="35" type="text" [(ngModel)]="disciplina.anotacao"
                 #fanotacao="ngModel" ngModel name="anotacao" placeholder="Anotações" />
 
-            <select required class="form-select" [(ngModel)]="disciplina.idinst" #fidinst="ngModel" ngModel
-                name="idinst">
+            <select required class="form-select" [(ngModel)]="disciplina.idinst" #fidinst="ngModel" ngModel name="idinst">
                 <option *ngFor="let inst of listaInstituicao" value="{{inst.id}}">
                     {{inst.nome}}
                 </option>
             </select>
             <span>{{msg}}</span>
+
         </form>
         <div class="mt-2 div-botoes">
             <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
@@ -42,7 +42,7 @@
         
         <app-info></app-info>
 
-        <h1>Disciplina</h1>
+        <h1 class="instcad">Disciplina</h1>
 
         <div *ngFor="let disc of disciplina" class="card" style="width: 18rem;">
             <div class="card-body">

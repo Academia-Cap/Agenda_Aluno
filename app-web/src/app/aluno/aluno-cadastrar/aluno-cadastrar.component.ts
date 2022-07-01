@@ -52,19 +52,9 @@ export class AlunoCadastrarComponent implements OnInit {
 
   Gravar(dados: any) {
     dados.idAvatar = "";
-    console.log(dados)
     this.servicoAluno.gravar(dados).subscribe(x => {
-      let resultado = x
-      console.log(x)
-      if (resultado == "Operação realizada com sucesso") {
-        this.msg = "Cadastro criado com sucesso"
-        this.displayInfo.setDisplayInfo("block")
-      }
-      if (resultado == "Resgistro já existe") {
-        this.msg = "Email já esta cadastrado"
-      }else {
-        this.msg = "Não foi possivel cadastrar, tente novamente mais tarde"
-      }
+      this.msg = "Cadastro criado com sucesso"
+      this.displayInfo.setDisplayInfo("block")
     })
   }
 

@@ -24,7 +24,7 @@ rota.post('/', (req, res) => {
 
             if (result.rowCount > 0) {
                 release()
-                return res.status(200).send(mensagem.ERRO_REGISTRO)
+                return res.status(401).send(mensagem.ERRO_REGISTRO)
             }
             bcrypt.hash(req.body.senha, 10, (error, hash) => {
                 if (error) {

@@ -16,7 +16,7 @@ export class InstituicaoCadastroComponent implements OnInit {
 
   msg: string = ""
   alunoToken: any;
-  instituicao: any = { 'nome': '', 'sigla': '', 'cep': '','idaluno':null };
+  instituicao: any = { 'nome': '', 'sigla': '', 'cep': '', 'idaluno': null };
 
   constructor(private instituicaoService: InstituicaoService, private cepService: CepServicoService, private camposService: ValidaCamposService,
     private decodeToken: DecodeTokenService) {
@@ -30,27 +30,20 @@ export class InstituicaoCadastroComponent implements OnInit {
 
   gravar(dados: any) {
     dados.idaluno = this.alunoToken.id
-    console.log(dados)
     if (this.instituicao.id == null) {
-      this.instituicaoService.gravar(dados).subscribe(x => {
-        this.instituicao = x
-      })
+      this.instituicaoService.gravar(dados).subscribe(x => {this.instituicao = x})
     } else {
       dados.id = this.instituicao.id
-      this.instituicaoService.alterar(dados).subscribe(x => {
-        this.instituicao = x
-      })
+      this.instituicaoService.alterar(dados).subscribe(x => {this.instituicao = x})
     }
-    window.location.reload();
   }
 
   editar(id: any) {
-    this.instituicaoService.getId(id).subscribe(x => this.instituicao = x)
+    this.instituicaoService.getId(id).subscribe(x => {this.instituicao = x})
   }
 
   excluir(id: any) {
-    this.instituicaoService.excluir(id).subscribe(x => this.msg = "instituicao excluida com sucesso")
-    window.location.reload();
+    this.instituicaoService.excluir(id).subscribe(x => {this.instituicao = x})
   }
 
   cep: string = "";

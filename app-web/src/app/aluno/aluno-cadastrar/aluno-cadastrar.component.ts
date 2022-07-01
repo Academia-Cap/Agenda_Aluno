@@ -20,7 +20,7 @@ export class AlunoCadastrarComponent implements OnInit {
   msgTel: string = '';
   msgSenha: String = '';
   msgLogin: string = '';
-  dadosGravar: any ={'nome':'', 'telefone':'', 'email':'','usuario':'', 'senha':null, 'idAvatar':''}
+  dadosGravar: any = { 'nome': '', 'telefone': '', 'email': '', 'usuario': '', 'senha': null, 'idAvatar': '' }
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,
@@ -37,11 +37,11 @@ export class AlunoCadastrarComponent implements OnInit {
     }
 
     if (dados.telefone == "INVALID") {
-      this.msgTel="Telefone Inválido"
+      this.msgTel = "Telefone Inválido"
     }
 
     if (dados.senha == "") {
-      this.msgSenha="Senha Inválido"
+      this.msgSenha = "Senha Inválido"
     }
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
@@ -52,9 +52,11 @@ export class AlunoCadastrarComponent implements OnInit {
   }
 
   Gravar(dados: any) {
-    this.servicoAluno.gravar(dados).subscribe(() => "Cadastrado")
-    this.msg = "Cadastro criado com sucesso"
-    this.displayInfo.setDisplayInfo("block")
+    dados.idAvatar = "";
+    this.servicoAluno.gravar(dados).subscribe(x => {
+      this.msg = "Cadastro criado com sucesso"
+      this.displayInfo.setDisplayInfo("block")
+    })
   }
 
   login(dados: any) {

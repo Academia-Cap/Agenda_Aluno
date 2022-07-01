@@ -21,6 +21,7 @@ export class AlunoAlterarsenhaComponent implements OnInit {
     console.log(dados)
     this.servicoAluno.alterarSenha(dados, this.alunoToken.id).subscribe(() => {
       alert("Senha alterada com sucesso!")
+      window.location.reload();
     })
   }
 

@@ -19,18 +19,18 @@ export class AlunoPerfilComponent implements OnInit {
   msg: String = '';
   msgTel: string = '';
   msgLogin: string = '';
-  aluno: any = {};
-  imagem: any = {'title':'', 'description':'', 'image': ''}
-  avatar: any = {'image':''}
+  aluno: any = { 'nome': '', 'telefone': '', 'email': '', 'usuario': '', 'senha': null, 'idAvatar': '' };
+  imagem: any = { 'title': '', 'description': '', 'image': '' }
+  avatar: any = { 'image': '' }
   idavatar: any;
   idAluno: number = 0
   alunoToken: any;
   displayStyle: any;
   block = false;
-  token: any = {"token": ""};
+  token: any = { "token": "" };
   image: string = '';
-  imageHash:any;
-  link:any;
+  imageHash: any;
+  link: any;
 
 
   constructor(private servicoAluno: AlunoService, private router: Router, private http: HttpClient,
@@ -40,12 +40,12 @@ export class AlunoPerfilComponent implements OnInit {
     this.servicoAluno.getAluno(this.idAluno).subscribe(x => this.aluno = x)
   }
   ngOnInit(): void {
-   this.displayStyle = this.displayInfo.getDisplayInfo()
-   this.viewImagem()
+    this.displayStyle = this.displayInfo.getDisplayInfo()
+    this.viewImagem()
   }
 
   closeInfo() {
-    if(this.displayInfo.getDisplayInfo() == "block"){
+    if (this.displayInfo.getDisplayInfo() == "block") {
       this.displayInfo.setDisplayInfo("none")
       this.displayStyle = this.displayInfo.getDisplayInfo()
     }
@@ -63,10 +63,12 @@ export class AlunoPerfilComponent implements OnInit {
     if (dados.telefone == "INVALID") {
       this.msgTel = '*Telefone Inválido'
     }
-    if (this.serviceValidar.validarNome(dados.nome) == "VALID" && dados.telefone != "INVALID" 
+    if (this.serviceValidar.validarNome(dados.nome) == "VALID" && dados.telefone != "INVALID"
       && this.serviceValidar.validarNome(dados.usuario)) {
-      this.servicoAluno.alterarAluno(this.idAluno, dados).subscribe(x => this.aluno = x);
-      window.location.reload();
+      this.servicoAluno.alterarAluno(this.idAluno, dados).subscribe(x => {
+        this.aluno = x
+        window.location.reload();
+      });
       this.msg = '*Alterado com sucesso'
     }
   }
@@ -76,14 +78,14 @@ export class AlunoPerfilComponent implements OnInit {
     this.router.navigate(['/']);
   }
 
-  viewImagem(){
-    this.servicoAluno.viewAvatar(this.idAluno).subscribe(x =>{
+  viewImagem() {
+    this.servicoAluno.viewAvatar(this.idAluno).subscribe(x => {
       this.imageHash = x
-      this.link = "https://i.imgur.com/"+this.imageHash.idavatar+".png"
+      this.link = "https://i.imgur.com/" + this.imageHash.idavatar + ".png"
       this.image = this.link
     })
 
   }
 
 
- }
+}

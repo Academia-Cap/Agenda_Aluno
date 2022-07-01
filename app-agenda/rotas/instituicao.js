@@ -20,6 +20,7 @@ rota.post('/get', (req, res) => {
                 return res.status(401).send(mensagem.ERRO_OPERACAO)
             }
             res.status(200).send(result.rows)
+            release()
         })
     })
 })

@@ -22,6 +22,12 @@ export class ValidarCamposService {
       var telefoneSemMask = telefone.replace(/([^\w]*)/gi, '');
       return telefoneSemMask;
     }
+    if(telefone.length == 11){
+      var telefoneSemMask = telefone.replace(/([^\w]*)/gi, '');
+      if( telefoneSemMask.length == 11){
+        return telefone;
+      }
+    }
     return "INVALID";
   }
 

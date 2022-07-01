@@ -24,14 +24,14 @@ rota.post('/', (req, res) => {
 
             if (result.rowCount > 0) {
                 release()
-                return res.status(200).send(mensagem.ERRO_REGISTRO)
+                return res.status(401).send(mensagem.ERRO_REGISTRO)
             }
             bcrypt.hash(req.body.senha, 10, (error, hash) => {
                 if (error) {
                     release()
                     return res.status(500).send(mensagem.ERRO_AUNTENTICACAO)
                 }
-                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, hash]
+                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.idAvatar, hash]
                 client.query(consultaBD.postOne, values, (error, result) => {
                     if (error) {
                         return res.status(401).send(mensagem.ERRO_OPERACAO)

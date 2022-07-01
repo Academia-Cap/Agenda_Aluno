@@ -46,6 +46,7 @@ export class AlunoCadastrarComponent implements OnInit {
     if (this.serviceValidar.validarNome(dados.nome) == "VALID" &&
       this.serviceValidar.validarEmail(dados.email) == "VALID" &&
       dados.telefone != "INVALID" && dados.senha.length >= 6) {
+      dados.idAvatar = "F43LwoR"
       this.Gravar(dados)
     }
   }

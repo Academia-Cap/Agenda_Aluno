@@ -17,34 +17,48 @@
 }
 
 input{
-    background: transparent;
-    margin-left: 3%;
+    margin-left: 1em;
     margin-bottom: 3%;
-    margin-top: 3%;
-    width: 95%;
+    width: 17.5em;
     border-radius: 10px;
+    background-color: transparent;
     border-color: white;
-    color: white;
+    text-align: center;
 }
 
-::placeholder{
+input::placeholder{
     color: white;
+    text-align: center;
 }
 
-h2{
-    color: white;
+#h1{
+    text-align: center;
+    color: #FFFFFF;
+    margin-top: 15%;
+    margin-bottom: 15%;
+}
+
+.instcad{
+    margin-top: 1em;
+    text-align: center;
     margin-left: 3%;
-    text-align: center;
-    margin: 5%;
-}
-
-h1{
     color: #1A1859;
-    text-align: center;
 }
 
 .material-icons{
     margin: 1.5%;
+}
+
+.ng-invalid{
+  
+    text-align: center;
+}
+
+.div-botoes {
+    width: 100%;
+    text-align: center;
+    position: absolute;
+    bottom: 0;
 }
 
 .btn{
@@ -56,17 +70,7 @@ h1{
 .btn:hover{
     background-color: white;
     color: #1A1859;
-}
-
-.botoes{
-    position: absolute;
-    width: 25%;
-    bottom: 2%;
-}
-
-.ng-invalid{
-  
-    text-align: center;
+    border-color: #1A1859;
 }
 
 /* CARD */
@@ -102,18 +106,23 @@ h1{
 }
 
 .form-select {
-    margin-left: 3%;
+    margin-left: 1em;
     margin-top: 3%;
-    width: 95%;
+    width: 17.5em;
     border-radius: 10px;
     background-color: transparent;
     border-color: white;
-    font-family: Kameron;
+    text-align: center;
 }
 
-.div-botoes {
-    width: 100%;
-    margin-top: 45%;
+.form-select-nota {
+    margin-left: 1em;
+    margin-top: 3%;
+    width: 17.5em;
+    height: 2.7em;
+    border-radius: 10px;
+    background-color: transparent;
+    border-color: #1A1859;
     text-align: center;
 }
 

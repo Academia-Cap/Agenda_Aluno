@@ -42,6 +42,7 @@ export class DisciplinaCadastroComponent implements OnInit {
       dados.id = this.disciplina.id
       this.serviceCadastro.alterar(dados).subscribe(x => this.disciplina = x)
     }
+    window.location.reload()
   }
 
   editar(id: any) {

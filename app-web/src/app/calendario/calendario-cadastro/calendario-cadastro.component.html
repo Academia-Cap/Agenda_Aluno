@@ -10,7 +10,7 @@
                 <div class="input-group">
                     <input required class="form-control" placeholder="__/___/__" name="periodo"
                         [(ngModel)]="tarefa.periodo" #fperiodo="ngModel" ngbDatepicker #d="ngbDatepicker">
-                    <button class="btn btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
+                    <button class="btn-e btn-outline-secondary calendar btn-calendar" (click)="d.toggle()" type="button">
                     </button>
                 </div>
                 <span *ngIf="fperiodo.invalid && fperiodo.touched">*Data inválido</span>
@@ -38,6 +38,7 @@
                     class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
+
         </form>
     </div>
     <div class="div-cadastro">

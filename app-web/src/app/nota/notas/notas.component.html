@@ -1,7 +1,7 @@
 <div class="div-geral">
 
     <div class="div-cadastro">
-        <h2 class="h2-nota">Adicionar Nota</h2>
+        <h1 id="h1">Adicionar Nota</h1>
         <div class="div-form">
             <form #f="ngForm" (ngSubmit)="gravar(f.value)">
                 <input required class="input-group-text" type="text" [(ngModel)]="nota.descricao" #fdescricao="ngModel"
@@ -23,20 +23,20 @@
             </form>
         </div>
         <div class="mt-2 div-botoes">
-            <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
+            <button type="submit" [disabled]="f.invalid" class="btn me-2"
                 (click)="gravar(f.value)">Salvar</button>
-            <button type="button" onClick="window.location.reload()" class="btn">Cancelar</button>
+            <button type="button" class="btn">Cancelar</button>
         </div>
     </div>
 
     <div class="div-janela">
         <app-info></app-info>
-        <h1>Nota</h1>
+        <h1 class="instcad">Nota</h1>
 
         <form #g="ngForm" (ngSubmit)="gerarDisciplinas(g.value)">
             <div class="selecao-disciplina">
                 <div>
-                    <select required class="form-select" [(ngModel)]="iddisciplina" #gdisciplina="ngModel" ngModel
+                    <select required class="form-select-nota" [(ngModel)]="iddisciplina" #gdisciplina="ngModel" ngModel
                         name="disciplina">
                         <option *ngFor="let disc of listaDisciplinas" value="{{disc.id}}">
                             {{disc.nome}}

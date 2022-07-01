@@ -112,6 +112,7 @@ export class CalendarioCadastroComponent implements OnInit {
 
   excluir(id: any) {
     this.serviceCalendario.excluir(id).subscribe(x => this.msg = "Tarefa excluida com sucesso")
+    window.location.reload();
   }
 
   editar(dados: any) {

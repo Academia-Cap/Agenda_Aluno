@@ -28,7 +28,6 @@ export class CalendarioCadastroComponent implements OnInit {
   ultimaDiaSemana: any;
   primeiroDiaSemana: any;
   dataAtual = new Date();
-  verDataFormatada: any = null;
 
   constructor(private serviceCalendario: CalendarioService,
     private decodeToken: DecodeTokenService, private disciplinaService: CadastroService,

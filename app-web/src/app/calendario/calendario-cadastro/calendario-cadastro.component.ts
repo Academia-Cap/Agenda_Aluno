@@ -139,8 +139,13 @@ export class CalendarioCadastroComponent implements OnInit {
     this.gerarDIas(this.dataAtual)
   }
 
-  formatarData(data: Date){
-    return data;
+  formatarData(date: Date){
+    console.log(date)
+    var data = new Date(date)
+    var dia = data.getUTCDate();
+    var mes = data.getUTCMonth();
+    var ano = data.getUTCFullYear();
+    return new Date(ano, mes, dia);
   }
 
 }

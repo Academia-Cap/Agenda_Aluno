@@ -31,9 +31,9 @@
             <span>{{msg}}</span>
         </form>
         <div class="mt-2 div-botoes">
-            <button type="submit" onClick="window.location.reload()" [disabled]="f.invalid" class="btn me-2"
+            <button type="submit"  [disabled]="f.invalid" class="btn me-2"
                 (click)="gravar(f.value)">Salvar</button>
-            <button type="reset" onClick="window.location.reload()" class="btn">Cancelar</button>
+            <button type="reset" class="btn">Cancelar</button>
         </div>
         
     </div>

@@ -21,7 +21,7 @@
             <input class="form-control" type="text" [(ngModel)]="endereco.uf" #festado="ngModel" ngModel name="estado" placeholder="Digite estado" required>
 
             <div class="mt-2 div-botoes">
-                <button type="submit" [disabled]="f.invalid" onClick="window.location.reload()" class="btn me-2">Salvar</button>
+                <button type="submit" [disabled]="f.invalid" class="btn me-2">Salvar</button>
                 <button type="reset" class="btn">Cancelar</button>
             </div>
             
@@ -38,7 +38,7 @@
                 <p class="card-text">{{ inst.rua }} {{ inst.cidade }} {{ inst.estado }} {{ inst.cep}}</p>
             </div>
             <i role="button" class="material-icons text-light" (click)="editar(inst.id)">mode_edit</i>
-            <i role="button" onClick="window.location.reload()" class="material-icons text-light"
+            <i role="button" class="material-icons text-light"
                 (click)="excluir(inst.id)">delete</i>
         </div>
     </div>

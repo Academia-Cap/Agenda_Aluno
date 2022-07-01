@@ -20,6 +20,7 @@ export class AlunoCadastrarComponent implements OnInit {
   msgTel: string = '';
   msgSenha: String = '';
   msgLogin: string = '';
+  dadosGravar: any ={'nome':'', 'telefone':'', 'email':'','usuario':'', 'senha':null, 'idAvatar':''}
 
   constructor(private servicoAluno: AlunoService, private router: Router,
     private serviceValidar: ValidarCamposService, private auth: AuthenticationService,

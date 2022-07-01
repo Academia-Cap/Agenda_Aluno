@@ -3,7 +3,6 @@ const rota = express.Router()
 
 const consultaBD = require('../banco_de_dados/comando_bd/disciplina_comando')
 const mensagem = require('../mensagens/mensagem')
-const validar = require('../validar/disciplina_validar')
 
 var pg = require('pg')
 var conString = process.env.DATABASE_URL;
@@ -27,9 +26,6 @@ rota.post('/get', (req, res) => {
 });
 
 rota.post('/', (req, res) => {
-    if(!validar.validarDados(req.body)){
-        return res.status(401).send(mensagem.ERRO_OPERACAO)
-    }
     pool.connect((err, client, release) => {
         if (err) {
             release()
@@ -64,9 +60,6 @@ rota.get('/:id', (req, res) => {
 });
 
 rota.put('/:id', (req, res) => {
-    if(!validar.validarDadosAlteracao(req.body)){
-        return res.status(401).send(mensagem.ERRO_OPERACAO)
-    }
     pool.connect((err, client, release) => {
         if (err) {
             release()

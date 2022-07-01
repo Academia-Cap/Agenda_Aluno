@@ -44,7 +44,6 @@ export class CalendarioCadastroComponent implements OnInit {
   gravar(dados: any) {
     dados.idaluno = this.alunoToken.id
     dados.iddisc = this.serviceValidar.gerarIdDisciplina(dados)
-    console.log(dados)
     dados.periodo = this.serviceValidar.gerarData(dados)
 
     if (this.tarefa.id == null) {

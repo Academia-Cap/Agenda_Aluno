@@ -31,7 +31,8 @@ rota.post('/', (req, res) => {
                     release()
                     return res.status(500).send(mensagem.ERRO_AUNTENTICACAO)
                 }
-                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, hash]
+                console.log(req.body.idAvatar)
+                var values = [req.body.nome, req.body.telefone, req.body.email, req.body.usuario, req.body.idAvatar, hash]
                 client.query(consultaBD.postOne, values, (error, result) => {
                     if (error) {
                         return res.status(401).send(mensagem.ERRO_OPERACAO)

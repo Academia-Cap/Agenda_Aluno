@@ -30,12 +30,18 @@ export class InstituicaoCadastroComponent implements OnInit {
 
   gravar(dados: any) {
     dados.idaluno = this.alunoToken.id
+    console.log(dados)
     if (this.instituicao.id == null) {
-      this.instituicaoService.gravar(dados).subscribe(x => this.instituicao = x)
+      this.instituicaoService.gravar(dados).subscribe(x => {
+        this.instituicao = x
+      })
     } else {
       dados.id = this.instituicao.id
-      this.instituicaoService.alterar(dados).subscribe(x => this.instituicao = x)
+      this.instituicaoService.alterar(dados).subscribe(x => {
+        this.instituicao = x
+      })
     }
+    window.location.reload();
   }
 
   editar(id: any) {
@@ -44,6 +50,7 @@ export class InstituicaoCadastroComponent implements OnInit {
 
   excluir(id: any) {
     this.instituicaoService.excluir(id).subscribe(x => this.msg = "instituicao excluida com sucesso")
+    window.location.reload();
   }
 
   cep: string = "";
